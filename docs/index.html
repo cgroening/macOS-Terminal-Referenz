@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Einleitung - Terminal-Referenz</title>
+        <title>Einleitung - Terminal-Referenz für macOS</title>
 
 
         <!-- Custom HTML head -->
@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "ayu";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "searchindex-bfb3672c.js";
+            window.path_to_searchindex_js = "searchindex-6dabb882.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-76266586.js"></script>
@@ -139,7 +139,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Terminal-Referenz</h1>
+                    <h1 class="menu-title">Terminal-Referenz für macOS</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -416,21 +416,47 @@
   --color-pink: #d53984;
 }
 </style>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Thema</th><th>Beschreibung</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>Shell-Scripting</strong></td><td>Automatisierung von Aufgaben mit <code>.sh</code>/<code>.zsh</code>-Dateien</td></tr>
-<tr><td><strong>Regex, <code>sed</code>, <code>awk</code></strong></td><td>Umfangreiche Text-Manipulation</td></tr>
-<tr><td><strong>Cronjobs / launchd</strong></td><td>Zeitbasierte Automatisierung von Aufgaben</td></tr>
-<tr><td><strong>tmux / screen</strong></td><td>Mehrere Sitzungen in einem Terminal</td></tr>
-<tr><td><strong>Git &amp; SSH-Keys</strong></td><td>Versionierung &amp; sichere Server-Zugriffe</td></tr>
-<tr><td><strong>ZLE/ZLE-Widgets</strong></td><td>Anpassung des zsh-Line-Editors, Erstellung eigener Befehle &amp; Keybindings</td></tr>
-</tbody>
-</table>
+<h1 id="einleitung"><a class="header" href="#einleitung">Einleitung</a></h1>
+<h2 id="willkommen-zur-macos-terminal-referenz"><a class="header" href="#willkommen-zur-macos-terminal-referenz">Willkommen zur macOS Terminal Referenz</a></h2>
+<p>Das Terminal ist weit mehr als ein schwarzes Fenster mit grünem Text – es ist das mächtigste Werkzeug auf deinem Mac. Während die grafische Oberfläche ihre Berechtigung hat, ermöglicht das Terminal eine Kontrolle und Effizienz, die mit Mausklicks unerreichbar bleibt.</p>
+<h2 id="warum-das-terminal-beherrschen"><a class="header" href="#warum-das-terminal-beherrschen">Warum das Terminal beherrschen?</a></h2>
+<p>Das macOS-Terminal bzw. die Shell (standardmäßig <em>zsh</em> seit macOS Catalina) ist die direkte Schnittstelle zum Betriebssystem. Es ermöglicht:</p>
+<ul>
+<li><strong>Geschwindigkeit</strong>: Navigation mit der Tastatur – keine Mausklicks, keine Verzögerungen</li>
+<li><strong>Automatisierung</strong>: Komplexe Aufgaben mit einem einzigen Befehl wiederholen</li>
+<li><strong>Präzision</strong>: 1000 Dateien in Sekunden nach exakten Mustern um umbenennen</li>
+<li><strong>Kontrolle</strong>: Auf Systemeinstellungen und Systemdateien</li>
+<li><strong>Entwicklung</strong>: Konfiguration von Entwicklungsumgebungen, Verwaltung von Git-Repositories, Deployment von Code</li>
+<li><strong>Fehleranalyse</strong>: Durchsuchen von Logs, Analysieren von Prozesse, Verstehen von Systeminformationen</li>
+<li><strong>Server-Verwaltung</strong>: Effiziente Verwaltung von Cloud-Systemen und Remote-Servern</li>
+</ul>
+<div class="mdbook-callouts mdbook-callouts-note">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  note
+</p>
+
+<p>Mit dem Terminal hat man die volle Kontrolle über das System. Es ist kein Relikt aus vergangenen Zeiten, sondern das präziseste und schnellste Werkzeug des Betriebssystems.</p>
 </div>
+
+<h2 id="inhalte"><a class="header" href="#inhalte">Inhalte</a></h2>
+<p>Diese Referenz ist in vier Teile gegliedert:</p>
+<h3 id="teil-i-grundlagen"><a class="header" href="#teil-i-grundlagen">Teil I: Grundlagen</a></h3>
+<p>Essentiellen Befehle, Verständnis für das Dateisystem, Konfiguration der Shell, eine Basis für effizientes Arbeiten im Terminal legen</p>
+<h3 id="teil-ii-fortgeschrittene-themen"><a class="header" href="#teil-ii-fortgeschrittene-themen">Teil II: Fortgeschrittene Themen</a></h3>
+<p>Von Shell-Scripting über tmux bis zu ZLE-Widgets – hier wird tiefer eingetaucht und erklärt, wie du das Terminal zum persönlichen Produktivitäts-Multiplikator wird.</p>
+<h3 id="teil-iii-cheat-sheets"><a class="header" href="#teil-iii-cheat-sheets">Teil III: Cheat Sheets</a></h3>
+<p>Schnellreferenzen für häufig verwendete Tools und Programmiersprachen – immer griffbereit.</p>
+<h3 id="teil-iv-terminals-shells-und-erweiterungen"><a class="header" href="#teil-iv-terminals-shells-und-erweiterungen">Teil IV: Terminals, Shells und Erweiterungen</a></h3>
+<p>Moderne Terminal-Emulatoren, Shell-Erweiterungen und die neuesten CLI-Tools, welche die Arbeit noch angenehmer machen.</p>
+<h2 id="wie-diese-referenz-genutzt-werden-kann"><a class="header" href="#wie-diese-referenz-genutzt-werden-kann">Wie diese Referenz genutzt werden kann</a></h2>
+<p>Diese Referenz ist als Nachschlagewerk konzipiert. Man muss sie nicht von vorne bis hinten durcharbeiten:</p>
+<ul>
+<li><strong>Als Anfänger</strong>: Start mit Teil I und sequentielles Durcharbeiten der Grundlagen</li>
+<li><strong>Als Fortgeschrittener</strong>: Direkt zu den Themen, die einen interessieren</li>
+<li><strong>Im Alltag</strong>: Nutzung der Suchfunktion und Cheat Sheets als schnelle Referenz</li>
+</ul>
+<p>Jedes Kapitel enthält praktische Beispiele, die man direkt in deinem Terminal ausprobieren kann.</p>
 
                     </main>
 
