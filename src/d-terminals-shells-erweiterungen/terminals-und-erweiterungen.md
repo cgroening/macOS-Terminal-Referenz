@@ -861,7 +861,7 @@ Eine Erklärung, wie sich die aktuelle Prompt zusammensetzt liefert der folgende
 starship explain
 ```
 
-![[_Bilder/Terminal-Referenz für macOS - Teil 4 - Terminals, Shells & Erweiterungen-1.png]]
+![[../_bilder/Terminal-Referenz für macOS - Teil 4 - Terminals, Shells & Erweiterungen-1.png]]
 
 **Deinstallation:**
 

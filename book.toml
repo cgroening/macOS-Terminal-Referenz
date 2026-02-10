@@ -1,7 +1,7 @@
 # Update mdbook with: `cargo install mdbook`
 
 [book]
-title = "Terminal-Referenz"
+title = "Terminal-Referenz für macOS"
 authors = ["Corvin Gröning"]
 language = "de"
 src = "src"
