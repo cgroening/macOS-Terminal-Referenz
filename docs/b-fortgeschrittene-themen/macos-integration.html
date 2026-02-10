@@ -1,0 +1,1469 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>macOS-Integration - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="macos-integration"><a class="header" href="#macos-integration">macOS-Integration</a></h1>
+<p>macOS bietet viele Terminal-Befehle zur Integration mit dem Betriebssystem: Zwischenablage, Finder, Systemeinstellungen und mehr.</p>
+<h2 id="1----zwischenablage"><a class="header" href="#1----zwischenablage">1    Zwischenablage</a></h2>
+<p>Die macOS-Zwischenablage (Pasteboard) ist vollständig vom Terminal aus zugänglich.</p>
+<h3 id="11----pbcopy--in-zwischenablage-kopieren"><a class="header" href="#11----pbcopy--in-zwischenablage-kopieren">1.1    <code>pbcopy</code> – In Zwischenablage kopieren</a></h3>
+<p><code>pbcopy</code> kopiert stdin in die Zwischenablage.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Text kopieren
+echo "Hallo Welt" | pbcopy
+
+# Dateiinhalt kopieren
+cat datei.txt | pbcopy
+pbcopy &lt; datei.txt
+
+# Befehlsausgabe kopieren
+pwd | pbcopy
+ls -la | pbcopy
+
+# Mehrere Zeilen
+cat &lt;&lt; EOF | pbcopy
+Zeile 1
+Zeile 2
+Zeile 3
+EOF
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<pre><code class="language-zsh"># Standard-Pasteboard (wie Cmd+C)
+echo "text" | pbcopy
+
+# Find-Pasteboard (für Cmd+G Suche)
+echo "suchtext" | pbcopy -pboard find
+
+# Ruler-Pasteboard
+echo "data" | pbcopy -pboard ruler
+</code></pre>
+<h3 id="12----pbpaste--aus-zwischenablage-einfügen"><a class="header" href="#12----pbpaste--aus-zwischenablage-einfügen">1.2    <code>pbpaste</code> – Aus Zwischenablage einfügen</a></h3>
+<p><code>pbpaste</code> gibt den Inhalt der Zwischenablage auf stdout aus.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># In Terminal ausgeben
+pbpaste
+
+# In Datei speichern
+pbpaste &gt; datei.txt
+
+# An Datei anhängen
+pbpaste &gt;&gt; datei.txt
+
+# Als Variable
+content=$(pbpaste)
+echo "$content"
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<pre><code class="language-zsh"># Standard-Pasteboard
+pbpaste
+
+# Find-Pasteboard
+pbpaste -pboard find
+
+# Nur Plain Text (falls Rich Text kopiert)
+pbpaste -Prefer txt
+</code></pre>
+<h3 id="13----praxisbeispiele-mit-pipes"><a class="header" href="#13----praxisbeispiele-mit-pipes">1.3    Praxisbeispiele mit Pipes</a></h3>
+<p><strong>Textverarbeitung:</strong></p>
+<pre><code class="language-zsh"># Kopierte URLs bereinigen
+pbpaste | tr -d '\n' | pbcopy
+
+# Großbuchstaben
+pbpaste | tr '[:lower:]' '[:upper:]' | pbcopy
+
+# Zeilen sortieren
+pbpaste | sort | pbcopy
+
+# Duplikate entfernen
+pbpaste | sort -u | pbcopy
+
+# Leerzeichen trimmen
+pbpaste | sed 's/^[:space:](:space:.md)*//;s/[:space:](:space:.md)*$//' | pbcopy
+
+# Zeilen nummerieren
+pbpaste | nl | pbcopy
+</code></pre>
+<p><strong>Entwicklung:</strong></p>
+<pre><code class="language-zsh"># Git diff kopieren
+git diff | pbcopy
+
+# JSON formatieren
+pbpaste | jq . | pbcopy
+
+# Base64 kodieren
+pbpaste | base64 | pbcopy
+
+# Base64 dekodieren
+pbpaste | base64 -d | pbcopy
+
+# MD5-Hash von Clipboard-Inhalt
+pbpaste | md5
+
+# URL-Encoding
+pbpaste | python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.stdin.read().strip()))" | pbcopy
+</code></pre>
+<p><strong>Pfade und Dateien:</strong></p>
+<pre><code class="language-zsh"># Aktuellen Pfad kopieren
+pwd | pbcopy
+
+# Dateiliste kopieren
+ls -1 | pbcopy
+
+# Voller Pfad einer Datei
+realpath datei.txt | pbcopy
+
+# SSH Public Key kopieren
+cat ~/.ssh/id_ed25519.pub | pbcopy
+</code></pre>
+<p><strong>Nützliche Aliase:</strong></p>
+<pre><code class="language-zsh"># ~/.zshrc
+
+# Clipboard-Shortcuts
+alias cb='pbcopy'
+alias cbp='pbpaste'
+alias cbpwd='pwd | pbcopy'
+
+# Pfad kopieren
+cppath() { echo -n "$(pwd)/$1" | pbcopy; echo "Copied: $(pwd)/$1"; }
+
+# Dateiinhalt kopieren
+cpfile() { cat "$1" | pbcopy; echo "Copied contents of $1"; }
+
+# JSON formatieren und kopieren
+cbjson() { pbpaste | jq . | pbcopy; echo "JSON formatted"; }
+
+# Clipboard-Inhalt anzeigen und in Datei speichern
+cbsave() { pbpaste | tee "$1"; }
+</code></pre>
+<h2 id="2----dateien--programme-öffnen"><a class="header" href="#2----dateien--programme-öffnen">2    Dateien &amp; Programme öffnen</a></h2>
+<h3 id="21----open--dateien-und-urls-öffnen"><a class="header" href="#21----open--dateien-und-urls-öffnen">2.1    <code>open</code> – Dateien und URLs öffnen</a></h3>
+<p><code>open</code> öffnet Dateien, Verzeichnisse und URLs mit der Standardanwendung.</p>
+<p><strong>Dateien öffnen:</strong></p>
+<pre><code class="language-zsh"># Mit Standard-App öffnen
+open dokument.pdf
+open bild.png
+open tabelle.xlsx
+
+# Mehrere Dateien
+open datei1.txt datei2.txt datei3.txt
+
+# Alle Bilder im Ordner
+open *.jpg
+</code></pre>
+<p><strong>Verzeichnisse öffnen:</strong></p>
+<pre><code class="language-zsh"># Aktuelles Verzeichnis im Finder
+open .
+
+# Bestimmtes Verzeichnis
+open ~/Documents
+open /Applications
+
+# Home-Verzeichnis
+open ~
+</code></pre>
+<p><strong>URLs öffnen:</strong></p>
+<pre><code class="language-zsh"># Webseite im Standard-Browser
+open https://www.example.com
+
+# E-Mail-Link
+open mailto:max@example.com
+
+# FTP
+open ftp://ftp.example.com
+
+# Mit Parametern
+open "https://www.google.com/search?q=terminal+commands"
+</code></pre>
+<p><strong>Spezielle URLs:</strong></p>
+<pre><code class="language-zsh"># Systemeinstellungen
+open "x-apple.systempreferences:"
+open "x-apple.systempreferences:com.apple.preference.security"
+
+# App Store
+open "macappstore://itunes.apple.com/app/id1234567890"
+
+# Maps
+open "maps://?q=Berlin"
+
+# FaceTime
+open "facetime://max@example.com"
+</code></pre>
+<h3 id="22----open--a--mit-bestimmter-app-öffnen"><a class="header" href="#22----open--a--mit-bestimmter-app-öffnen">2.2    <code>open -a</code> – Mit bestimmter App öffnen</a></h3>
+<pre><code class="language-zsh"># Mit spezifischer App öffnen
+open -a "Visual Studio Code" datei.txt
+open -a Safari https://example.com
+open -a "Google Chrome" index.html
+open -a Preview bild.png
+open -a TextEdit dokument.txt
+
+# App ohne Datei starten
+open -a Finder
+open -a Terminal
+open -a "Activity Monitor"
+
+# Kurzform für .app im Applications-Ordner
+open -a Safari
+</code></pre>
+<p><strong>Mit Bundle-ID:</strong></p>
+<pre><code class="language-zsh"># Über Bundle-Identifier
+open -b com.apple.Safari https://example.com
+open -b com.microsoft.VSCode datei.txt
+open -b com.apple.TextEdit dokument.txt
+
+# Bundle-ID einer App finden
+osascript -e 'id of app "Safari"'
+# com.apple.Safari
+
+mdls -name kMDItemCFBundleIdentifier /Applications/Safari.app
+</code></pre>
+<p><strong>Neue Instanz:</strong></p>
+<pre><code class="language-zsh"># Neue App-Instanz (zweites Fenster)
+open -n -a Safari
+
+# Versteckt starten
+open -j -a "Some App"
+
+# Im Hintergrund (nicht in Vordergrund bringen)
+open -g datei.txt
+</code></pre>
+<h3 id="23----open--r--im-finder-anzeigen"><a class="header" href="#23----open--r--im-finder-anzeigen">2.3    <code>open -R</code> – Im Finder anzeigen</a></h3>
+<pre><code class="language-zsh"># Datei im Finder zeigen (Reveal)
+open -R datei.txt
+
+# Öffnet Finder mit selektierter Datei
+open -R ~/Documents/wichtig.pdf
+
+# Nützlich für Downloads
+open -R ~/Downloads/installer.dmg
+</code></pre>
+<p><strong>Weitere Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-a APP</code></td><td>Mit bestimmter App öffnen</td></tr>
+<tr><td><code>-b BUNDLE</code></td><td>Mit Bundle-ID öffnen</td></tr>
+<tr><td><code>-e</code></td><td>Mit TextEdit öffnen</td></tr>
+<tr><td><code>-t</code></td><td>Mit Standard-Texteditor öffnen</td></tr>
+<tr><td><code>-f</code></td><td>stdin als Datei öffnen</td></tr>
+<tr><td><code>-F</code></td><td>Frische App (ohne gespeicherten Zustand)</td></tr>
+<tr><td><code>-W</code></td><td>Warten bis App beendet</td></tr>
+<tr><td><code>-R</code></td><td>Im Finder anzeigen</td></tr>
+<tr><td><code>-n</code></td><td>Neue Instanz</td></tr>
+<tr><td><code>-g</code></td><td>Im Hintergrund</td></tr>
+<tr><td><code>-j</code></td><td>Versteckt starten</td></tr>
+<tr><td><code>-h</code></td><td>App verstecken wenn andere aktiv</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Code im Editor öffnen
+open -a "Visual Studio Code" ~/projekte/app/
+
+# Screenshot im Preview öffnen
+screencapture -i /tmp/screenshot.png &amp;&amp; open -a Preview /tmp/screenshot.png
+
+# Befehlsausgabe im Editor öffnen
+ls -la | open -f -a TextEdit
+
+# Auf App-Ende warten
+open -W dokument.pdf
+echo "PDF wurde geschlossen"
+
+# Quick Look (Vorschau)
+qlmanage -p datei.pdf
+</code></pre>
+<h2 id="3----systemeinstellungen"><a class="header" href="#3----systemeinstellungen">3    Systemeinstellungen</a></h2>
+<h3 id="31----defaults--einstellungen-lesen"><a class="header" href="#31----defaults--einstellungen-lesen">3.1    <code>defaults</code> – Einstellungen lesen</a></h3>
+<p><code>defaults</code> liest und schreibt macOS-Einstellungen (Property Lists).</p>
+<p><strong>Einstellungen lesen:</strong></p>
+<pre><code class="language-zsh"># Alle Einstellungen einer App
+defaults read com.apple.finder
+
+# Bestimmte Einstellung
+defaults read com.apple.finder ShowPathbar
+
+# Globale Einstellungen
+defaults read NSGlobalDomain
+
+# Bestimmte globale Einstellung
+defaults read NSGlobalDomain AppleShowAllExtensions
+</code></pre>
+<p><strong>Einstellungen suchen:</strong></p>
+<pre><code class="language-zsh"># Nach Schlüssel suchen
+defaults read | grep -i "pathbar"
+
+# Alle Domains auflisten
+defaults domains | tr ',' '\n'
+
+# Alle Einstellungen einer Domain durchsuchen
+defaults read com.apple.dock | grep -i "size"
+</code></pre>
+<p><strong>Typ einer Einstellung:</strong></p>
+<pre><code class="language-zsh"># Typ ermitteln
+defaults read-type com.apple.finder ShowStatusBar
+# Type is boolean
+</code></pre>
+<h3 id="32----defaults-write--einstellungen-ändern"><a class="header" href="#32----defaults-write--einstellungen-ändern">3.2    <code>defaults write</code> – Einstellungen ändern</a></h3>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">defaults write DOMAIN KEY VALUE
+defaults write DOMAIN KEY -TYPE VALUE
+</code></pre>
+<p><strong>Typen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Typ</th><th>Flag</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td>String</td><td><code>-string</code></td><td><code>"text"</code></td></tr>
+<tr><td>Integer</td><td><code>-int</code></td><td><code>42</code></td></tr>
+<tr><td>Float</td><td><code>-float</code></td><td><code>3.14</code></td></tr>
+<tr><td>Boolean</td><td><code>-bool</code></td><td><code>true</code>, <code>false</code>, <code>YES</code>, <code>NO</code></td></tr>
+<tr><td>Array</td><td><code>-array</code></td><td><code>item1 item2</code></td></tr>
+<tr><td>Dictionary</td><td><code>-dict</code></td><td><code>key1 value1 key2 value2</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Boolean
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Integer
+defaults write com.apple.dock tilesize -int 48
+
+# Float
+defaults write NSGlobalDomain com.apple.mouse.scaling -float 2.5
+
+# String
+defaults write com.apple.screencapture location -string "~/Screenshots"
+
+# Array
+defaults write com.apple.dock persistent-apps -array
+</code></pre>
+<p><strong>Nach Änderungen:</strong></p>
+<pre><code class="language-zsh"># Finder neu starten
+killall Finder
+
+# Dock neu starten
+killall Dock
+
+# SystemUIServer neu starten (Menüleiste)
+killall SystemUIServer
+</code></pre>
+<h3 id="33----nützliche-versteckte-einstellungen"><a class="header" href="#33----nützliche-versteckte-einstellungen">3.3    Nützliche versteckte Einstellungen</a></h3>
+<p><strong>Finder:</strong></p>
+<pre><code class="language-zsh"># Versteckte Dateien anzeigen
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Pfadleiste anzeigen
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Statusleiste anzeigen
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Dateiendungen immer anzeigen
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Warnung bei Endungsänderung deaktivieren
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Standard-Ansicht (Liste)
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+# Nlsv=Liste, icnv=Icons, clmv=Spalten, Flwv=Cover Flow
+
+# Neues Fenster zeigt Home
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+
+# Finder beenden erlauben
+defaults write com.apple.finder QuitMenuItem -bool true
+
+killall Finder
+</code></pre>
+<p><strong>Dock:</strong></p>
+<pre><code class="language-zsh"># Dock-Größe
+defaults write com.apple.dock tilesize -int 36
+
+# Vergrößerung
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 64
+
+# Position (left, bottom, right)
+defaults write com.apple.dock orientation -string "left"
+
+# Automatisch ausblenden
+defaults write com.apple.dock autohide -bool true
+
+# Ausblende-Verzögerung
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.5
+
+# Nur aktive Apps zeigen
+defaults write com.apple.dock static-only -bool true
+
+# Letzte Apps deaktivieren
+defaults write com.apple.dock show-recents -bool false
+
+# App-Indikatoren (Punkte) ausblenden
+defaults write com.apple.dock show-process-indicators -bool false
+
+# Spaces-Animation beschleunigen
+defaults write com.apple.dock workspaces-edge-delay -float 0.1
+
+killall Dock
+</code></pre>
+<p><strong>Screenshots:</strong></p>
+<pre><code class="language-zsh"># Speicherort ändern
+defaults write com.apple.screencapture location -string "~/Screenshots"
+
+# Format ändern (png, jpg, gif, pdf, tiff)
+defaults write com.apple.screencapture type -string "png"
+
+# Schatten deaktivieren
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# Dateiname-Präfix
+defaults write com.apple.screencapture name -string "Screenshot"
+
+# Zeitstempel im Namen deaktivieren
+defaults write com.apple.screencapture include-date -bool false
+
+killall SystemUIServer
+</code></pre>
+<p><strong>Safari:</strong></p>
+<pre><code class="language-zsh"># Entwicklermenü aktivieren
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+
+# Web Inspector aktivieren
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+
+# Vollständige URL anzeigen
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
+# Links in Tabs öffnen
+defaults write com.apple.Safari TargetedClicksCreateTabs -bool true
+</code></pre>
+<p><strong>Tastatur &amp; Eingabe:</strong></p>
+<pre><code class="language-zsh"># Tastenwiederholung (schneller)
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# Verzögerung bis Wiederholung
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Autokorrektur deaktivieren
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Automatische Großschreibung deaktivieren
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Smart Quotes deaktivieren
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Smart Dashes deaktivieren
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+</code></pre>
+<p><strong>Verschiedenes:</strong></p>
+<pre><code class="language-zsh"># Crash-Reporter-Dialoge als Notification
+defaults write com.apple.CrashReporter UseUNC 1
+
+# Erweiterten Druckdialog als Standard
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+
+# Erweiterten Speicherdialog als Standard
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+# .DS_Store auf Netzwerklaufwerken deaktivieren
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Bluetooth-Audio-Qualität (aptX)
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+# Subpixel-Font-Rendering (für externe Monitore)
+defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+# App Nap deaktivieren (für alle Apps)
+defaults write NSGlobalDomain NSAppSleepDisabled -bool true
+</code></pre>
+<p><strong>Mission Control:</strong></p>
+<pre><code class="language-zsh"># Fenster nach App gruppieren
+defaults write com.apple.dock expose-group-apps -bool true
+
+# Spaces automatisch neu anordnen deaktivieren
+defaults write com.apple.dock mru-spaces -bool false
+
+# Dashboard deaktivieren
+defaults write com.apple.dashboard mcx-disabled -bool true
+
+killall Dock
+</code></pre>
+<h3 id="34----defaults-delete--einstellungen-zurücksetzen"><a class="header" href="#34----defaults-delete--einstellungen-zurücksetzen">3.4    <code>defaults delete</code> – Einstellungen zurücksetzen</a></h3>
+<pre><code class="language-zsh"># Einzelne Einstellung löschen
+defaults delete com.apple.finder ShowPathbar
+
+# Alle Einstellungen einer App zurücksetzen
+defaults delete com.apple.finder
+
+# Globale Einstellung löschen
+defaults delete NSGlobalDomain AppleShowAllExtensions
+
+# Nach Löschen: App neu starten
+killall Finder
+</code></pre>
+<p><strong>Aktuelle Einstellungen sichern:</strong></p>
+<pre><code class="language-zsh"># Domain exportieren
+defaults export com.apple.finder ~/finder-backup.plist
+
+# Domain importieren
+defaults import com.apple.finder ~/finder-backup.plist
+</code></pre>
+<h2 id="4----automator--shortcuts"><a class="header" href="#4----automator--shortcuts">4    Automator &amp; Shortcuts</a></h2>
+<h3 id="41----shell-skripte-in-automator"><a class="header" href="#41----shell-skripte-in-automator">4.1    Shell-Skripte in Automator</a></h3>
+<p>Automator kann Shell-Skripte ausführen und in Workflows integrieren.</p>
+<p><strong>Workflow erstellen:</strong></p>
+<ol>
+<li>Automator öffnen</li>
+<li>Neues Dokument → Workflow oder Quick Action</li>
+<li>“Shell-Skript ausführen” aus der Bibliothek ziehen</li>
+<li>Shell wählen (<code>/bin/zsh</code>) und Skript eingeben</li>
+</ol>
+<p><strong>Eingabe-Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>“an stdin”</td><td>Eingabe als stdin</td></tr>
+<tr><td>“als Argumente”</td><td>Eingabe als <code>$1</code>, <code>$2</code>, …</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiel: Bilder konvertieren</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+# Shell: /bin/zsh
+# Eingabe: als Argumente
+
+for f in "$@"; do
+    sips -s format png "$f" --out "${f%.*}.png"
+done
+</code></pre>
+<p><strong>Beispiel: Text transformieren</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+# Shell: /bin/zsh
+# Eingabe: an stdin
+
+tr '[:lower:]' '[:upper:]'
+</code></pre>
+<p><strong>Beispiel: Clipboard verarbeiten</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+# Kein Input nötig
+
+pbpaste | sort -u | pbcopy
+osascript -e 'display notification "Duplikate entfernt" with title "Automator"'
+</code></pre>
+<h3 id="42----quick-actions-erstellen"><a class="header" href="#42----quick-actions-erstellen">4.2    Quick Actions erstellen</a></h3>
+<p>Quick Actions erscheinen im Finder-Kontextmenü und der Touch Bar.</p>
+<p><strong>Quick Action erstellen:</strong></p>
+<ol>
+<li>Automator → Neues Dokument → “Schnellaktion”</li>
+<li>Eingabe: “Dateien oder Ordner” in “Finder”</li>
+<li>Shell-Skript hinzufügen</li>
+<li>Speichern (Name erscheint im Kontextmenü)</li>
+</ol>
+<p><strong>Beispiel: In Terminal öffnen</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+# Eingabe: als Argumente
+
+for f in "$@"; do
+    if [-d "$f"](-d%20"$f".md); then
+        open -a Terminal "$f"
+        break
+    else
+        open -a Terminal "$(dirname "$f")"
+        break
+    fi
+done
+</code></pre>
+<p><strong>Beispiel: Bilder verkleinern</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+# Eingabe: als Argumente
+
+for f in "$@"; do
+    sips --resampleWidth 1920 "$f" --out "${f%.*}_small.${f##*.}"
+done
+
+osascript -e 'display notification "Bilder verkleinert" with title "Quick Action"'
+</code></pre>
+<p><strong>Beispiel: PDF zusammenfügen</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+# Eingabe: als Argumente
+
+output="$HOME/Desktop/Merged_$(date +%Y%m%d_%H%M%S).pdf"
+"/System/Library/Automator/Combine PDF Pages.action/Contents/MacOS/join" -o "$output" "$@"
+open -R "$output"
+</code></pre>
+<p><strong>Speicherort:</strong></p>
+<pre><code>~/Library/Services/
+</code></pre>
+<h3 id="43----integration-mit-shortcuts-app"><a class="header" href="#43----integration-mit-shortcuts-app">4.3    Integration mit Shortcuts-App</a></h3>
+<p>Die Shortcuts-App (ab macOS Monterey) kann Shell-Skripte ausführen.</p>
+<p><strong>Shell-Skript in Shortcuts:</strong></p>
+<ol>
+<li>Shortcuts-App öffnen</li>
+<li>Neuer Shortcut</li>
+<li>“Shell-Skript ausführen” hinzufügen</li>
+<li>Shell und Eingabe konfigurieren</li>
+</ol>
+<p><strong>Eingabe verwenden:</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+# "Shortcut-Eingabe" ist verfügbar als stdin oder $1
+
+# Als stdin
+cat | tr '[:lower:]' '[:upper:]'
+
+# Als Argument
+echo "$1" | tr '[:lower:]' '[:upper:]'
+</code></pre>
+<p><strong>Shortcuts per Terminal ausführen:</strong></p>
+<pre><code class="language-zsh"># Shortcut ausführen
+shortcuts run "Mein Shortcut"
+
+# Mit Eingabe
+echo "text" | shortcuts run "Mein Shortcut"
+
+# Ergebnis erhalten
+shortcuts run "Mein Shortcut" &lt;&lt;&lt; "input"
+
+# Shortcut-Liste
+shortcuts list
+</code></pre>
+<p><strong>Beispiel: API-Aufruf</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+curl -s "https://api.example.com/data" | jq -r '.result'
+</code></pre>
+<p><strong>Beispiel: Systeminfo</strong></p>
+<pre><code class="language-bash">#!/bin/zsh
+echo "Hostname: $(hostname)"
+echo "User: $(whoami)"
+echo "Uptime: $(uptime | awk -F'up ' '{print $2}' | awk -F',' '{print $1}')"
+echo "IP: $(ipconfig getifaddr en0)"
+</code></pre>
+<h2 id="5----weitere-macos-befehle"><a class="header" href="#5----weitere-macos-befehle">5    Weitere macOS-Befehle</a></h2>
+<h3 id="51----say--text-vorlesen"><a class="header" href="#51----say--text-vorlesen">5.1    <code>say</code> – Text vorlesen</a></h3>
+<p><code>say</code> wandelt Text in Sprache um (Text-to-Speech).</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Text vorlesen
+say "Hallo Welt"
+
+# Aus Datei vorlesen
+say -f dokument.txt
+
+# Von stdin
+echo "Test" | say
+
+# Clipboard vorlesen
+pbpaste | say
+</code></pre>
+<p><strong>Stimme wählen:</strong></p>
+<pre><code class="language-zsh"># Mit bestimmter Stimme
+say -v Anna "Guten Tag"       # Deutsch
+say -v Samantha "Hello"       # Englisch (US)
+say -v Daniel "Hello"         # Englisch (UK)
+
+# Verfügbare Stimmen
+say -v ?
+
+# Alle deutschen Stimmen
+say -v ? | grep de_
+</code></pre>
+<p><strong>In Datei speichern:</strong></p>
+<pre><code class="language-zsh"># Als AIFF
+say -o ausgabe.aiff "Dieser Text wird gespeichert"
+
+# Als MP4/M4A
+say -o ausgabe.m4a --data-format=aac "Dieser Text"
+</code></pre>
+<p><strong>Geschwindigkeit:</strong></p>
+<pre><code class="language-zsh"># Langsamer (Standard: ~175 Wörter/Minute)
+say -r 100 "Langsam gesprochen"
+
+# Schneller
+say -r 250 "Schnell gesprochen"
+</code></pre>
+<p><strong>Interaktiv (Zeichen für Zeichen):</strong></p>
+<pre><code class="language-zsh"># Eingabe Zeichen für Zeichen vorlesen
+say -i
+</code></pre>
+<p><strong>Praktische Anwendungen:</strong></p>
+<pre><code class="language-zsh"># Nach langem Befehl benachrichtigen
+make build &amp;&amp; say "Build fertig" || say "Build fehlgeschlagen"
+
+# Timer
+sleep 300 &amp;&amp; say "5 Minuten vorbei"
+
+# Pomodoro
+{ sleep 1500 &amp;&amp; say "Pause machen"; sleep 300 &amp;&amp; say "Weiterarbeiten"; } &amp;
+</code></pre>
+<h3 id="52----screencapture--screenshots-per-terminal"><a class="header" href="#52----screencapture--screenshots-per-terminal">5.2    <code>screencapture</code> – Screenshots per Terminal</a></h3>
+<p><strong>Bildschirmfoto:</strong></p>
+<pre><code class="language-zsh"># Ganzer Bildschirm
+screencapture screenshot.png
+
+# Interaktive Auswahl (wie Cmd+Shift+4)
+screencapture -i screenshot.png
+
+# Bestimmtes Fenster (wie Cmd+Shift+4, Space)
+screencapture -iW screenshot.png
+
+# Mit Mauszeiger
+screencapture -C screenshot.png
+
+# Ohne Schatten bei Fenstern
+screencapture -o screenshot.png
+</code></pre>
+<p><strong>In Zwischenablage:</strong></p>
+<pre><code class="language-zsh"># In Clipboard statt Datei
+screencapture -c
+
+# Interaktiv in Clipboard
+screencapture -ic
+</code></pre>
+<p><strong>Verzögerung:</strong></p>
+<pre><code class="language-zsh"># 5 Sekunden warten
+screencapture -T 5 screenshot.png
+
+# Interaktiv mit Verzögerung
+screencapture -i -T 3 screenshot.png
+</code></pre>
+<p><strong>Formate:</strong></p>
+<pre><code class="language-zsh"># PNG (Standard)
+screencapture -t png screenshot.png
+
+# JPEG
+screencapture -t jpg screenshot.jpg
+
+# PDF
+screencapture -t pdf screenshot.pdf
+
+# TIFF
+screencapture -t tiff screenshot.tiff
+</code></pre>
+<p><strong>Mehrere Bildschirme:</strong></p>
+<pre><code class="language-zsh"># Jeden Monitor separat
+screencapture screen1.png screen2.png
+
+# Nur bestimmten Monitor (-D)
+screencapture -D 1 screen.png   # Hauptmonitor
+screencapture -D 2 screen.png   # Zweiter Monitor
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-i</code></td><td>Interaktive Auswahl</td></tr>
+<tr><td><code>-iW</code></td><td>Fenster-Auswahl</td></tr>
+<tr><td><code>-iU</code></td><td>Fenster ohne Schatten</td></tr>
+<tr><td><code>-c</code></td><td>In Zwischenablage</td></tr>
+<tr><td><code>-C</code></td><td>Mit Mauszeiger</td></tr>
+<tr><td><code>-o</code></td><td>Ohne Fensterschatten</td></tr>
+<tr><td><code>-T SEC</code></td><td>Verzögerung</td></tr>
+<tr><td><code>-t TYPE</code></td><td>Format (png, jpg, pdf)</td></tr>
+<tr><td><code>-x</code></td><td>Ohne Ton</td></tr>
+<tr><td><code>-D N</code></td><td>Display N</td></tr>
+<tr><td><code>-R x,y,w,h</code></td><td>Rechteck-Bereich</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Schneller Screenshot auf Desktop
+screencapture -x ~/Desktop/screenshot-$(date +%Y%m%d-%H%M%S).png
+
+# Bereich 800x600 ab Position 100,100
+screencapture -R 100,100,800,600 region.png
+
+# Screenshot-Funktion
+screenshot() {
+    local name="${1:-screenshot}"
+    screencapture -i ~/Screenshots/"${name}_$(date +%Y%m%d_%H%M%S).png"
+}
+</code></pre>
+<h3 id="53----caffeinate--ruhezustand-verhindern"><a class="header" href="#53----caffeinate--ruhezustand-verhindern">5.3    <code>caffeinate</code> – Ruhezustand verhindern</a></h3>
+<p><code>caffeinate</code> verhindert, dass der Mac in den Ruhezustand geht.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Bis zum Abbruch (Ctrl+C)
+caffeinate
+
+# Für bestimmte Zeit (Sekunden)
+caffeinate -t 3600   # 1 Stunde
+
+# Während Befehl läuft
+caffeinate -s make build
+
+# Während Prozess läuft
+caffeinate -w 1234   # PID 1234
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-d</code></td><td>Display wach halten</td></tr>
+<tr><td><code>-i</code></td><td>System wach halten (idle)</td></tr>
+<tr><td><code>-m</code></td><td>Disk wach halten</td></tr>
+<tr><td><code>-s</code></td><td>System wach halten (auch mit Netzteil)</td></tr>
+<tr><td><code>-u</code></td><td>User aktiv simulieren</td></tr>
+<tr><td><code>-t SEC</code></td><td>Timeout in Sekunden</td></tr>
+<tr><td><code>-w PID</code></td><td>Bis Prozess endet</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Während langer Download
+caffeinate -i wget https://example.com/large-file.zip
+
+# Während Backup
+caffeinate -im rsync -avz /source/ /backup/
+
+# Präsentation: Display an lassen
+caffeinate -d -t 7200  # 2 Stunden
+
+# Bis bestimmter Prozess endet
+caffeinate -w $(pgrep -x "Handbrake")
+</code></pre>
+<p><strong>Als Hintergrundprozess:</strong></p>
+<pre><code class="language-zsh"># Im Hintergrund starten
+caffeinate -d &amp;
+CAFFEINE_PID=$!
+
+# Später beenden
+kill $CAFFEINE_PID
+</code></pre>
+<h3 id="54----mdfind--spotlight-suche-per-terminal"><a class="header" href="#54----mdfind--spotlight-suche-per-terminal">5.4    <code>mdfind</code> – Spotlight-Suche per Terminal</a></h3>
+<p><code>mdfind</code> nutzt den Spotlight-Index für schnelle Suchen.</p>
+<p><strong>Grundlegende Suche:</strong></p>
+<pre><code class="language-zsh"># Nach Name oder Inhalt
+mdfind "projektplan"
+
+# Nur Dateinamen
+mdfind -name "readme.md"
+
+# In bestimmtem Verzeichnis
+mdfind -onlyin ~/Documents "bericht"
+</code></pre>
+<p><strong>Nach Dateityp:</strong></p>
+<pre><code class="language-zsh"># PDFs
+mdfind "kind:pdf projektplan"
+
+# Bilder
+mdfind "kind:image"
+
+# E-Mails
+mdfind "kind:email from:max"
+
+# Präsentationen
+mdfind "kind:presentation"
+</code></pre>
+<p><strong>Metadata-Attribute:</strong></p>
+<pre><code class="language-zsh"># Nach Erstellungsdatum
+mdfind "kMDItemContentCreationDate &gt; \$time.today(-7)"
+
+# Nach Autor
+mdfind "kMDItemAuthors == 'Max Mustermann'"
+
+# Nach Dateiendung
+mdfind "kMDItemFSName == '*.py'"
+
+# Nach Größe (Bytes)
+mdfind "kMDItemFSSize &gt; 100000000"  # &gt; 100 MB
+</code></pre>
+<p><strong>Kombinierte Abfragen:</strong></p>
+<pre><code class="language-zsh"># PDF und Name
+mdfind "kind:pdf AND name:report"
+
+# In Ordner, bestimmter Typ
+mdfind -onlyin ~/Projects "kind:source"
+
+# Kürzlich geändert
+mdfind "kMDItemContentModificationDate &gt; \$time.today(-1)"
+</code></pre>
+<p><strong>Live-Suche:</strong></p>
+<pre><code class="language-zsh"># Ergebnisse live aktualisieren
+mdfind -live "projektplan"
+</code></pre>
+<p><strong>Mit anderen Befehlen:</strong></p>
+<pre><code class="language-zsh"># Gefundene PDFs öffnen
+mdfind -name "report.pdf" | head -1 | xargs open
+
+# Ergebnisse zählen
+mdfind "kind:image" -onlyin ~/Pictures | wc -l
+
+# Größe aller gefundenen Dateien
+mdfind "kind:movie" | xargs du -ch | tail -1
+</code></pre>
+<p><strong>Spotlight-Index verwalten:</strong></p>
+<pre><code class="language-zsh"># Index-Status
+mdutil -s /
+
+# Index neu erstellen
+sudo mdutil -E /
+
+# Spotlight für Volume deaktivieren
+sudo mdutil -i off /Volumes/USB
+</code></pre>
+<h3 id="55----afplay--audio-abspielen"><a class="header" href="#55----afplay--audio-abspielen">5.5    <code>afplay</code> – Audio abspielen</a></h3>
+<p><code>afplay</code> spielt Audiodateien über das Terminal.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Datei abspielen
+afplay musik.mp3
+afplay sound.aiff
+afplay audio.m4a
+
+# System-Sounds abspielen
+afplay /System/Library/Sounds/Ping.aiff
+afplay /System/Library/Sounds/Glass.aiff
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<pre><code class="language-zsh"># Lautstärke (0.0 - 1.0)
+afplay -v 0.5 musik.mp3
+
+# Abspielrate (1.0 = normal)
+afplay -r 1.5 musik.mp3   # 50% schneller
+afplay -r 0.5 musik.mp3   # 50% langsamer
+
+# Bestimmte Zeit abspielen
+afplay -t 10 musik.mp3    # 10 Sekunden
+
+# Im Hintergrund
+afplay musik.mp3 &amp;
+</code></pre>
+<p><strong>System-Sounds:</strong></p>
+<pre><code class="language-zsh"># Verfügbare System-Sounds
+ls /System/Library/Sounds/
+
+# Notification-Sound
+afplay /System/Library/Sounds/Funk.aiff
+
+# Für Skript-Benachrichtigungen
+notify() {
+    afplay /System/Library/Sounds/Glass.aiff
+    osascript -e "display notification \"$1\" with title \"Terminal\""
+}
+
+# Verwendung
+make build &amp;&amp; notify "Build fertig"
+</code></pre>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Wecker
+sleep 3600 &amp;&amp; afplay /System/Library/Sounds/Ping.aiff
+
+# Befehl mit Sound bei Fertigstellung
+long-running-command; afplay /System/Library/Sounds/Hero.aiff
+
+# Alle MP3s in Ordner abspielen
+for f in *.mp3; do afplay "$f"; done
+
+# Zufälliger System-Sound
+afplay /System/Library/Sounds/$(ls /System/Library/Sounds/ | sort -R | head -1)
+</code></pre>
+<p><strong>Aliase:</strong></p>
+<pre><code class="language-zsh"># ~/.zshrc
+
+# Benachrichtigungs-Sounds
+alias beep='afplay /System/Library/Sounds/Ping.aiff'
+alias done='afplay /System/Library/Sounds/Glass.aiff'
+alias error='afplay /System/Library/Sounds/Basso.aiff'
+
+# Nach langem Befehl
+alias alert='afplay /System/Library/Sounds/Hero.aiff &amp;&amp; osascript -e "display notification \"Fertig\" with title \"Terminal\""'
+</code></pre>
+<p><strong>Weitere Audio-Befehle:</strong></p>
+<pre><code class="language-zsh"># Systemlautstärke
+osascript -e "set volume output volume 50"    # 0-100
+osascript -e "output volume of (get volume settings)"
+
+# Stummschalten
+osascript -e "set volume output muted true"
+osascript -e "set volume output muted false"
+
+# Audio-Gerät Info
+system_profiler SPAudioDataType
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/sicherheit-und-verschluesselung.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../c-cheat-sheets/python.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/sicherheit-und-verschluesselung.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../c-cheat-sheets/python.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,1337 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Netzwerk (erweitert ) - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="netzwerk-erweitert"><a class="header" href="#netzwerk-erweitert">Netzwerk (erweitert)</a></h1>
+<p>Dieses Kapitel behandelt fortgeschrittene Netzwerk-Tools für DNS-Analyse, Verbindungsdiagnose und Dateiübertragung.</p>
+<h2 id="1----dns--namensauflösung"><a class="header" href="#1----dns--namensauflösung">1    DNS &amp; Namensauflösung</a></h2>
+<p>DNS (Domain Name System) übersetzt Domainnamen in IP-Adressen. Die folgenden Tools helfen bei der Diagnose von DNS-Problemen.</p>
+<h3 id="11----nslookup--dns-abfragen"><a class="header" href="#11----nslookup--dns-abfragen">1.1    <code>nslookup</code> – DNS-Abfragen</a></h3>
+<p><code>nslookup</code> ist ein klassisches Tool für DNS-Abfragen, verfügbar auf praktisch allen Systemen.</p>
+<p><strong>Grundlegende Abfragen:</strong></p>
+<pre><code class="language-zsh"># Einfache Namensauflösung
+nslookup example.com
+# Server:    192.168.1.1
+# Address:   192.168.1.1#53
+#
+# Non-authoritative answer:
+# Name:      example.com
+# Address:   93.184.216.34
+
+# IPv6-Adresse abfragen
+nslookup -type=AAAA example.com
+
+# Reverse-Lookup (IP → Name)
+nslookup 8.8.8.8
+# Name: dns.google
+</code></pre>
+<p><strong>Bestimmten DNS-Server verwenden:</strong></p>
+<pre><code class="language-zsh"># Google DNS
+nslookup example.com 8.8.8.8
+
+# Cloudflare DNS
+nslookup example.com 1.1.1.1
+
+# Lokaler DNS
+nslookup example.com 192.168.1.1
+</code></pre>
+<p><strong>Record-Typen abfragen:</strong></p>
+<pre><code class="language-zsh"># MX-Records (Mail)
+nslookup -type=MX example.com
+
+# NS-Records (Nameserver)
+nslookup -type=NS example.com
+
+# TXT-Records (SPF, DKIM, etc.)
+nslookup -type=TXT example.com
+
+# SOA-Record (Start of Authority)
+nslookup -type=SOA example.com
+
+# CNAME-Record (Alias)
+nslookup -type=CNAME www.example.com
+
+# Alle Records
+nslookup -type=ANY example.com
+</code></pre>
+<p><strong>Interaktiver Modus:</strong></p>
+<pre><code class="language-zsh">nslookup
+&gt; server 8.8.8.8
+&gt; set type=MX
+&gt; example.com
+&gt; exit
+</code></pre>
+<p><strong>Häufige Record-Typen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Typ</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>A</code></td><td>IPv4-Adresse</td></tr>
+<tr><td><code>AAAA</code></td><td>IPv6-Adresse</td></tr>
+<tr><td><code>MX</code></td><td>Mail-Server</td></tr>
+<tr><td><code>NS</code></td><td>Nameserver</td></tr>
+<tr><td><code>TXT</code></td><td>Text-Records (SPF, DKIM)</td></tr>
+<tr><td><code>CNAME</code></td><td>Alias/Weiterleitung</td></tr>
+<tr><td><code>SOA</code></td><td>Zonen-Autorität</td></tr>
+<tr><td><code>PTR</code></td><td>Reverse-Lookup</td></tr>
+<tr><td><code>SRV</code></td><td>Service-Records</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12----dig--erweiterte-dns-analyse"><a class="header" href="#12----dig--erweiterte-dns-analyse">1.2    <code>dig</code> – Erweiterte DNS-Analyse</a></h3>
+<p><code>dig</code> (Domain Information Groper) ist das mächtigste DNS-Tool mit detaillierten Ausgaben.</p>
+<p><strong>Installation (falls nicht vorhanden):</strong></p>
+<pre><code class="language-zsh">brew install bind  # enthält dig
+</code></pre>
+<p><strong>Grundlegende Abfragen:</strong></p>
+<pre><code class="language-zsh"># Standard-Abfrage
+dig example.com
+
+# Kurzform (nur Antwort)
+dig +short example.com
+# 93.184.216.34
+
+# Bestimmter Record-Typ
+dig example.com MX
+dig example.com AAAA
+dig example.com TXT
+</code></pre>
+<p><strong>Ausgabe verstehen:</strong></p>
+<pre><code class="language-zsh">dig example.com
+
+# ;; QUESTION SECTION:
+# ;example.com.                   IN      A
+#
+# ;; ANSWER SECTION:
+# example.com.            86400   IN      A       93.184.216.34
+#
+# ;; Query time: 23 msec
+# ;; SERVER: 192.168.1.1#53(192.168.1.1)
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Sektion</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>QUESTION</td><td>Gestellte Anfrage</td></tr>
+<tr><td>ANSWER</td><td>Antwort-Records</td></tr>
+<tr><td>AUTHORITY</td><td>Zuständige Nameserver</td></tr>
+<tr><td>ADDITIONAL</td><td>Zusätzliche Infos</td></tr>
+<tr><td>Query time</td><td>Antwortzeit</td></tr>
+<tr><td>SERVER</td><td>Verwendeter DNS-Server</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Bestimmten DNS-Server verwenden:</strong></p>
+<pre><code class="language-zsh"># Mit @server
+dig @8.8.8.8 example.com
+dig @1.1.1.1 example.com +short
+</code></pre>
+<p><strong>Erweiterte Optionen:</strong></p>
+<pre><code class="language-zsh"># Alle Sektionen anzeigen
+dig example.com +all
+
+# Nur Antwort-Sektion
+dig example.com +noall +answer
+
+# Ohne Kommentare
+dig example.com +nocomments
+
+# Mit Statistiken
+dig example.com +stats
+
+# Trace: Komplette DNS-Auflösung verfolgen
+dig example.com +trace
+
+# Reverse-Lookup
+dig -x 8.8.8.8
+</code></pre>
+<p><strong>Batch-Abfragen:</strong></p>
+<pre><code class="language-zsh"># Mehrere Domains
+dig example.com google.com github.com +short
+
+# Aus Datei
+dig -f domains.txt +short
+</code></pre>
+<p><strong>DNS-Propagation prüfen:</strong></p>
+<pre><code class="language-zsh"># Bei verschiedenen DNS-Servern abfragen
+for dns in 8.8.8.8 1.1.1.1 9.9.9.9; do
+    echo "=== $dns ==="
+    dig @$dns example.com +short
+done
+</code></pre>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># SPF-Record prüfen
+dig example.com TXT +short | grep spf
+
+# Alle MX-Records mit Priorität
+dig example.com MX +short
+# 10 mail.example.com.
+# 20 mail2.example.com.
+
+# DNSSEC validieren
+dig example.com +dnssec
+
+# TTL (Time-to-Live) anzeigen
+dig example.com | grep -A1 "ANSWER SECTION"
+</code></pre>
+<h3 id="13----host--einfache-namensauflösung"><a class="header" href="#13----host--einfache-namensauflösung">1.3    <code>host</code> – Einfache Namensauflösung</a></h3>
+<p><code>host</code> bietet eine einfachere, lesbarere Ausgabe als dig.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Namensauflösung
+host example.com
+# example.com has address 93.184.216.34
+# example.com has IPv6 address 2606:2800:220:1:248:1893:25c8:1946
+# example.com mail is handled by 0 .
+
+# Reverse-Lookup
+host 8.8.8.8
+# 8.8.8.8.in-addr.arpa domain name pointer dns.google.
+</code></pre>
+<p><strong>Record-Typen:</strong></p>
+<pre><code class="language-zsh"># Nur bestimmten Typ
+host -t MX example.com
+host -t NS example.com
+host -t TXT example.com
+host -t AAAA example.com
+</code></pre>
+<p><strong>DNS-Server angeben:</strong></p>
+<pre><code class="language-zsh">host example.com 8.8.8.8
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-t TYPE</code></td><td>Record-Typ</td></tr>
+<tr><td><code>-a</code></td><td>Alle Record-Typen</td></tr>
+<tr><td><code>-v</code></td><td>Verbose (wie dig)</td></tr>
+<tr><td><code>-4</code></td><td>Nur IPv4</td></tr>
+<tr><td><code>-6</code></td><td>Nur IPv6</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Vergleich der DNS-Tools:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>nslookup</th><th>dig</th><th>host</th></tr>
+</thead>
+<tbody>
+<tr><td>Detailgrad</td><td>Mittel</td><td>Hoch</td><td>Niedrig</td></tr>
+<tr><td>Lesbarkeit</td><td>Gut</td><td>Technisch</td><td>Sehr gut</td></tr>
+<tr><td>Scripting</td><td>Möglich</td><td>Sehr gut</td><td>Gut</td></tr>
+<tr><td>Verfügbarkeit</td><td>Überall</td><td>Meist installiert</td><td>Meist installiert</td></tr>
+<tr><td>Empfehlung</td><td>Legacy</td><td>Experten</td><td>Schnelle Checks</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2----verbindungen--ports"><a class="header" href="#2----verbindungen--ports">2    Verbindungen &amp; Ports</a></h2>
+<h3 id="21----netstat--netzwerkstatistiken"><a class="header" href="#21----netstat--netzwerkstatistiken">2.1    <code>netstat</code> – Netzwerkstatistiken</a></h3>
+<p><code>netstat</code> zeigt Netzwerkverbindungen, Routing-Tabellen und Interface-Statistiken.</p>
+<div class="mdbook-callouts mdbook-callouts-tip">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  tip
+</p>
+
+<p>Unter macOS ist <code>netstat</code> verfügbar, aber <code>lsof -i</code> ist oft praktischer für Verbindungen. Es zeigt direkt den Prozessnamen und die PID zu jeder Verbindung, während <code>netstat</code> unter macOS diese Information nicht liefert. Außerdem bietet <code>lsof</code> flexiblere Filteroptionen nach Port, Protokoll und Prozess.</p>
+</div>
+
+<p><strong>Aktive Verbindungen:</strong></p>
+<pre><code class="language-zsh"># Alle Verbindungen
+netstat -an
+
+# Nur TCP
+netstat -an -p tcp
+
+# Nur UDP
+netstat -an -p udp
+
+# Nur lauschende Ports
+netstat -an | grep LISTEN
+</code></pre>
+<p><strong>Ausgabe verstehen:</strong></p>
+<pre><code>Proto  Local Address          Foreign Address        State
+tcp4   192.168.1.100.52341    93.184.216.34.443     ESTABLISHED
+tcp4   *.80                   *.*                    LISTEN
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Spalte</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>Proto</td><td>Protokoll (tcp4, tcp6, udp)</td></tr>
+<tr><td>Local Address</td><td>Lokale IP:Port</td></tr>
+<tr><td>Foreign Address</td><td>Remote IP:Port</td></tr>
+<tr><td>State</td><td>Verbindungsstatus</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Verbindungsstatus:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Status</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>LISTEN</code></td><td>Wartet auf Verbindungen</td></tr>
+<tr><td><code>ESTABLISHED</code></td><td>Aktive Verbindung</td></tr>
+<tr><td><code>TIME_WAIT</code></td><td>Warten auf Timeout</td></tr>
+<tr><td><code>CLOSE_WAIT</code></td><td>Warten auf Schließen</td></tr>
+<tr><td><code>SYN_SENT</code></td><td>Verbindungsaufbau</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Routing-Tabelle:</strong></p>
+<pre><code class="language-zsh">netstat -rn
+# Destination        Gateway            Flags
+# default            192.168.1.1        UGSc
+# 192.168.1.0/24     link#6             UCS
+</code></pre>
+<p><strong>Interface-Statistiken:</strong></p>
+<pre><code class="language-zsh"># Alle Interfaces
+netstat -i
+
+# Mit Byte-Zählern
+netstat -ib
+
+# Bestimmtes Interface
+netstat -I en0
+</code></pre>
+<p><strong>Nützliche Kombinationen:</strong></p>
+<pre><code class="language-zsh"># Offene Ports nach Anzahl sortiert
+netstat -an | grep ESTABLISHED | awk '{print $5}' | cut -d. -f1-4 | sort | uniq -c | sort -rn
+
+# Verbindungen pro Status
+netstat -an | awk '/^tcp/ {print $6}' | sort | uniq -c
+
+# Lauschende Dienste
+netstat -an -p tcp | grep LISTEN
+</code></pre>
+<h3 id="22----lsof--i--offene-netzwerkverbindungen"><a class="header" href="#22----lsof--i--offene-netzwerkverbindungen">2.2    <code>lsof -i</code> – Offene Netzwerkverbindungen</a></h3>
+<p><code>lsof</code> (List Open Files) ist unter macOS das bevorzugte Tool für Netzwerkdiagnose.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Alle Netzwerkverbindungen
+lsof -i
+
+# Mit numerischen Ports (schneller)
+lsof -i -n -P
+</code></pre>
+<p><strong>Nach Port filtern:</strong></p>
+<pre><code class="language-zsh"># Bestimmter Port
+lsof -i :80
+lsof -i :443
+lsof -i :3000
+
+# Port-Bereich
+lsof -i :8000-9000
+
+# Mehrere Ports
+lsof -i :80 -i :443
+</code></pre>
+<p><strong>Nach Protokoll filtern:</strong></p>
+<pre><code class="language-zsh"># Nur TCP
+lsof -i tcp
+
+# Nur UDP
+lsof -i udp
+
+# Nur IPv4
+lsof -i 4
+
+# Nur IPv6
+lsof -i 6
+
+# Kombiniert
+lsof -i tcp:443
+</code></pre>
+<p><strong>Nach Prozess/Benutzer:</strong></p>
+<pre><code class="language-zsh"># Bestimmter Prozess
+lsof -i -c nginx
+lsof -i -c python
+
+# Bestimmter Benutzer
+lsof -i -u max
+
+# Bestimmte PID
+lsof -i -p 1234
+</code></pre>
+<p><strong>Verbindungsstatus:</strong></p>
+<pre><code class="language-zsh"># Nur lauschende Ports
+lsof -i -sTCP:LISTEN
+
+# Nur etablierte Verbindungen
+lsof -i -sTCP:ESTABLISHED
+
+# Nur Verbindungen zu bestimmtem Host
+lsof -i @192.168.1.100
+lsof -i @google.com
+</code></pre>
+<p><strong>Ausgabe verstehen:</strong></p>
+<pre><code>COMMAND   PID USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
+nginx    1234 root   6u  IPv4  0x1234     0t0  TCP *:http (LISTEN)
+Chrome   5678 max   42u  IPv4  0x5678     0t0  TCP 192.168.1.100:52341-&gt;93.184.216.34:https (ESTABLISHED)
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Spalte</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>COMMAND</td><td>Programmname</td></tr>
+<tr><td>PID</td><td>Prozess-ID</td></tr>
+<tr><td>USER</td><td>Benutzer</td></tr>
+<tr><td>FD</td><td>File Descriptor</td></tr>
+<tr><td>TYPE</td><td>IPv4/IPv6</td></tr>
+<tr><td>NAME</td><td>Verbindungsdetails</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Was blockiert Port 8080?
+lsof -i :8080
+
+# Prozess auf Port beenden
+kill $(lsof -t -i :8080)
+
+# Alle Verbindungen eines Programms
+lsof -i -c Chrome -n -P
+
+# Verbindungen zu bestimmter Domain
+lsof -i @github.com
+
+# Lauschende Ports mit Prozessnamen
+lsof -i -P -n | grep LISTEN
+
+# Schnelle Übersicht
+lsof -i -n -P | head -20
+</code></pre>
+<p><strong>Aliase für häufige Abfragen:</strong></p>
+<pre><code class="language-zsh"># ~/.zshrc
+alias ports='lsof -i -P -n | grep LISTEN'
+alias conn='lsof -i -P -n'
+alias whoport='lsof -i -P -n -sTCP:LISTEN | grep'
+</code></pre>
+<h3 id="23----nc-netcat--netzwerk-debugging"><a class="header" href="#23----nc-netcat--netzwerk-debugging">2.3    <code>nc</code> (netcat) – Netzwerk-Debugging</a></h3>
+<p><code>nc</code> (netcat) ist das “Schweizer Taschenmesser” für Netzwerk-Debugging. Es kann Verbindungen öffnen, auf Ports lauschen und Daten übertragen.</p>
+<p><strong>Port-Scan:</strong></p>
+<pre><code class="language-zsh"># Einzelner Port
+nc -zv host.com 80
+# Connection to host.com port 80 [tcp/http] succeeded!
+
+# Port-Bereich
+nc -zv host.com 20-25
+
+# Schneller Scan (ohne DNS)
+nc -zv -n 192.168.1.1 22
+
+# Mit Timeout
+nc -zv -w 3 host.com 80
+</code></pre>
+<p><strong>Port-Verfügbarkeit testen:</strong></p>
+<pre><code class="language-zsh"># HTTP-Port offen?
+nc -zv google.com 80 443
+
+# SSH erreichbar?
+nc -zv -w 5 server.com 22
+</code></pre>
+<p><strong>Auf Port lauschen (Server):</strong></p>
+<pre><code class="language-zsh"># Einfacher Server auf Port 1234
+nc -l 1234
+
+# Mit Verbose-Output
+nc -lv 1234
+
+# UDP-Server
+nc -lu 1234
+</code></pre>
+<p><strong>Verbindung herstellen (Client):</strong></p>
+<pre><code class="language-zsh"># Zu Server verbinden
+nc host.com 1234
+
+# Nachricht senden
+echo "Hello" | nc host.com 1234
+
+# HTTP-Request manuell
+echo -e "GET / HTTP/1.1\r\nHost: example.com\r\n\r\n" | nc example.com 80
+</code></pre>
+<p><strong>Dateiübertragung:</strong></p>
+<pre><code class="language-zsh"># Empfänger (lauscht)
+nc -l 1234 &gt; received_file.txt
+
+# Sender
+nc receiver.com 1234 &lt; file.txt
+
+# Mit Fortschritt (via pv)
+pv file.txt | nc receiver.com 1234
+</code></pre>
+<p><strong>Chat zwischen zwei Rechnern:</strong></p>
+<pre><code class="language-zsh"># Rechner A (Server)
+nc -l 1234
+
+# Rechner B (Client)
+nc rechner-a.local 1234
+
+# Jetzt kann man in beide Richtungen tippen
+</code></pre>
+<p><strong>Banner-Grabbing:</strong></p>
+<pre><code class="language-zsh"># SSH-Version ermitteln
+echo "" | nc -v -w 3 server.com 22
+# SSH-2.0-OpenSSH_8.4
+
+# SMTP-Banner
+nc -v mail.example.com 25
+
+# HTTP-Header
+echo -e "HEAD / HTTP/1.0\r\n\r\n" | nc example.com 80
+</code></pre>
+<p><strong>Proxy / Port-Weiterleitung:</strong></p>
+<pre><code class="language-zsh"># Einfacher Proxy (erfordert Schleife für mehrere Verbindungen)
+nc -l 8080 | nc remote.com 80
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-l</code></td><td>Listen-Modus (Server)</td></tr>
+<tr><td><code>-v</code></td><td>Verbose</td></tr>
+<tr><td><code>-z</code></td><td>Zero-I/O (nur Scan)</td></tr>
+<tr><td><code>-w SEC</code></td><td>Timeout</td></tr>
+<tr><td><code>-n</code></td><td>Kein DNS</td></tr>
+<tr><td><code>-u</code></td><td>UDP statt TCP</td></tr>
+<tr><td><code>-p PORT</code></td><td>Quell-Port</td></tr>
+<tr><td><code>-k</code></td><td>Keep-alive (mehrere Verbindungen)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Debugging-Beispiele:</strong></p>
+<pre><code class="language-zsh"># Ist Dienst erreichbar?
+nc -zv -w 3 db.example.com 5432 &amp;&amp; echo "PostgreSQL OK" || echo "FEHLER"
+
+# Alle gängigen Ports scannen
+for port in 22 80 443 3306 5432 6379 27017; do
+    nc -zv -w 2 server.com $port 2&gt;&amp;1 | grep -q succeeded &amp;&amp; echo "Port $port: OFFEN"
+done
+</code></pre>
+<h2 id="3----dateiübertragung"><a class="header" href="#3----dateiübertragung">3    Dateiübertragung</a></h2>
+<h3 id="31----wget--dateien-herunterladen"><a class="header" href="#31----wget--dateien-herunterladen">3.1    <code>wget</code> – Dateien herunterladen</a></h3>
+<p><code>wget</code> ist ein robustes Download-Tool mit Unterstützung für Wiederaufnahme und rekursive Downloads.</p>
+<p><strong>Installation:</strong></p>
+<pre><code class="language-zsh">brew install wget
+</code></pre>
+<p><strong>Einfacher Download:</strong></p>
+<pre><code class="language-zsh"># Datei herunterladen
+wget https://example.com/file.zip
+
+# Mit anderem Namen speichern
+wget -O myfile.zip https://example.com/file.zip
+
+# In bestimmtes Verzeichnis
+wget -P ~/Downloads https://example.com/file.zip
+</code></pre>
+<p><strong>Abgebrochenen Download fortsetzen:</strong></p>
+<pre><code class="language-zsh">wget -c https://example.com/large-file.zip
+</code></pre>
+<p><strong>Mehrere Dateien:</strong></p>
+<pre><code class="language-zsh"># Aus Liste
+wget -i urls.txt
+
+# Mehrere URLs
+wget https://example.com/file1.zip https://example.com/file2.zip
+</code></pre>
+<p><strong>Hintergrund-Download:</strong></p>
+<pre><code class="language-zsh"># Im Hintergrund mit Log
+wget -b -o download.log https://example.com/file.zip
+
+# Fortschritt prüfen
+tail -f download.log
+</code></pre>
+<p><strong>Geschwindigkeit begrenzen:</strong></p>
+<pre><code class="language-zsh"># Max 1 MB/s
+wget --limit-rate=1m https://example.com/file.zip
+
+# Max 500 KB/s
+wget --limit-rate=500k https://example.com/file.zip
+</code></pre>
+<p><strong>Webseite spiegeln:</strong></p>
+<pre><code class="language-zsh"># Komplette Website herunterladen
+wget --mirror --convert-links --adjust-extension --page-requisites \
+     --no-parent https://example.com/
+
+# Kurzform
+wget -mkEpnp https://example.com/
+</code></pre>
+<p><strong>Mit Authentifizierung:</strong></p>
+<pre><code class="language-zsh"># HTTP-Auth
+wget --user=username --password=secret https://example.com/protected/file.zip
+
+# Passwort interaktiv
+wget --user=username --ask-password https://example.com/protected/file.zip
+</code></pre>
+<p><strong>Cookies und Header:</strong></p>
+<pre><code class="language-zsh"># Mit Cookie
+wget --header="Cookie: session=abc123" https://example.com/
+
+# Custom User-Agent
+wget --user-agent="Mozilla/5.0" https://example.com/
+
+# Referer setzen
+wget --referer="https://google.com" https://example.com/file.zip
+</code></pre>
+<p><strong>Wichtige Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-O FILE</code></td><td>Ausgabedatei</td></tr>
+<tr><td><code>-P DIR</code></td><td>Ausgabeverzeichnis</td></tr>
+<tr><td><code>-c</code></td><td>Fortsetzen</td></tr>
+<tr><td><code>-b</code></td><td>Hintergrund</td></tr>
+<tr><td><code>-q</code></td><td>Quiet (keine Ausgabe)</td></tr>
+<tr><td><code>-v</code></td><td>Verbose</td></tr>
+<tr><td><code>--limit-rate</code></td><td>Geschwindigkeit begrenzen</td></tr>
+<tr><td><code>-r</code></td><td>Rekursiv</td></tr>
+<tr><td><code>-l DEPTH</code></td><td>Rekursionstiefe</td></tr>
+<tr><td><code>-np</code></td><td>No parent (nicht höher)</td></tr>
+<tr><td><code>-k</code></td><td>Links konvertieren</td></tr>
+<tr><td><code>-t N</code></td><td>Wiederholungsversuche</td></tr>
+<tr><td><code>--timeout=SEC</code></td><td>Timeout</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Alternative: curl</strong></p>
+<pre><code class="language-zsh"># curl ist auf macOS vorinstalliert
+curl -O https://example.com/file.zip
+
+# Mit Ausgabename
+curl -o myfile.zip https://example.com/file.zip
+
+# Fortsetzen
+curl -C - -O https://example.com/file.zip
+
+# Fortschrittsbalken
+curl -# -O https://example.com/file.zip
+</code></pre>
+<h3 id="32----scp--sichere-kopie-über-ssh"><a class="header" href="#32----scp--sichere-kopie-über-ssh">3.2    <code>scp</code> – Sichere Kopie über SSH</a></h3>
+<p><code>scp</code> kopiert Dateien verschlüsselt über SSH zwischen Rechnern.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">scp [Optionen] QUELLE ZIEL
+</code></pre>
+<p><strong>Datei hochladen:</strong></p>
+<pre><code class="language-zsh"># Lokale Datei auf Server
+scp datei.txt user@server:/pfad/
+
+# Mit Port
+scp -P 2222 datei.txt user@server:/pfad/
+
+# Mit SSH-Key
+scp -i ~/.ssh/key datei.txt user@server:/pfad/
+</code></pre>
+<p><strong>Datei herunterladen:</strong></p>
+<pre><code class="language-zsh"># Von Server auf lokal
+scp user@server:/pfad/datei.txt ./
+
+# Mit anderem Namen
+scp user@server:/pfad/datei.txt lokaler-name.txt
+</code></pre>
+<p><strong>Verzeichnis kopieren:</strong></p>
+<pre><code class="language-zsh"># Rekursiv (ganzes Verzeichnis)
+scp -r ordner/ user@server:/pfad/
+
+# Von Server
+scp -r user@server:/pfad/ordner/ ./
+</code></pre>
+<p><strong>Zwischen zwei Servern:</strong></p>
+<pre><code class="language-zsh">scp user1@server1:/pfad/datei.txt user2@server2:/pfad/
+</code></pre>
+<p><strong>Mit SSH-Config:</strong></p>
+<pre><code class="language-zsh"># Wenn in ~/.ssh/config definiert:
+# Host myserver
+#     HostName server.com
+#     User admin
+
+scp datei.txt myserver:/pfad/
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-r</code></td><td>Rekursiv (Verzeichnisse)</td></tr>
+<tr><td><code>-P PORT</code></td><td>SSH-Port</td></tr>
+<tr><td><code>-i KEY</code></td><td>Identity-File</td></tr>
+<tr><td><code>-p</code></td><td>Berechtigungen/Zeiten erhalten</td></tr>
+<tr><td><code>-C</code></td><td>Komprimierung</td></tr>
+<tr><td><code>-q</code></td><td>Quiet</td></tr>
+<tr><td><code>-v</code></td><td>Verbose</td></tr>
+<tr><td><code>-l LIMIT</code></td><td>Bandbreite begrenzen (Kbit/s)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Fortschrittsanzeige:</strong></p>
+<pre><code class="language-zsh"># Standard: Fortschrittsbalken aktiv
+scp large-file.zip user@server:/pfad/
+
+# Ohne Fortschritt
+scp -q large-file.zip user@server:/pfad/
+</code></pre>
+<p><strong>Wildcards:</strong></p>
+<pre><code class="language-zsh"># Alle .txt-Dateien
+scp *.txt user@server:/pfad/
+
+# Alle Dateien eines Ordners auf Server
+scp user@server:/pfad/*.log ./logs/
+</code></pre>
+<h3 id="33----rsync--erweiterte-synchronisation"><a class="header" href="#33----rsync--erweiterte-synchronisation">3.3    <code>rsync</code> – Erweiterte Synchronisation</a></h3>
+<p>Die Grundlagen von <code>rsync</code> werden in <a href="Terminal-Referenz%20für%20macOS%20-%20Teil%202%20-%20Fortgeschrittene%20Themen.html#7.5.3-rsync-–-effiziente-synchronisation-und-spiegelung">rsync – Effiziente Synchronisation und Spiegelung</a> behandelt. Der Fokus dieses Abschnitts liegt auf der Netzwerkübertragung.</p>
+<p><strong>rsync über SSH (Standard):</strong></p>
+<pre><code class="language-zsh"># Auf Server kopieren
+rsync -avz ~/projekt/ user@server:/backup/projekt/
+
+# Von Server holen
+rsync -avz user@server:/daten/ ~/lokale-kopie/
+</code></pre>
+<p><strong>Mit SSH-Optionen:</strong></p>
+<pre><code class="language-zsh"># Anderer Port
+rsync -avz -e "ssh -p 2222" ~/projekt/ user@server:/backup/
+
+# Mit SSH-Key
+rsync -avz -e "ssh -i ~/.ssh/mykey" ~/projekt/ user@server:/backup/
+</code></pre>
+<p><strong>Bandbreite begrenzen:</strong></p>
+<pre><code class="language-zsh"># Max 1 MB/s
+rsync -avz --bwlimit=1000 ~/projekt/ user@server:/backup/
+</code></pre>
+<p><strong>Nur geänderte Dateien:</strong></p>
+<pre><code class="language-zsh"># Delta-Transfer (nur Unterschiede)
+rsync -avz --checksum ~/projekt/ user@server:/backup/
+</code></pre>
+<p><strong>Spiegel mit Löschen:</strong></p>
+<pre><code class="language-zsh"># Ziel exakt wie Quelle (ACHTUNG!)
+rsync -avz --delete ~/projekt/ user@server:/backup/projekt/
+
+# Erst Testlauf
+rsync -avzn --delete ~/projekt/ user@server:/backup/projekt/
+</code></pre>
+<p><strong>Bestimmte Dateien aus-/einschließen:</strong></p>
+<pre><code class="language-zsh"># Ausschließen
+rsync -avz --exclude='*.log' --exclude='node_modules/' ~/projekt/ user@server:/backup/
+
+# Aus Datei lesen
+rsync -avz --exclude-from='exclude.txt' ~/projekt/ user@server:/backup/
+
+# Nur bestimmte Dateien
+rsync -avz --include='*.py' --exclude='*' ~/projekt/ user@server:/backup/
+</code></pre>
+<p><strong>Fortschritt anzeigen:</strong></p>
+<pre><code class="language-zsh"># Fortschritt pro Datei
+rsync -avz --progress ~/projekt/ user@server:/backup/
+
+# Gesamtfortschritt
+rsync -avz --info=progress2 ~/projekt/ user@server:/backup/
+</code></pre>
+<p><strong>Backup-Skript:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# backup-to-server.sh
+
+SRC="$HOME/Documents/"
+DEST="user@backup-server:/backups/$(hostname)/"
+LOG="$HOME/logs/backup-$(date +%Y%m%d).log"
+
+rsync -avz --delete \
+    --exclude='.DS_Store' \
+    --exclude='*.tmp' \
+    --log-file="$LOG" \
+    "$SRC" "$DEST"
+
+echo "Backup abgeschlossen: $(date)" &gt;&gt; "$LOG"
+</code></pre>
+<h3 id="34----sftp--interaktiver-dateitransfer"><a class="header" href="#34----sftp--interaktiver-dateitransfer">3.4    <code>sftp</code> – Interaktiver Dateitransfer</a></h3>
+<p><code>sftp</code> bietet eine interaktive FTP-ähnliche Oberfläche über SSH.</p>
+<p><strong>Verbindung herstellen:</strong></p>
+<pre><code class="language-zsh"># Standard
+sftp user@server
+
+# Mit Port
+sftp -P 2222 user@server
+
+# Mit SSH-Key
+sftp -i ~/.ssh/key user@server
+
+# Direkt in Verzeichnis
+sftp user@server:/pfad/
+</code></pre>
+<p><strong>SFTP-Befehle:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Befehl</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ls</code> / <code>dir</code></td><td>Remote-Verzeichnis auflisten</td></tr>
+<tr><td><code>lls</code></td><td>Lokales Verzeichnis auflisten</td></tr>
+<tr><td><code>cd DIR</code></td><td>Remote-Verzeichnis wechseln</td></tr>
+<tr><td><code>lcd DIR</code></td><td>Lokales Verzeichnis wechseln</td></tr>
+<tr><td><code>pwd</code></td><td>Remote-Arbeitsverzeichnis</td></tr>
+<tr><td><code>lpwd</code></td><td>Lokales Arbeitsverzeichnis</td></tr>
+<tr><td><code>get FILE</code></td><td>Datei herunterladen</td></tr>
+<tr><td><code>put FILE</code></td><td>Datei hochladen</td></tr>
+<tr><td><code>mget PATTERN</code></td><td>Mehrere Dateien herunterladen</td></tr>
+<tr><td><code>mput PATTERN</code></td><td>Mehrere Dateien hochladen</td></tr>
+<tr><td><code>mkdir DIR</code></td><td>Verzeichnis erstellen</td></tr>
+<tr><td><code>rmdir DIR</code></td><td>Verzeichnis löschen</td></tr>
+<tr><td><code>rm FILE</code></td><td>Datei löschen</td></tr>
+<tr><td><code>rename OLD NEW</code></td><td>Umbenennen</td></tr>
+<tr><td><code>chmod MODE FILE</code></td><td>Berechtigungen ändern</td></tr>
+<tr><td><code>chown UID FILE</code></td><td>Besitzer ändern</td></tr>
+<tr><td><code>exit</code> / <code>quit</code></td><td>Beenden</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Typische Session:</strong></p>
+<pre><code class="language-zsh">sftp user@server
+sftp&gt; cd /var/www
+sftp&gt; ls
+index.html  styles.css  app.js
+sftp&gt; get index.html
+Fetching /var/www/index.html to index.html
+sftp&gt; lcd ~/Desktop
+sftp&gt; put new-styles.css styles.css
+Uploading new-styles.css to /var/www/styles.css
+sftp&gt; exit
+</code></pre>
+<p><strong>Mehrere Dateien:</strong></p>
+<pre><code class="language-zsh">sftp&gt; mget *.log
+sftp&gt; mput *.html
+</code></pre>
+<p><strong>Rekursiv (Verzeichnisse):</strong></p>
+<pre><code class="language-zsh">sftp&gt; get -r remote-folder/
+sftp&gt; put -r local-folder/
+</code></pre>
+<p><strong>Batch-Modus:</strong></p>
+<pre><code class="language-zsh"># Befehle aus Datei
+sftp -b commands.txt user@server
+
+# commands.txt:
+# cd /var/www
+# get index.html
+# put styles.css
+# exit
+
+# Einzelner Befehl
+echo "get /var/log/app.log" | sftp user@server
+</code></pre>
+<p><strong>Mit SSH-Config:</strong></p>
+<pre><code class="language-zsh"># Wenn Host in ~/.ssh/config definiert
+sftp myserver
+</code></pre>
+<p><strong>Vergleich der Übertragungstools:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>scp</th><th>rsync</th><th>sftp</th></tr>
+</thead>
+<tbody>
+<tr><td>Interaktiv</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td>Delta-Transfer</td><td>❌</td><td>✅</td><td>❌</td></tr>
+<tr><td>Fortsetzen</td><td>❌</td><td>✅</td><td>❌</td></tr>
+<tr><td>Batch-fähig</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>Verzeichnisse</td><td><code>-r</code></td><td>✅</td><td><code>-r</code></td></tr>
+<tr><td>Bandbreiten-Limit</td><td>✅</td><td>✅</td><td>❌</td></tr>
+<tr><td>Löschen am Ziel</td><td>❌</td><td>✅</td><td>❌</td></tr>
+<tr><td>Anwendungsfall</td><td>Schnelle Kopie</td><td>Backup/Sync</td><td>Browsing</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Empfehlung:</strong></p>
+<ul>
+<li><strong>scp</strong>: Einzelne Dateien schnell kopieren</li>
+<li><strong>rsync</strong>: Backups, Synchronisation, große Datenmengen</li>
+<li><strong>sftp</strong>: Interaktives Arbeiten, Dateien browsen</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/dateisystem-und-laufwerke.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/datenformate-und-streams.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/dateisystem-und-laufwerke.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/datenformate-und-streams.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

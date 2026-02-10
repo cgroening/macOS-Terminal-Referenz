@@ -1,0 +1,1220 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>tmux - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="tmux--screen"><a class="header" href="#tmux--screen">tmux &amp; screen</a></h1>
+<p>Terminal-Multiplexer ermöglichen mehrere Terminal-Sitzungen in einem Fenster. Sie sind unverzichtbar für Remote-Arbeit, da Sessions auch nach Verbindungsabbruch weiterlaufen.</p>
+<h2 id="1----tmux-grundlagen"><a class="header" href="#1----tmux-grundlagen">1    tmux Grundlagen</a></h2>
+<p><code>tmux</code> (Terminal Multiplexer) ist der moderne Standard für Terminal-Multiplexing. Es ist leistungsfähiger und aktiver entwickelt als das ältere <code>screen</code>.</p>
+<h3 id="11----installation"><a class="header" href="#11----installation">1.1    Installation</a></h3>
+<pre><code class="language-zsh"># macOS (Homebrew)
+brew install tmux
+
+# Version prüfen
+tmux -V
+</code></pre>
+<h3 id="12----konzepte"><a class="header" href="#12----konzepte">1.2    Konzepte</a></h3>
+<p>tmux organisiert sich in drei Ebenen:</p>
+<pre><code>Server
+  └── Session (benannte Sitzung)
+        └── Window (Tab/Fenster)
+              └── Pane (geteilter Bereich)
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Begriff</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Server</strong></td><td>Hintergrundprozess, verwaltet alle Sessions</td></tr>
+<tr><td><strong>Session</strong></td><td>Benannte Arbeitsumgebung mit mehreren Windows</td></tr>
+<tr><td><strong>Window</strong></td><td>Einzelnes Terminal (wie ein Tab)</td></tr>
+<tr><td><strong>Pane</strong></td><td>Geteilter Bereich innerhalb eines Windows</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="13----erste-schritte"><a class="header" href="#13----erste-schritte">1.3    Erste Schritte</a></h3>
+<pre><code class="language-zsh"># Neue Session starten
+tmux
+
+# Neue benannte Session
+tmux new -s arbeit
+
+# Session verlassen (läuft weiter)
+# Prefix + d  (Ctrl+b, dann d)
+
+# Sessions auflisten
+tmux ls
+
+# Zu Session verbinden
+tmux attach -t arbeit
+tmux a -t arbeit          # Kurzform
+
+# Letzte Session
+tmux attach
+tmux a
+</code></pre>
+<h3 id="14----prefix-taste"><a class="header" href="#14----prefix-taste">1.4    Prefix-Taste</a></h3>
+<p>Alle tmux-Befehle beginnen mit dem <strong>Prefix</strong> (Standard: <code>Ctrl+b</code>), gefolgt von einer Taste.</p>
+<pre><code>Ctrl+b, dann Befehlstaste
+</code></pre>
+<p><strong>Beispiel:</strong> Um ein neues Fenster zu erstellen: <code>Ctrl+b</code>, loslassen, dann <code>c</code>.</p>
+<p><strong>Notation in dieser Referenz:</strong></p>
+<ul>
+<li><code>Prefix + x</code> bedeutet: Ctrl+b drücken, loslassen, dann x drücken</li>
+<li><code>Prefix</code> kann in der Konfiguration geändert werden (oft zu <code>Ctrl+a</code>)</li>
+</ul>
+<h2 id="2----fenster-panes-sessions"><a class="header" href="#2----fenster-panes-sessions">2    Fenster, Panes, Sessions</a></h2>
+<h3 id="21----session-befehle"><a class="header" href="#21----session-befehle">2.1    Session-Befehle</a></h3>
+<p><strong>Tastenkürzel (innerhalb tmux):</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Prefix + d</code></td><td>Session detachen (verlassen)</td></tr>
+<tr><td><code>Prefix + s</code></td><td>Session-Liste anzeigen</td></tr>
+<tr><td><code>Prefix + $</code></td><td>Session umbenennen</td></tr>
+<tr><td><code>Prefix + (</code></td><td>Vorherige Session</td></tr>
+<tr><td><code>Prefix + )</code></td><td>Nächste Session</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Kommandozeile:</strong></p>
+<pre><code class="language-zsh"># Neue Session
+tmux new -s name
+
+# Mit bestimmtem Startverzeichnis
+tmux new -s projekt -c ~/projekte/webapp
+
+# Session beenden
+tmux kill-session -t name
+
+# Alle Sessions beenden
+tmux kill-server
+
+# Session umbenennen
+tmux rename-session -t alt neu
+</code></pre>
+<h3 id="22----window-befehle-fenster"><a class="header" href="#22----window-befehle-fenster">2.2    Window-Befehle (Fenster)</a></h3>
+<p>Windows sind wie Tabs innerhalb einer Session.</p>
+<p><strong>Tastenkürzel:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Prefix + c</code></td><td>Neues Window erstellen</td></tr>
+<tr><td><code>Prefix + ,</code></td><td>Window umbenennen</td></tr>
+<tr><td><code>Prefix + &amp;</code></td><td>Window schließen (mit Bestätigung)</td></tr>
+<tr><td><code>Prefix + n</code></td><td>Nächstes Window</td></tr>
+<tr><td><code>Prefix + p</code></td><td>Vorheriges Window</td></tr>
+<tr><td><code>Prefix + 0-9</code></td><td>Zu Window 0–9 wechseln</td></tr>
+<tr><td><code>Prefix + w</code></td><td>Window-Liste anzeigen</td></tr>
+<tr><td><code>Prefix + l</code></td><td>Letztes Window</td></tr>
+<tr><td><code>Prefix + '</code></td><td>Window nach Nummer auswählen</td></tr>
+<tr><td><code>Prefix + f</code></td><td>Window nach Name suchen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Kommandozeile:</strong></p>
+<pre><code class="language-zsh"># Neues Window in bestehender Session
+tmux new-window -t session:
+
+# Window mit Name
+tmux new-window -t session: -n "logs"
+
+# Window schließen
+tmux kill-window -t session:2
+</code></pre>
+<h3 id="23----pane-befehle-bereiche"><a class="header" href="#23----pane-befehle-bereiche">2.3    Pane-Befehle (Bereiche)</a></h3>
+<p>Panes teilen ein Window in mehrere Bereiche.</p>
+<p><strong>Tastenkürzel:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Prefix + %</code></td><td>Vertikal teilen (links/rechts)</td></tr>
+<tr><td><code>Prefix + "</code></td><td>Horizontal teilen (oben/unten)</td></tr>
+<tr><td><code>Prefix + x</code></td><td>Pane schließen (mit Bestätigung)</td></tr>
+<tr><td><code>Prefix + o</code></td><td>Zum nächsten Pane wechseln</td></tr>
+<tr><td><code>Prefix + ;</code></td><td>Zum letzten Pane wechseln</td></tr>
+<tr><td><code>Prefix + Pfeiltasten</code></td><td>Zu Pane in Richtung wechseln</td></tr>
+<tr><td><code>Prefix + q</code></td><td>Pane-Nummern anzeigen</td></tr>
+<tr><td><code>Prefix + q + 0-9</code></td><td>Zu Pane mit Nummer wechseln</td></tr>
+<tr><td><code>Prefix + z</code></td><td>Pane zoomen (Vollbild toggle)</td></tr>
+<tr><td><code>Prefix + !</code></td><td>Pane in eigenes Window verschieben</td></tr>
+<tr><td><code>Prefix + {</code></td><td>Pane nach links/oben tauschen</td></tr>
+<tr><td><code>Prefix + }</code></td><td>Pane nach rechts/unten tauschen</td></tr>
+<tr><td><code>Prefix + Space</code></td><td>Zwischen Layouts wechseln</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Pane-Größe ändern:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Prefix + Ctrl+Pfeiltaste</code></td><td>Größe in kleinen Schritten</td></tr>
+<tr><td><code>Prefix + Alt+Pfeiltaste</code></td><td>Größe in großen Schritten</td></tr>
+</tbody>
+</table>
+</div>
+<p>Oder im Command-Mode (<code>Prefix + :</code>):</p>
+<pre><code>resize-pane -D 10    # 10 Zeilen nach unten
+resize-pane -U 5     # 5 Zeilen nach oben
+resize-pane -L 10    # 10 Spalten nach links
+resize-pane -R 10    # 10 Spalten nach rechts
+</code></pre>
+<h3 id="24----layouts"><a class="header" href="#24----layouts">2.4    Layouts</a></h3>
+<p>tmux bietet vordefinierte Layouts:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Layout</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>even-horizontal</code></td><td>Alle Panes nebeneinander, gleiche Breite</td></tr>
+<tr><td><code>even-vertical</code></td><td>Alle Panes untereinander, gleiche Höhe</td></tr>
+<tr><td><code>main-horizontal</code></td><td>Ein großes Pane oben, Rest unten</td></tr>
+<tr><td><code>main-vertical</code></td><td>Ein großes Pane links, Rest rechts</td></tr>
+<tr><td><code>tiled</code></td><td>Alle Panes gleichmäßig verteilt</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-zsh"># Layout wählen
+Prefix + Space              # Durch Layouts rotieren
+Prefix + Alt+1              # even-horizontal
+Prefix + Alt+2              # even-vertical
+Prefix + Alt+3              # main-horizontal
+Prefix + Alt+4              # main-vertical
+Prefix + Alt+5              # tiled
+</code></pre>
+<h3 id="25----copy-mode"><a class="header" href="#25----copy-mode">2.5    Copy-Mode</a></h3>
+<p>Der Copy-Mode ermöglicht Scrollen und Textauswahl.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Prefix + [</code></td><td>Copy-Mode starten</td></tr>
+<tr><td><code>q</code> oder <code>Escape</code></td><td>Copy-Mode beenden</td></tr>
+<tr><td><code>Pfeiltasten</code> / <code>hjkl</code></td><td>Navigation</td></tr>
+<tr><td><code>Ctrl+u</code> / <code>Ctrl+d</code></td><td>Halbe Seite hoch/runter</td></tr>
+<tr><td><code>g</code> / <code>G</code></td><td>Anfang / Ende</td></tr>
+<tr><td><code>/</code></td><td>Vorwärts suchen</td></tr>
+<tr><td><code>?</code></td><td>Rückwärts suchen</td></tr>
+<tr><td><code>n</code> / <code>N</code></td><td>Nächster / Vorheriger Treffer</td></tr>
+<tr><td><code>Space</code></td><td>Auswahl starten</td></tr>
+<tr><td><code>Enter</code></td><td>Auswahl kopieren und beenden</td></tr>
+<tr><td><code>Prefix + ]</code></td><td>Einfügen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Mit vi-Modus (empfohlen):</strong></p>
+<pre><code class="language-zsh"># In ~/.tmux.conf
+setw -g mode-keys vi
+
+# Dann im Copy-Mode:
+# v     = Auswahl starten
+# y     = Kopieren
+# V     = Zeilenweise auswählen
+</code></pre>
+<h3 id="26----command-mode"><a class="header" href="#26----command-mode">2.6    Command-Mode</a></h3>
+<p>Der Command-Mode erlaubt tmux-Befehle direkt einzugeben:</p>
+<pre><code>Prefix + :
+</code></pre>
+<p>Nützliche Befehle:</p>
+<pre><code>:new-session -s name           # Neue Session
+:kill-session                  # Aktuelle Session beenden
+:source ~/.tmux.conf           # Konfiguration neu laden
+:list-keys                     # Alle Tastenkürzel anzeigen
+:set -g option value           # Option setzen
+:setw -g option value          # Window-Option setzen
+</code></pre>
+<h2 id="3----konfiguration"><a class="header" href="#3----konfiguration">3    Konfiguration</a></h2>
+<p>Die tmux-Konfiguration liegt in <code>~/.tmux.conf</code>.</p>
+<h3 id="31----grundlegende-einstellungen"><a class="header" href="#31----grundlegende-einstellungen">3.1    Grundlegende Einstellungen</a></h3>
+<pre><code class="language-bash"># ~/.tmux.conf
+
+# Prefix ändern (Ctrl+a statt Ctrl+b)
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# Schnelleres Escape (wichtig für vim)
+set -sg escape-time 0
+
+# History vergrößern
+set -g history-limit 50000
+
+# Nummerierung bei 1 beginnen
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Automatisch umnummerieren
+set -g renumber-windows on
+
+# Terminal-Farben
+set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
+
+# Maus aktivieren
+set -g mouse on
+
+# Vi-Modus für Copy-Mode
+setw -g mode-keys vi
+
+# Focus-Events (für vim etc.)
+set -g focus-events on
+</code></pre>
+<h3 id="32----tastenkürzel-anpassen"><a class="header" href="#32----tastenkürzel-anpassen">3.2    Tastenkürzel anpassen</a></h3>
+<pre><code class="language-bash"># Intuitivere Split-Befehle
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+unbind '"'
+unbind %
+
+# Neues Window im aktuellen Pfad
+bind c new-window -c "#{pane_current_path}"
+
+# Pane-Navigation mit Alt+Pfeiltasten (ohne Prefix)
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Window-Navigation mit Shift+Pfeiltasten
+bind -n S-Left previous-window
+bind -n S-Right next-window
+
+# Konfiguration neu laden
+bind r source-file ~/.tmux.conf \; display "Config reloaded!"
+
+# Panes synchronisieren (gleiche Eingabe in alle Panes)
+bind S setw synchronize-panes
+</code></pre>
+<h3 id="33----statusleiste-anpassen"><a class="header" href="#33----statusleiste-anpassen">3.3    Statusleiste anpassen</a></h3>
+<pre><code class="language-bash"># Statusleiste aktivieren
+set -g status on
+
+# Position
+set -g status-position bottom
+
+# Update-Intervall (Sekunden)
+set -g status-interval 5
+
+# Farben
+set -g status-style 'bg=#333333 fg=#ffffff'
+
+# Links: Session-Name
+set -g status-left '#[fg=#000000,bg=#ffffff] #S #[default] '
+set -g status-left-length 30
+
+# Rechts: Datum und Uhrzeit
+set -g status-right '#[fg=#ffffff] %Y-%m-%d %H:%M '
+set -g status-right-length 50
+
+# Window-Liste
+set -g status-justify left
+
+# Aktives Window hervorheben
+setw -g window-status-current-style 'fg=#000000 bg=#00ff00 bold'
+setw -g window-status-current-format ' #I:#W#F '
+
+# Inaktive Windows
+setw -g window-status-style 'fg=#888888'
+setw -g window-status-format ' #I:#W#F '
+</code></pre>
+<h3 id="34----pane-darstellung"><a class="header" href="#34----pane-darstellung">3.4    Pane-Darstellung</a></h3>
+<pre><code class="language-bash"># Aktiver Pane-Rahmen
+set -g pane-active-border-style 'fg=#00ff00'
+
+# Inaktiver Pane-Rahmen
+set -g pane-border-style 'fg=#555555'
+
+# Pane-Nummern-Anzeige
+set -g display-panes-time 2000
+set -g display-panes-colour '#555555'
+set -g display-panes-active-colour '#00ff00'
+</code></pre>
+<h3 id="35----vollständige-beispielkonfiguration"><a class="header" href="#35----vollständige-beispielkonfiguration">3.5    Vollständige Beispielkonfiguration</a></h3>
+<pre><code class="language-bash"># ~/.tmux.conf - Empfohlene Konfiguration
+
+# === Grundeinstellungen ===
+set -g prefix C-a                    # Prefix: Ctrl+a
+unbind C-b
+bind C-a send-prefix
+
+set -sg escape-time 0                # Kein Delay nach Escape
+set -g history-limit 50000           # Große History
+set -g base-index 1                  # Windows ab 1 nummerieren
+setw -g pane-base-index 1            # Panes ab 1 nummerieren
+set -g renumber-windows on           # Automatisch umnummerieren
+set -g mouse on                      # Maus aktivieren
+setw -g mode-keys vi                 # Vi-Modus
+set -g focus-events on               # Focus-Events
+
+# === Terminal ===
+set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",*256col*:Tc"
+
+# === Tastenkürzel ===
+# Splits (im aktuellen Verzeichnis)
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
+# Pane-Navigation (Alt+Pfeiltasten)
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Pane-Größe (Prefix + Shift+Pfeiltasten)
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+
+# Window-Navigation
+bind -n S-Left previous-window
+bind -n S-Right next-window
+
+# Reload
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+# Copy-Mode (vi-style)
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+bind -T copy-mode-vi r send-keys -X rectangle-toggle
+
+# macOS Clipboard
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+
+# === Statusleiste ===
+set -g status on
+set -g status-position bottom
+set -g status-interval 5
+set -g status-style 'bg=#1a1a1a fg=#808080'
+
+set -g status-left '#[fg=#1a1a1a,bg=#87d700,bold] #S #[default] '
+set -g status-left-length 30
+
+set -g status-right '#[fg=#808080] %d.%m.%Y #[fg=#c0c0c0]%H:%M '
+set -g status-right-length 50
+
+setw -g window-status-format ' #I:#W '
+setw -g window-status-current-format '#[fg=#1a1a1a,bg=#87d700,bold] #I:#W '
+
+# === Panes ===
+set -g pane-border-style 'fg=#404040'
+set -g pane-active-border-style 'fg=#87d700'
+
+# === Messages ===
+set -g message-style 'bg=#87d700 fg=#1a1a1a bold'
+set -g display-time 2000
+</code></pre>
+<h3 id="36----konfiguration-neu-laden"><a class="header" href="#36----konfiguration-neu-laden">3.6    Konfiguration neu laden</a></h3>
+<pre><code class="language-zsh"># Innerhalb tmux
+Prefix + :
+source ~/.tmux.conf
+
+# Oder mit Tastenkürzel (wenn konfiguriert)
+Prefix + r
+
+# Von außerhalb
+tmux source-file ~/.tmux.conf
+</code></pre>
+<h2 id="4----screen-vergleich"><a class="header" href="#4----screen-vergleich">4    screen-Vergleich</a></h2>
+<p><code>screen</code> ist der ältere Terminal-Multiplexer (seit 1987). Es ist auf vielen Systemen vorinstalliert.</p>
+<h3 id="41----screen-grundlagen"><a class="header" href="#41----screen-grundlagen">4.1    screen Grundlagen</a></h3>
+<pre><code class="language-zsh"># Neue Session
+screen
+
+# Benannte Session
+screen -S arbeit
+
+# Session verlassen (detach)
+Ctrl+a, dann d
+
+# Sessions auflisten
+screen -ls
+
+# Wieder verbinden
+screen -r arbeit
+
+# Verbinden (auch wenn attached)
+screen -x arbeit
+</code></pre>
+<h3 id="42----screen-befehle"><a class="header" href="#42----screen-befehle">4.2    screen-Befehle</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Ctrl+a d</code></td><td>Detach</td></tr>
+<tr><td><code>Ctrl+a c</code></td><td>Neues Window</td></tr>
+<tr><td><code>Ctrl+a n</code></td><td>Nächstes Window</td></tr>
+<tr><td><code>Ctrl+a p</code></td><td>Vorheriges Window</td></tr>
+<tr><td><code>Ctrl+a "</code></td><td>Window-Liste</td></tr>
+<tr><td><code>Ctrl+a 0-9</code></td><td>Zu Window wechseln</td></tr>
+<tr><td><code>Ctrl+a A</code></td><td>Window umbenennen</td></tr>
+<tr><td><code>Ctrl+a k</code></td><td>Window beenden</td></tr>
+<tr><td><code>Ctrl+a S</code></td><td>Horizontal teilen</td></tr>
+<tr><td>`Ctrl+a</td><td>`</td></tr>
+<tr><td><code>Ctrl+a Tab</code></td><td>Zwischen Regionen wechseln</td></tr>
+<tr><td><code>Ctrl+a X</code></td><td>Aktuelle Region schließen</td></tr>
+<tr><td><code>Ctrl+a [</code></td><td>Copy-Mode</td></tr>
+<tr><td><code>Ctrl+a ]</code></td><td>Einfügen</td></tr>
+<tr><td><code>Ctrl+a ?</code></td><td>Hilfe</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="43----screen-konfiguration"><a class="header" href="#43----screen-konfiguration">4.3    screen-Konfiguration</a></h3>
+<p>Die Konfiguration liegt in <code>~/.screenrc</code>:</p>
+<pre><code class="language-bash"># ~/.screenrc
+
+# Startmeldung deaktivieren
+startup_message off
+
+# Scrollback-Buffer
+defscrollback 10000
+
+# Visual Bell statt Audio
+vbell on
+
+# Statusleiste
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+# Shell
+shell -$SHELL
+</code></pre>
+<h3 id="44----vergleich-tmux-vs-screen"><a class="header" href="#44----vergleich-tmux-vs-screen">4.4    Vergleich tmux vs. screen</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>tmux</th><th>screen</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Erste Version</strong></td><td>2007</td><td>1987</td></tr>
+<tr><td><strong>Aktive Entwicklung</strong></td><td>Ja</td><td>Minimal</td></tr>
+<tr><td><strong>Vorinstalliert</strong></td><td>Selten</td><td>Oft</td></tr>
+<tr><td><strong>Prefix</strong></td><td>Ctrl+b</td><td>Ctrl+a</td></tr>
+<tr><td><strong>Vertikale Splits</strong></td><td>Native</td><td>Mit Patch</td></tr>
+<tr><td><strong>Scripting</strong></td><td>Sehr gut</td><td>Begrenzt</td></tr>
+<tr><td><strong>Konfiguration</strong></td><td>Flexibel</td><td>Einfach</td></tr>
+<tr><td><strong>Statusleiste</strong></td><td>Sehr anpassbar</td><td>Begrenzt</td></tr>
+<tr><td><strong>Pane-Handling</strong></td><td>Ausgezeichnet</td><td>Rudimentär</td></tr>
+<tr><td><strong>Copy-Mode</strong></td><td>Vi/Emacs</td><td>Emacs-style</td></tr>
+<tr><td><strong>Session-Sharing</strong></td><td>Einfach</td><td>Möglich</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="45----wann-welches-tool"><a class="header" href="#45----wann-welches-tool">4.5    Wann welches Tool?</a></h3>
+<p><strong>tmux verwenden wenn:</strong></p>
+<ul>
+<li>Modernes System mit Homebrew/apt</li>
+<li>Komplexe Layouts mit vielen Panes</li>
+<li>Umfangreiche Anpassungen gewünscht</li>
+<li>Scripting/Automatisierung benötigt</li>
+</ul>
+<p><strong>screen verwenden wenn:</strong></p>
+<ul>
+<li>Auf älteren/minimalen Systemen arbeiten</li>
+<li>Kein tmux installiert und keine Root-Rechte</li>
+<li>Einfache Anforderungen (nur Sessions)</li>
+<li>Gewohnte Umgebung</li>
+</ul>
+<p><strong>Empfehlung:</strong> Auf eigenen Systemen tmux installieren und verwenden. screen-Kenntnisse sind nützlich für Server ohne tmux.</p>
+<h2 id="5----remote-session-management"><a class="header" href="#5----remote-session-management">5    Remote-Session-Management</a></h2>
+<p>Der Hauptvorteil von Terminal-Multiplexern: Sessions überleben Verbindungsabbrüche.</p>
+<h3 id="51----typischer-ssh-workflow"><a class="header" href="#51----typischer-ssh-workflow">5.1    Typischer SSH-Workflow</a></h3>
+<pre><code class="language-zsh"># 1. Mit Server verbinden
+ssh user@server
+
+# 2. tmux starten oder verbinden
+tmux new -s arbeit
+# oder
+tmux attach -t arbeit
+
+# 3. Arbeiten...
+
+# 4. Sauber trennen (Session läuft weiter)
+Prefix + d
+
+# 5. SSH beenden
+exit
+
+# 6. Später wieder verbinden
+ssh user@server
+tmux attach -t arbeit
+# Alles ist noch da!
+</code></pre>
+<h3 id="52----automatische-tmux-session"><a class="header" href="#52----automatische-tmux-session">5.2    Automatische tmux-Session</a></h3>
+<p>In <code>~/.bashrc</code> oder <code>~/.zshrc</code> auf dem Server:</p>
+<pre><code class="language-bash"># Automatisch tmux starten bei SSH-Login
+if [-z "$TMUX"](-z%20"$TMUX".md) &amp;&amp; [-n "$SSH_CONNECTION"](-n%20"$SSH_CONNECTION".md); then
+    tmux attach -t default || tmux new -s default
+fi
+</code></pre>
+<p><strong>Vorsicht:</strong> Kann Probleme bei SCP/SFTP verursachen. Besser:</p>
+<pre><code class="language-bash"># Nur bei interaktiver Shell
+if [-z "$TMUX"](-z%20"$TMUX".md) &amp;&amp; [-n "$SSH_CONNECTION"](-n%20"$SSH_CONNECTION".md) &amp;&amp; [$- == *i*]($-%20==%20*i*.md); then
+    tmux attach -t default 2&gt;/dev/null || tmux new -s default
+fi
+</code></pre>
+<h3 id="53----ssh-verbindung-in-tmux"><a class="header" href="#53----ssh-verbindung-in-tmux">5.3    SSH-Verbindung in tmux</a></h3>
+<pre><code class="language-zsh"># Lokale tmux-Session
+tmux new -s remote-arbeit
+
+# Innerhalb tmux: SSH-Verbindung
+ssh user@server
+
+# Wenn Verbindung abbricht: tmux-Session lokal intakt
+# Einfach erneut SSH starten
+</code></pre>
+<h3 id="54----mehrere-server-verwalten"><a class="header" href="#54----mehrere-server-verwalten">5.4    Mehrere Server verwalten</a></h3>
+<pre><code class="language-zsh"># Session für jeden Server
+tmux new -s server1 -d "ssh user@server1"
+tmux new -s server2 -d "ssh user@server2"
+
+# Zwischen Sessions wechseln
+Prefix + s
+
+# Oder: Ein Window pro Server
+tmux new -s servers
+tmux new-window -t servers -n "web" "ssh user@webserver"
+tmux new-window -t servers -n "db" "ssh user@dbserver"
+tmux new-window -t servers -n "app" "ssh user@appserver"
+</code></pre>
+<h3 id="55----session-sharing"><a class="header" href="#55----session-sharing">5.5    Session-Sharing</a></h3>
+<p>Mehrere Benutzer können dieselbe Session sehen (Pair Programming, Support):</p>
+<p><strong>tmux:</strong></p>
+<pre><code class="language-zsh"># Benutzer 1: Session erstellen
+tmux new -s shared
+
+# Benutzer 2: Gleiche Session (beide sehen dasselbe)
+tmux attach -t shared
+
+# Benutzer 2: Eigene Ansicht (unabhängige Window-Auswahl)
+tmux new -t shared -s user2
+</code></pre>
+<p><strong>screen:</strong></p>
+<pre><code class="language-zsh"># Multi-User aktivieren (in .screenrc oder zur Laufzeit)
+multiuser on
+acladd username
+
+# Anderer Benutzer verbindet
+screen -x user/sessionname
+</code></pre>
+<h3 id="56----persistente-layouts"><a class="header" href="#56----persistente-layouts">5.6    Persistente Layouts</a></h3>
+<p>Session beim Start mit vordefiniertem Layout:</p>
+<p><strong>Script-basiert:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# ~/scripts/dev-session.sh
+
+SESSION="dev"
+
+# Prüfen ob Session existiert
+tmux has-session -t $SESSION 2&gt;/dev/null
+
+if [ $? != 0 ]; then
+    # Neue Session mit erstem Window
+    tmux new-session -d -s $SESSION -n "editor"
+
+    # Editor-Window: vim
+    tmux send-keys -t $SESSION:editor "cd ~/projekt &amp;&amp; vim" Enter
+
+    # Zweites Window: Server
+    tmux new-window -t $SESSION -n "server"
+    tmux send-keys -t $SESSION:server "cd ~/projekt &amp;&amp; npm run dev" Enter
+
+    # Drittes Window: Terminal (gesplittet)
+    tmux new-window -t $SESSION -n "term"
+    tmux split-window -h -t $SESSION:term
+    tmux send-keys -t $SESSION:term.1 "cd ~/projekt" Enter
+    tmux send-keys -t $SESSION:term.2 "cd ~/projekt &amp;&amp; git status" Enter
+
+    # Zum Editor-Window wechseln
+    tmux select-window -t $SESSION:editor
+fi
+
+# Zur Session verbinden
+tmux attach -t $SESSION
+</code></pre>
+<p><strong>Mit tmuxinator (empfohlen für komplexe Setups):</strong></p>
+<pre><code class="language-zsh"># Installation
+brew install tmuxinator
+
+# Neues Projekt erstellen
+tmuxinator new projekt
+</code></pre>
+<pre><code class="language-yaml"># ~/.config/tmuxinator/projekt.yml
+name: projekt
+root: ~/projekt
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - git status
+  - server:
+      panes:
+        - npm run dev
+  - logs:
+      panes:
+        - tail -f logs/app.log
+        - tail -f logs/error.log
+</code></pre>
+<pre><code class="language-zsh"># Session starten
+tmuxinator start projekt
+
+# Session beenden
+tmuxinator stop projekt
+</code></pre>
+<h3 id="57----tmux-und-ssh-agent"><a class="header" href="#57----tmux-und-ssh-agent">5.7    tmux und SSH-Agent</a></h3>
+<p>SSH-Agent-Forwarding kann in tmux problematisch sein. Lösung:</p>
+<pre><code class="language-bash"># In ~/.tmux.conf
+set -g update-environment "SSH_AUTH_SOCK SSH_AGENT_PID"
+
+# Oder: Symlink-Methode in ~/.zshrc
+if [-n "$SSH_AUTH_SOCK"](-n%20"$SSH_AUTH_SOCK".md) &amp;&amp; ["$SSH_AUTH_SOCK" != "$HOME/.ssh/ssh_auth_sock"]("$SSH_AUTH_SOCK"%20!=%20"$HOME/.ssh/ssh_auth_sock".md); then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi
+export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+</code></pre>
+<h3 id="58----nützliche-aliase"><a class="header" href="#58----nützliche-aliase">5.8    Nützliche Aliase</a></h3>
+<pre><code class="language-bash"># In ~/.zshrc
+
+# tmux-Aliase
+alias ta='tmux attach -t'
+alias tl='tmux list-sessions'
+alias tn='tmux new -s'
+alias tk='tmux kill-session -t'
+
+# Schnell zu Session oder neue erstellen
+t() {
+    if [-n "$1"](-n%20"$1".md); then
+        tmux attach -t "$1" 2&gt;/dev/null || tmux new -s "$1"
+    else
+        tmux attach 2&gt;/dev/null || tmux new -s main
+    fi
+}
+</code></pre>
+<h3 id="59----cheatsheet"><a class="header" href="#59----cheatsheet">5.9    Cheatsheet</a></h3>
+<p><strong>Session-Management:</strong></p>
+<pre><code>tmux                         Neue Session
+tmux new -s NAME             Benannte Session
+tmux ls                      Sessions auflisten
+tmux attach -t NAME          Zu Session verbinden
+tmux kill-session -t NAME    Session beenden
+Prefix + d                   Detach
+Prefix + s                   Session-Auswahl
+</code></pre>
+<p><strong>Windows:</strong></p>
+<pre><code>Prefix + c                   Neues Window
+Prefix + n / p               Nächstes / Vorheriges
+Prefix + 0-9                 Zu Window wechseln
+Prefix + ,                   Umbenennen
+Prefix + &amp;                   Schließen
+Prefix + w                   Window-Liste
+</code></pre>
+<p><strong>Panes:</strong></p>
+<pre><code>Prefix + %                   Vertikal teilen
+Prefix + "                   Horizontal teilen
+Prefix + Pfeiltasten         Navigation
+Prefix + z                   Zoom (Vollbild)
+Prefix + x                   Schließen
+Prefix + Space               Layout wechseln
+Prefix + !                   Pane → Window
+</code></pre>
+<p><strong>Copy-Mode:</strong></p>
+<pre><code>Prefix + [                   Copy-Mode starten
+q / Escape                   Beenden
+Space / v                    Auswahl starten
+Enter / y                    Kopieren
+Prefix + ]                   Einfügen
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/cronjobs-launchd.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/ssh-keys.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/cronjobs-launchd.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/ssh-keys.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

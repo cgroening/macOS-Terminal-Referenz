@@ -1,0 +1,1409 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>ZLE und ZLE-Widgets - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="zle--zle-widgets"><a class="header" href="#zle--zle-widgets">ZLE / ZLE-Widgets</a></h1>
+<p>Der Zsh Line Editor (ZLE) ist das Herzstück der Kommandozeilen-Bearbeitung in zsh. Er ermöglicht umfangreiche Anpassungen der Eingabe, eigene Tastenkürzel und mächtige Widgets.</p>
+<h2 id="1----grundlagen--architektur"><a class="header" href="#1----grundlagen--architektur">1    Grundlagen &amp; Architektur</a></h2>
+<h3 id="11----was-ist-zle"><a class="header" href="#11----was-ist-zle">1.1    Was ist ZLE?</a></h3>
+<p>ZLE ist der eingebaute Zeileneditor von zsh, vergleichbar mit readline in bash. Er verarbeitet alle Tastatureingaben und stellt Funktionen bereit für:</p>
+<ul>
+<li>Cursor-Bewegung und Textbearbeitung</li>
+<li>History-Navigation</li>
+<li>Tab-Completion</li>
+<li>Vi- und Emacs-Modus</li>
+<li>Benutzerdefinierte Widgets</li>
+</ul>
+<h3 id="12----keymaps"><a class="header" href="#12----keymaps">1.2    Keymaps</a></h3>
+<p>ZLE organisiert Tastenbelegungen in <strong>Keymaps</strong>:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Keymap</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>emacs</code></td><td>Emacs-Modus (Standard)</td></tr>
+<tr><td><code>viins</code></td><td>Vi-Insert-Modus</td></tr>
+<tr><td><code>vicmd</code></td><td>Vi-Command-Modus</td></tr>
+<tr><td><code>visual</code></td><td>Vi-Visual-Modus</td></tr>
+<tr><td><code>isearch</code></td><td>Inkrementelle Suche</td></tr>
+<tr><td><code>command</code></td><td>Befehlseingabe (nach <code>M-x</code>)</td></tr>
+<tr><td><code>main</code></td><td>Alias für aktive Keymap</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Aktuelle Keymap anzeigen:</strong></p>
+<pre><code class="language-zsh">bindkey -l          # Alle Keymaps auflisten
+bindkey -M emacs    # Bindungen der emacs-Keymap
+bindkey -M viins    # Bindungen des vi-Insert-Modus
+</code></pre>
+<p><strong>Keymap wechseln:</strong></p>
+<pre><code class="language-zsh"># Emacs-Modus (Standard)
+bindkey -e
+
+# Vi-Modus
+bindkey -v
+</code></pre>
+<h3 id="13----widgets"><a class="header" href="#13----widgets">1.3    Widgets</a></h3>
+<p>Ein <strong>Widget</strong> ist eine Funktion, die an eine Taste gebunden werden kann. ZLE stellt über 150 eingebaute Widgets bereit.</p>
+<p><strong>Eingebaute Widgets anzeigen:</strong></p>
+<pre><code class="language-zsh">zle -la             # Alle Widgets auflisten
+zle -la | wc -l     # Anzahl
+zle -la | grep hist # Widgets mit "hist" im Namen
+</code></pre>
+<p><strong>Wichtige eingebaute Widgets:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Widget</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>accept-line</code></td><td>Zeile ausführen (Enter)</td></tr>
+<tr><td><code>backward-char</code></td><td>Cursor links</td></tr>
+<tr><td><code>forward-char</code></td><td>Cursor rechts</td></tr>
+<tr><td><code>backward-word</code></td><td>Wort zurück</td></tr>
+<tr><td><code>forward-word</code></td><td>Wort vor</td></tr>
+<tr><td><code>beginning-of-line</code></td><td>Zeilenanfang</td></tr>
+<tr><td><code>end-of-line</code></td><td>Zeilenende</td></tr>
+<tr><td><code>backward-delete-char</code></td><td>Backspace</td></tr>
+<tr><td><code>delete-char</code></td><td>Delete</td></tr>
+<tr><td><code>kill-line</code></td><td>Bis Zeilenende löschen</td></tr>
+<tr><td><code>backward-kill-line</code></td><td>Bis Zeilenanfang löschen</td></tr>
+<tr><td><code>kill-word</code></td><td>Wort löschen</td></tr>
+<tr><td><code>yank</code></td><td>Einfügen (aus Kill-Ring)</td></tr>
+<tr><td><code>undo</code></td><td>Rückgängig</td></tr>
+<tr><td><code>redo</code></td><td>Wiederholen</td></tr>
+<tr><td><code>clear-screen</code></td><td>Bildschirm löschen</td></tr>
+<tr><td><code>history-search-backward</code></td><td>History rückwärts suchen</td></tr>
+<tr><td><code>history-search-forward</code></td><td>History vorwärts suchen</td></tr>
+<tr><td><code>expand-or-complete</code></td><td>Tab-Completion</td></tr>
+<tr><td><code>self-insert</code></td><td>Zeichen einfügen</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="14----aktuelle-bindungen-anzeigen"><a class="header" href="#14----aktuelle-bindungen-anzeigen">1.4    Aktuelle Bindungen anzeigen</a></h3>
+<pre><code class="language-zsh"># Alle Bindungen
+bindkey
+
+# Bestimmte Taste
+bindkey "^A"        # Was macht Ctrl+A?
+bindkey "^[[A"      # Was macht Pfeil-Hoch?
+
+# Widget suchen
+bindkey | grep kill
+</code></pre>
+<h3 id="15----escape-sequenzen"><a class="header" href="#15----escape-sequenzen">1.5    Escape-Sequenzen</a></h3>
+<p>Tasten werden als Escape-Sequenzen dargestellt:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Notation</th><th>Bedeutung</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td><code>^X</code></td><td>Ctrl+X</td><td><code>^A</code> = Ctrl+A</td></tr>
+<tr><td><code>^[</code></td><td>Escape / Alt</td><td><code>^[b</code> = Alt+B</td></tr>
+<tr><td><code>\e</code></td><td>Escape (alternativ)</td><td><code>\eb</code> = Alt+B</td></tr>
+<tr><td>`^[CSI (Terminal-Sequenz)</td><td><code>^[[A</code> = Pfeil hoch</td><td></td></tr>
+<tr><td><code>^[O</code></td><td>SS3 (Terminal-Sequenz)</td><td><code>^[OA</code> = Pfeil hoch (alt)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Terminal-Sequenzen ermitteln:</strong></p>
+<pre><code class="language-zsh"># Methode 1: cat
+cat -v
+# Dann Taste drücken, z.B. Pfeil hoch zeigt: ^[[A
+
+# Methode 2: read
+read -k
+# Taste drücken
+
+# Methode 3: Ctrl+V in zsh
+# Ctrl+V drücken, dann Taste → zeigt Sequenz
+</code></pre>
+<p><strong>Häufige Terminal-Sequenzen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Taste</th><th>Sequenz</th></tr>
+</thead>
+<tbody>
+<tr><td>Pfeil hoch</td><td><code>^[[A</code></td></tr>
+<tr><td>Pfeil runter</td><td><code>^[[B</code></td></tr>
+<tr><td>Pfeil rechts</td><td><code>^[[C</code></td></tr>
+<tr><td>Pfeil links</td><td><code>^[[D</code></td></tr>
+<tr><td>Home</td><td><code>^[[H</code> oder <code>^[OH</code></td></tr>
+<tr><td>End</td><td><code>^[[F</code> oder <code>^[OF</code></td></tr>
+<tr><td>Delete</td><td><code>^[[3~</code></td></tr>
+<tr><td>Page Up</td><td><code>^[[5~</code></td></tr>
+<tr><td>Page Down</td><td><code>^[[6~</code></td></tr>
+<tr><td>F1–F12</td><td><code>^[OP</code> bis <code>^[[24~</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="16----zle-variablen"><a class="header" href="#16----zle-variablen">1.6    ZLE-Variablen</a></h3>
+<p>Innerhalb eines Widgets verfügbare Variablen:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Variable</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>$BUFFER</code></td><td>Gesamte Eingabezeile</td></tr>
+<tr><td><code>$LBUFFER</code></td><td>Text links vom Cursor</td></tr>
+<tr><td><code>$RBUFFER</code></td><td>Text rechts vom Cursor</td></tr>
+<tr><td><code>$CURSOR</code></td><td>Cursor-Position (0-basiert)</td></tr>
+<tr><td><code>$WIDGET</code></td><td>Name des aktuellen Widgets</td></tr>
+<tr><td><code>$LASTWIDGET</code></td><td>Name des vorherigen Widgets</td></tr>
+<tr><td><code>$KEYS</code></td><td>Gedrückte Tasten</td></tr>
+<tr><td><code>$KEYMAP</code></td><td>Aktive Keymap</td></tr>
+<tr><td><code>$PREBUFFER</code></td><td>Vorherige Zeilen (Multiline)</td></tr>
+<tr><td><code>$REGION_ACTIVE</code></td><td>Ist Region aktiv?</td></tr>
+<tr><td><code>$MARK</code></td><td>Position der Markierung</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2----eigene-widgets-schreiben"><a class="header" href="#2----eigene-widgets-schreiben">2    Eigene Widgets schreiben</a></h2>
+<h3 id="21----widget-grundstruktur"><a class="header" href="#21----widget-grundstruktur">2.1    Widget-Grundstruktur</a></h3>
+<pre><code class="language-zsh"># Widget-Funktion definieren
+my-widget() {
+    # Code hier
+}
+
+# Als Widget registrieren
+zle -N my-widget
+
+# An Taste binden
+bindkey "^X^M" my-widget
+</code></pre>
+<h3 id="22----einfache-beispiele"><a class="header" href="#22----einfache-beispiele">2.2    Einfache Beispiele</a></h3>
+<p><strong>Text einfügen:</strong></p>
+<pre><code class="language-zsh"># Aktuelles Datum einfügen
+insert-date() {
+    LBUFFER+=$(date +%Y-%m-%d)
+}
+zle -N insert-date
+bindkey "^Xd" insert-date
+
+# Timestamp einfügen
+insert-timestamp() {
+    LBUFFER+=$(date +"%Y-%m-%d %H:%M:%S")
+}
+zle -N insert-timestamp
+bindkey "^Xt" insert-timestamp
+</code></pre>
+<p><strong>Buffer manipulieren:</strong></p>
+<pre><code class="language-zsh"># Zeile in Großbuchstaben
+uppercase-line() {
+    BUFFER=${BUFFER:u}
+}
+zle -N uppercase-line
+bindkey "^Xu" uppercase-line
+
+# Zeile in Kleinbuchstaben
+lowercase-line() {
+    BUFFER=${BUFFER:l}
+}
+zle -N lowercase-line
+bindkey "^Xl" lowercase-line
+
+# Wort unter Cursor in Großbuchstaben
+uppercase-word() {
+    local word="${LBUFFER##* }"
+    LBUFFER="${LBUFFER% *} ${word:u}"
+}
+zle -N uppercase-word
+</code></pre>
+<p><strong>Sudo voranstellen:</strong></p>
+<pre><code class="language-zsh">prepend-sudo() {
+    if [[ $BUFFER != sudo\ *](`.md); then
+        BUFFER="sudo $BUFFER"
+        CURSOR+=5
+    fi
+}
+zle -N prepend-sudo
+bindkey "^[s" prepend-sudo   # Alt+S
+</code></pre>
+<h3 id="23----mit-history-arbeiten"><a class="header" href="#23----mit-history-arbeiten">2.3    Mit History arbeiten</a></h3>
+<pre><code class="language-zsh"># Letzten Befehl mit sudo wiederholen
+sudo-last-command() {
+    BUFFER="sudo $(fc -ln -1)"
+    zle accept-line
+}
+zle -N sudo-last-command
+bindkey "^[!" sudo-last-command
+
+# Letztes Argument des vorherigen Befehls
+insert-last-arg() {
+    zle insert-last-word
+}
+zle -N insert-last-arg
+bindkey "^[." insert-last-arg   # Alt+. (oft schon belegt)
+</code></pre>
+<h3 id="24----externe-befehle-einbinden"><a class="header" href="#24----externe-befehle-einbinden">2.4    Externe Befehle einbinden</a></h3>
+<pre><code class="language-zsh"># fzf für History-Suche
+fzf-history() {
+    local selected
+    selected=$(fc -ln 1 | fzf --tac --no-sort)
+    if [-n "$selected"](-n%20"$selected".md); then
+        BUFFER="$selected"
+        CURSOR=$#BUFFER
+    fi
+    zle redisplay
+}
+zle -N fzf-history
+bindkey "^R" fzf-history
+
+# fzf für Dateiauswahl
+fzf-file() {
+    local file
+    file=$(fzf)
+    if [-n "$file"](-n%20"$file".md); then
+        LBUFFER+="${(q)file}"  # Quoted einfügen
+    fi
+    zle redisplay
+}
+zle -N fzf-file
+bindkey "^Xf" fzf-file
+
+# fzf für Verzeichniswechsel
+fzf-cd() {
+    local dir
+    dir=$(find . -type d 2&gt;/dev/null | fzf)
+    if [-n "$dir"](-n%20"$dir".md); then
+        cd "$dir"
+        zle reset-prompt
+    fi
+}
+zle -N fzf-cd
+bindkey "^Xc" fzf-cd
+</code></pre>
+<h3 id="25----clipboard-integration"><a class="header" href="#25----clipboard-integration">2.5    Clipboard-Integration</a></h3>
+<pre><code class="language-zsh"># Auswahl in Clipboard kopieren (macOS)
+copy-to-clipboard() {
+    echo -n "$BUFFER" | pbcopy
+    zle -M "Copied to clipboard"
+}
+zle -N copy-to-clipboard
+bindkey "^Xy" copy-to-clipboard
+
+# Aus Clipboard einfügen
+paste-from-clipboard() {
+    LBUFFER+=$(pbpaste)
+}
+zle -N paste-from-clipboard
+bindkey "^Xp" paste-from-clipboard
+
+# Kill-Ring nach Clipboard
+copy-kill-ring() {
+    echo -n "$CUTBUFFER" | pbcopy
+    zle -M "Kill buffer copied"
+}
+zle -N copy-kill-ring
+</code></pre>
+<h3 id="26----widgets-mit-parametern"><a class="header" href="#26----widgets-mit-parametern">2.6    Widgets mit Parametern</a></h3>
+<pre><code class="language-zsh"># Widget das andere Widgets aufruft
+surround-with-quotes() {
+    BUFFER="\"$BUFFER\""
+    CURSOR=$#BUFFER
+}
+zle -N surround-with-quotes
+bindkey "^X\"" surround-with-quotes
+
+# Flexibler: Wrapper-Funktion
+surround-with() {
+    local open="$1" close="$2"
+    BUFFER="${open}${BUFFER}${close}"
+    CURSOR=$#BUFFER
+}
+
+surround-parens()   { surround-with '(' ')'; }
+surround-brackets() { surround-with '[' ']'; }
+surround-braces()   { surround-with '{' '}'; }
+surround-single()   { surround-with "'" "'"; }
+surround-double()   { surround-with '"' '"'; }
+
+zle -N surround-parens
+zle -N surround-brackets
+zle -N surround-braces
+zle -N surround-single
+zle -N surround-double
+
+bindkey "^X(" surround-parens
+bindkey "^X[" surround-brackets
+bindkey "^X{" surround-braces
+bindkey "^X'" surround-single
+bindkey '^X"' surround-double
+</code></pre>
+<h3 id="27----rückgabewerte-und-fehlerbehandlung"><a class="header" href="#27----rückgabewerte-und-fehlerbehandlung">2.7    Rückgabewerte und Fehlerbehandlung</a></h3>
+<pre><code class="language-zsh"># Widget mit Fehlermeldung
+safe-rm() {
+    if [-z "$BUFFER"](-z%20"$BUFFER".md); then
+        zle -M "Buffer ist leer"
+        return 1
+    fi
+
+    if ["$BUFFER" == rm\ *]("$BUFFER"%20==%20rm\%20*.md); then
+        BUFFER="${BUFFER/rm /rm -i }"
+        zle -M "rm → rm -i (interaktiv)"
+    fi
+}
+zle -N safe-rm
+bindkey "^Xr" safe-rm
+</code></pre>
+<h2 id="3----erweiterte-shortcuts--zle-bindings"><a class="header" href="#3----erweiterte-shortcuts--zle-bindings">3    Erweiterte Shortcuts / ZLE-Bindings</a></h2>
+<h3 id="31----bindkey-syntax"><a class="header" href="#31----bindkey-syntax">3.1    bindkey Syntax</a></h3>
+<pre><code class="language-zsh">bindkey [optionen] "taste" widget
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-e</code></td><td>Emacs-Keymap aktivieren</td></tr>
+<tr><td><code>-v</code></td><td>Vi-Keymap aktivieren</td></tr>
+<tr><td><code>-M keymap</code></td><td>Binding in bestimmter Keymap</td></tr>
+<tr><td><code>-r "taste"</code></td><td>Binding entfernen</td></tr>
+<tr><td><code>-s "taste" "string"</code></td><td>Makro (String einfügen)</td></tr>
+<tr><td><code>-l</code></td><td>Keymaps auflisten</td></tr>
+<tr><td><code>-L</code></td><td>Bindungen als bindkey-Befehle</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32----tastenkombinationen-definieren"><a class="header" href="#32----tastenkombinationen-definieren">3.2    Tastenkombinationen definieren</a></h3>
+<pre><code class="language-zsh"># Einzelne Taste
+bindkey "^A" beginning-of-line
+
+# Tastensequenz
+bindkey "^X^F" fzf-file
+
+# Mit Escape/Alt
+bindkey "^[b" backward-word     # Alt+B
+bindkey "\eb" backward-word     # Alternative Notation
+
+# Pfeiltasten
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
+# Funktionstasten
+bindkey "^[OP" my-f1-widget     # F1
+bindkey "^[[15~" my-f5-widget   # F5
+</code></pre>
+<h3 id="33----makros-string-bindungen"><a class="header" href="#33----makros-string-bindungen">3.3    Makros (String-Bindungen)</a></h3>
+<p>Mit <code>-s</code> wird ein String eingefügt statt ein Widget aufgerufen:</p>
+<pre><code class="language-zsh"># Pipe zu less
+bindkey -s "^Xl" " | less"
+
+# Pipe zu grep
+bindkey -s "^Xg" " | grep "
+
+# Redirect Stderr
+bindkey -s "^Xe" " 2&gt;&amp;1"
+
+# Redirect zu /dev/null
+bindkey -s "^Xn" " &gt; /dev/null 2&gt;&amp;1"
+
+# Git Status
+bindkey -s "^Gs" "git status\n"
+
+# Git Diff
+bindkey -s "^Gd" "git diff\n"
+
+# Häufige Befehle
+bindkey -s "^Ll" "ll\n"
+bindkey -s "^Lc" "clear\n"
+</code></pre>
+<div class="mdbook-callouts mdbook-callouts-tip">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  tip
+</p>
+
+<p><code>\n</code> führt den Befehl direkt aus.</p>
+</div>
+
+<h3 id="34----keymap-spezifische-bindungen"><a class="header" href="#34----keymap-spezifische-bindungen">3.4    Keymap-spezifische Bindungen</a></h3>
+<pre><code class="language-zsh"># Nur im Vi-Insert-Modus
+bindkey -M viins "jk" vi-cmd-mode
+
+# Nur im Vi-Command-Modus
+bindkey -M vicmd "H" beginning-of-line
+bindkey -M vicmd "L" end-of-line
+
+# Nur im Emacs-Modus
+bindkey -M emacs "^Xe" edit-command-line
+</code></pre>
+<h3 id="35----bindung-entfernen"><a class="header" href="#35----bindung-entfernen">3.5    Bindung entfernen</a></h3>
+<pre><code class="language-zsh"># Binding entfernen
+bindkey -r "^X^K"
+
+# In bestimmter Keymap
+bindkey -M viins -r "^A"
+</code></pre>
+<h3 id="36----alle-bindungen-exportierenimportieren"><a class="header" href="#36----alle-bindungen-exportierenimportieren">3.6    Alle Bindungen exportieren/importieren</a></h3>
+<pre><code class="language-zsh"># Aktuelle Bindungen als Befehle ausgeben
+bindkey -L &gt; ~/bindkeys-backup.zsh
+
+# Wiederherstellen
+source ~/bindkeys-backup.zsh
+</code></pre>
+<h2 id="4----erweiterte-tastenkombinationen"><a class="header" href="#4----erweiterte-tastenkombinationen">4    Erweiterte Tastenkombinationen</a></h2>
+<h3 id="41----emacs-modus-referenz"><a class="header" href="#41----emacs-modus-referenz">4.1    Emacs-Modus Referenz</a></h3>
+<p><strong>Navigation:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Widget</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Ctrl+A</code></td><td><code>beginning-of-line</code></td><td>Zeilenanfang</td></tr>
+<tr><td><code>Ctrl+E</code></td><td><code>end-of-line</code></td><td>Zeilenende</td></tr>
+<tr><td><code>Ctrl+F</code></td><td><code>forward-char</code></td><td>Zeichen vor</td></tr>
+<tr><td><code>Ctrl+B</code></td><td><code>backward-char</code></td><td>Zeichen zurück</td></tr>
+<tr><td><code>Alt+F</code></td><td><code>forward-word</code></td><td>Wort vor</td></tr>
+<tr><td><code>Alt+B</code></td><td><code>backward-word</code></td><td>Wort zurück</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Bearbeitung:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Widget</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Ctrl+D</code></td><td><code>delete-char</code></td><td>Zeichen löschen</td></tr>
+<tr><td><code>Ctrl+H</code></td><td><code>backward-delete-char</code></td><td>Backspace</td></tr>
+<tr><td><code>Ctrl+W</code></td><td><code>backward-kill-word</code></td><td>Wort rückwärts löschen</td></tr>
+<tr><td><code>Alt+D</code></td><td><code>kill-word</code></td><td>Wort vorwärts löschen</td></tr>
+<tr><td><code>Ctrl+K</code></td><td><code>kill-line</code></td><td>Bis Zeilenende löschen</td></tr>
+<tr><td><code>Ctrl+U</code></td><td><code>backward-kill-line</code></td><td>Bis Zeilenanfang löschen</td></tr>
+<tr><td><code>Ctrl+Y</code></td><td><code>yank</code></td><td>Einfügen</td></tr>
+<tr><td><code>Alt+Y</code></td><td><code>yank-pop</code></td><td>Vorheriges aus Kill-Ring</td></tr>
+<tr><td><code>Ctrl+T</code></td><td><code>transpose-chars</code></td><td>Zeichen tauschen</td></tr>
+<tr><td><code>Alt+T</code></td><td><code>transpose-words</code></td><td>Wörter tauschen</td></tr>
+<tr><td><code>Alt+U</code></td><td><code>up-case-word</code></td><td>Wort GROSS</td></tr>
+<tr><td><code>Alt+L</code></td><td><code>down-case-word</code></td><td>Wort klein</td></tr>
+<tr><td><code>Alt+C</code></td><td><code>capitalize-word</code></td><td>Wort Kapitalisieren</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>History:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Widget</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Ctrl+P</code></td><td><code>up-line-or-history</code></td><td>Vorheriger Befehl</td></tr>
+<tr><td><code>Ctrl+N</code></td><td><code>down-line-or-history</code></td><td>Nächster Befehl</td></tr>
+<tr><td><code>Ctrl+R</code></td><td><code>history-incremental-search-backward</code></td><td>History suchen rückwärts</td></tr>
+<tr><td><code>Ctrl+S</code></td><td><code>history-incremental-search-forward</code></td><td>History suchen vorwärts</td></tr>
+<tr><td><code>Alt+&lt;</code></td><td><code>beginning-of-buffer-or-history</code></td><td>Erste History</td></tr>
+<tr><td><code>Alt+&gt;</code></td><td><code>end-of-buffer-or-history</code></td><td>Letzte History</td></tr>
+<tr><td><code>Alt+.</code></td><td><code>insert-last-word</code></td><td>Letztes Argument</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Sonstiges:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Widget</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Ctrl+L</code></td><td><code>clear-screen</code></td><td>Bildschirm löschen</td></tr>
+<tr><td><code>Ctrl+_</code></td><td><code>undo</code></td><td>Rückgängig</td></tr>
+<tr><td><code>Ctrl+X Ctrl+U</code></td><td><code>undo</code></td><td>Rückgängig (alternativ)</td></tr>
+<tr><td><code>Ctrl+X Ctrl+E</code></td><td><code>edit-command-line</code></td><td>In Editor öffnen</td></tr>
+<tr><td><code>Tab</code></td><td><code>expand-or-complete</code></td><td>Completion</td></tr>
+<tr><td><code>Ctrl+G</code></td><td><code>send-break</code></td><td>Abbrechen</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42----vi-modus-referenz"><a class="header" href="#42----vi-modus-referenz">4.2    Vi-Modus Referenz</a></h3>
+<p><strong>Modus wechseln:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Escape</code></td><td>Insert → Command</td></tr>
+<tr><td><code>i</code></td><td>Insert vor Cursor</td></tr>
+<tr><td><code>a</code></td><td>Insert nach Cursor</td></tr>
+<tr><td><code>A</code></td><td>Insert am Zeilenende</td></tr>
+<tr><td><code>I</code></td><td>Insert am Zeilenanfang</td></tr>
+<tr><td><code>o</code></td><td>Neue Zeile darunter</td></tr>
+<tr><td><code>O</code></td><td>Neue Zeile darüber</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Navigation (Command-Modus):</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>h</code> / <code>l</code></td><td>Links / Rechts</td></tr>
+<tr><td><code>j</code> / <code>k</code></td><td>History runter / hoch</td></tr>
+<tr><td><code>w</code> / <code>b</code></td><td>Wort vor / zurück</td></tr>
+<tr><td><code>e</code></td><td>Wortende</td></tr>
+<tr><td><code>0</code> / <code>$</code></td><td>Zeilenanfang / -ende</td></tr>
+<tr><td><code>^</code></td><td>Erstes Nicht-Whitespace</td></tr>
+<tr><td><code>f{char}</code></td><td>Vorwärts zu Zeichen</td></tr>
+<tr><td><code>F{char}</code></td><td>Rückwärts zu Zeichen</td></tr>
+<tr><td><code>t{char}</code></td><td>Vor Zeichen</td></tr>
+<tr><td><code>T{char}</code></td><td>Nach Zeichen (rückwärts)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Bearbeitung (Command-Modus):</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>x</code></td><td>Zeichen löschen</td></tr>
+<tr><td><code>X</code></td><td>Zeichen davor löschen</td></tr>
+<tr><td><code>dd</code></td><td>Ganze Zeile löschen</td></tr>
+<tr><td><code>D</code></td><td>Bis Zeilenende löschen</td></tr>
+<tr><td><code>dw</code></td><td>Wort löschen</td></tr>
+<tr><td><code>cw</code></td><td>Wort ändern</td></tr>
+<tr><td><code>cc</code></td><td>Zeile ändern</td></tr>
+<tr><td><code>C</code></td><td>Bis Zeilenende ändern</td></tr>
+<tr><td><code>r{char}</code></td><td>Zeichen ersetzen</td></tr>
+<tr><td><code>R</code></td><td>Replace-Modus</td></tr>
+<tr><td><code>yy</code></td><td>Zeile kopieren</td></tr>
+<tr><td><code>yw</code></td><td>Wort kopieren</td></tr>
+<tr><td><code>p</code> / <code>P</code></td><td>Einfügen nach/vor</td></tr>
+<tr><td><code>u</code></td><td>Undo</td></tr>
+<tr><td><code>Ctrl+R</code></td><td>Redo</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>History (Command-Modus):</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kürzel</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>/pattern</code></td><td>Vorwärts suchen</td></tr>
+<tr><td><code>?pattern</code></td><td>Rückwärts suchen</td></tr>
+<tr><td><code>n</code> / <code>N</code></td><td>Nächster / Vorheriger Treffer</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="43----eigene-keymap-erstellen"><a class="header" href="#43----eigene-keymap-erstellen">4.3    Eigene Keymap erstellen</a></h3>
+<pre><code class="language-zsh"># Neue Keymap basierend auf emacs
+bindkey -N mymap emacs
+
+# Anpassungen
+bindkey -M mymap "^Xd" insert-date
+bindkey -M mymap "^Xs" prepend-sudo
+
+# Keymap aktivieren
+bindkey -A mymap main
+</code></pre>
+<h3 id="44----contextuelle-bindings"><a class="header" href="#44----contextuelle-bindings">4.4    Contextuelle Bindings</a></h3>
+<pre><code class="language-zsh"># Binding nur bei bestimmter Eingabe
+# Beispiel: Tab verhält sich unterschiedlich
+
+smart-tab() {
+    if [-z "$LBUFFER"](-z%20"$LBUFFER".md); then
+        # Leere Zeile: 4 Spaces einfügen
+        LBUFFER+="    "
+    elif ["$LBUFFER" =~ '^ +$']("$LBUFFER"%20=~%20'^%20+$'.md); then
+        # Nur Whitespace: weitere Spaces
+        LBUFFER+="    "
+    else
+        # Sonst: normale Completion
+        zle expand-or-complete
+    fi
+}
+zle -N smart-tab
+bindkey "^I" smart-tab
+</code></pre>
+<h2 id="5----beispiele--use-cases"><a class="header" href="#5----beispiele--use-cases">5    Beispiele &amp; Use-Cases</a></h2>
+<h3 id="51----produktivitäts-widgets"><a class="header" href="#51----produktivitäts-widgets">5.1    Produktivitäts-Widgets</a></h3>
+<p><strong>Befehl in Editor öffnen:</strong></p>
+<pre><code class="language-zsh"># Bereits eingebaut, aber oft nicht gebunden
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "^Xe" edit-command-line
+bindkey "^X^E" edit-command-line
+</code></pre>
+<p><strong>Git-Integration:</strong></p>
+<pre><code class="language-zsh"># Git Branch wechseln mit fzf
+fzf-git-branch() {
+    local branch
+    branch=$(git branch --all | grep -v HEAD | fzf --preview 'git log --oneline -20 {1}')
+    branch=${branch#remotes/origin/}
+    branch=${branch## }
+    if [-n "$branch"](-n%20"$branch".md); then
+        BUFFER="git checkout $branch"
+        zle accept-line
+    fi
+}
+zle -N fzf-git-branch
+bindkey "^Gb" fzf-git-branch
+
+# Git Status anzeigen (ohne Ausführung)
+show-git-status() {
+    zle -M "$(git status -s 2&gt;/dev/null || echo 'Not a git repo')"
+}
+zle -N show-git-status
+bindkey "^Gs" show-git-status
+
+# Git Add mit fzf
+fzf-git-add() {
+    local files
+    files=$(git status -s | fzf -m | awk '{print $2}')
+    if [-n "$files"](-n%20"$files".md); then
+        BUFFER="git add ${files//$'\n'/ }"
+        CURSOR=$#BUFFER
+    fi
+    zle redisplay
+}
+zle -N fzf-git-add
+bindkey "^Ga" fzf-git-add
+</code></pre>
+<p><strong>Verzeichnis-Navigation:</strong></p>
+<pre><code class="language-zsh"># Schnell zu häufigen Verzeichnissen
+goto-projects() {
+    local dir
+    dir=$(find ~/projects -maxdepth 1 -type d | fzf)
+    if [-n "$dir"](-n%20"$dir".md); then
+        cd "$dir"
+        zle reset-prompt
+    fi
+}
+zle -N goto-projects
+bindkey "^Xp" goto-projects
+
+# Parent Directory
+goto-parent() {
+    cd ..
+    zle reset-prompt
+}
+zle -N goto-parent
+bindkey "^X." goto-parent
+
+# Zurück zum vorherigen Verzeichnis
+goto-previous() {
+    cd - &gt; /dev/null
+    zle reset-prompt
+}
+zle -N goto-previous
+bindkey "^X-" goto-previous
+</code></pre>
+<h3 id="52----textmanipulation"><a class="header" href="#52----textmanipulation">5.2    Textmanipulation</a></h3>
+<p><strong>Pipe-Operatoren schnell einfügen:</strong></p>
+<pre><code class="language-zsh"># Pipe-Menü
+pipe-menu() {
+    local pipes=(
+        "| less"
+        "| grep "
+        "| head -20"
+        "| tail -20"
+        "| wc -l"
+        "| sort"
+        "| sort -u"
+        "| xargs "
+        "| awk '{print \$1}'"
+        "| sed 's///g'"
+        "&gt; /dev/null 2&gt;&amp;1"
+        "2&gt;&amp;1"
+    )
+    local selected
+    selected=$(printf '%s\n' "${pipes[@]}" | fzf --prompt="Pipe: ")
+    if [-n "$selected"](-n%20"$selected".md); then
+        LBUFFER+=" $selected"
+    fi
+    zle redisplay
+}
+zle -N pipe-menu
+bindkey "^X|" pipe-menu
+</code></pre>
+<p><strong>Pfad expandieren:</strong></p>
+<pre><code class="language-zsh"># ~ und Variablen expandieren
+expand-path() {
+    BUFFER="${(e)BUFFER}"
+}
+zle -N expand-path
+bindkey "^Xx" expand-path
+
+# Aktuelles Wort zu absolutem Pfad
+expand-to-absolute() {
+    local word="${LBUFFER##* }"
+    local rest="${LBUFFER% *}"
+    local abs="${word:A}"
+    if ["$rest" == "$LBUFFER"]("$rest"%20==%20"$LBUFFER".md); then
+        LBUFFER="$abs"
+    else
+        LBUFFER="$rest $abs"
+    fi
+}
+zle -N expand-to-absolute
+bindkey "^Xa" expand-to-absolute
+</code></pre>
+<p><strong>Wort-Operationen:</strong></p>
+<pre><code class="language-zsh"># Wort duplizieren
+duplicate-word() {
+    local word="${LBUFFER##* }"
+    LBUFFER+=" $word"
+}
+zle -N duplicate-word
+bindkey "^Xw" duplicate-word
+
+# Wörter rückwärts
+reverse-words() {
+    local words=(${=BUFFER})
+    BUFFER="${(j: :)${(Oa)words}}"
+}
+zle -N reverse-words
+</code></pre>
+<h3 id="53----history-erweiterungen"><a class="header" href="#53----history-erweiterungen">5.3    History-Erweiterungen</a></h3>
+<p><strong>History mit Preview:</strong></p>
+<pre><code class="language-zsh">fzf-history-widget() {
+    local selected
+    selected=$(fc -rl 1 | fzf +s --tac \
+        --preview 'echo {}' \
+        --preview-window down:3:wrap)
+    if [-n "$selected"](-n%20"$selected".md); then
+        # Nummer entfernen
+        BUFFER="${selected#*  }"
+        CURSOR=$#BUFFER
+    fi
+    zle redisplay
+}
+zle -N fzf-history-widget
+bindkey "^R" fzf-history-widget
+</code></pre>
+<p><strong>Letzten Befehl modifizieren:</strong></p>
+<pre><code class="language-zsh"># Letzten Befehl holen und editierbar machen
+recall-last-command() {
+    BUFFER=$(fc -ln -1)
+    CURSOR=$#BUFFER
+}
+zle -N recall-last-command
+bindkey "^[r" recall-last-command
+</code></pre>
+<h3 id="54----prompt-integration"><a class="header" href="#54----prompt-integration">5.4    Prompt-Integration</a></h3>
+<pre><code class="language-zsh"># Prompt neu zeichnen nach Widget
+update-prompt() {
+    # Prompt-relevante Variablen aktualisieren
+    zle reset-prompt
+}
+
+# Nach cd immer Prompt aktualisieren
+cd-and-update() {
+    if [-n "$BUFFER"](-n%20"$BUFFER".md); then
+        zle accept-line
+        zle reset-prompt
+    fi
+}
+</code></pre>
+<h3 id="55----debugging-widgets"><a class="header" href="#55----debugging-widgets">5.5    Debugging-Widgets</a></h3>
+<pre><code class="language-zsh"># Aktuellen Buffer anzeigen
+debug-buffer() {
+    zle -M "BUFFER: '$BUFFER' | LBUFFER: '$LBUFFER' | CURSOR: $CURSOR"
+}
+zle -N debug-buffer
+bindkey "^Xb" debug-buffer
+
+# Letzte Tasten anzeigen
+debug-keys() {
+    zle -M "KEYS: '$KEYS' | WIDGET: '$WIDGET' | LASTWIDGET: '$LASTWIDGET'"
+}
+zle -N debug-keys
+bindkey "^Xk" debug-keys
+
+# Widget-Liste durchsuchen
+search-widgets() {
+    local widget
+    widget=$(zle -la | fzf --prompt="Widget: ")
+    if [-n "$widget"](-n%20"$widget".md); then
+        zle -M "Widget: $widget"
+    fi
+}
+zle -N search-widgets
+bindkey "^X?" search-widgets
+</code></pre>
+<h3 id="56----vollständige-zshrc-integration"><a class="header" href="#56----vollständige-zshrc-integration">5.6    Vollständige .zshrc-Integration</a></h3>
+<pre><code class="language-zsh"># ~/.zshrc - ZLE-Konfiguration
+
+# === Grundeinstellungen ===
+bindkey -e                              # Emacs-Modus
+
+# === Standard-Verbesserungen ===
+bindkey "^[[A" history-search-backward  # Pfeil hoch: History mit Prefix
+bindkey "^[[B" history-search-forward   # Pfeil runter: History mit Prefix
+bindkey "^[[H" beginning-of-line        # Home
+bindkey "^[[F" end-of-line              # End
+bindkey "^[[3~" delete-char             # Delete
+
+# === Editor ===
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "^Xe" edit-command-line
+bindkey "^X^E" edit-command-line
+
+# === Eigene Widgets ===
+
+# Sudo voranstellen
+prepend-sudo() {
+    [$BUFFER != sudo\ *]($BUFFER%20!=%20sudo\%20*.md) &amp;&amp; BUFFER="sudo $BUFFER" &amp;&amp; ((CURSOR+=5))
+}
+zle -N prepend-sudo
+bindkey "^[s" prepend-sudo
+
+# Datum einfügen
+insert-date() { LBUFFER+=$(date +%Y-%m-%d); }
+zle -N insert-date
+bindkey "^Xd" insert-date
+
+# Clipboard (macOS)
+copy-buffer() { echo -n "$BUFFER" | pbcopy; zle -M "Copied"; }
+paste-buffer() { LBUFFER+=$(pbpaste); }
+zle -N copy-buffer
+zle -N paste-buffer
+bindkey "^Xy" copy-buffer
+bindkey "^Xp" paste-buffer
+
+# === Makros ===
+bindkey -s "^Xl" " | less"
+bindkey -s "^Xg" " | grep "
+bindkey -s "^Xn" " &gt; /dev/null 2&gt;&amp;1"
+
+# === fzf-Integration (falls installiert) ===
+if command -v fzf &amp;&gt; /dev/null; then
+    # History
+    fzf-history() {
+        local cmd=$(fc -ln 1 | fzf --tac --no-sort)
+        [-n "$cmd"](-n%20"$cmd".md) &amp;&amp; BUFFER="$cmd" &amp;&amp; CURSOR=$#BUFFER
+        zle redisplay
+    }
+    zle -N fzf-history
+    bindkey "^R" fzf-history
+
+    # Dateien
+    fzf-file() {
+        local file=$(fzf)
+        [-n "$file"](-n%20"$file".md) &amp;&amp; LBUFFER+="${(q)file}"
+        zle redisplay
+    }
+    zle -N fzf-file
+    bindkey "^Xf" fzf-file
+
+    # Verzeichnisse
+    fzf-cd() {
+        local dir=$(find . -type d 2&gt;/dev/null | fzf)
+        [-n "$dir"](-n%20"$dir".md) &amp;&amp; cd "$dir" &amp;&amp; zle reset-prompt
+    }
+    zle -N fzf-cd
+    bindkey "^Xc" fzf-cd
+fi
+</code></pre>
+<h3 id="57----cheatsheet"><a class="header" href="#57----cheatsheet">5.7    Cheatsheet</a></h3>
+<p><strong>Widget erstellen:</strong></p>
+<pre><code class="language-zsh">widget-name() { ... }           # Funktion definieren
+zle -N widget-name              # Als Widget registrieren
+bindkey "^Xk" widget-name       # An Taste binden
+</code></pre>
+<p><strong>Wichtige Variablen:</strong></p>
+<pre><code class="language-zsh">$BUFFER                         # Gesamte Zeile
+$LBUFFER                        # Links vom Cursor
+$RBUFFER                        # Rechts vom Cursor
+$CURSOR                         # Cursor-Position
+</code></pre>
+<p><strong>Bindkey:</strong></p>
+<pre><code class="language-zsh">bindkey                         # Alle Bindungen
+bindkey "^X"                    # Was macht Ctrl+X?
+bindkey "^Xk" widget            # Widget binden
+bindkey -s "^Xk" "string"       # Makro binden
+bindkey -r "^Xk"                # Binding entfernen
+bindkey -M viins "jk" vi-cmd    # Keymap-spezifisch
+</code></pre>
+<p><strong>Escape-Sequenzen:</strong></p>
+<pre><code>^X   = Ctrl+X
+^[   = Escape / Alt
+^[[A = Pfeil hoch
+^[[B = Pfeil runter
+\n   = Enter (für Makros)
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/ssh-keys.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/dateisystem-und-laufwerke.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/ssh-keys.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/dateisystem-und-laufwerke.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

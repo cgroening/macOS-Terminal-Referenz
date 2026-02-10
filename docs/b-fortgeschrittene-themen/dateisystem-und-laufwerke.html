@@ -1,0 +1,1646 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Dateisystem und Laufwerke - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="dateisystem--volumes"><a class="header" href="#dateisystem--volumes">Dateisystem &amp; Volumes</a></h1>
+<p>Dieses Kapitel behandelt fortgeschrittene Dateisystem-Operationen unter macOS: symbolische und harte Links, Datei-Metadaten, Volume-Management, Disk Images und Backup-Werkzeuge.</p>
+<h2 id="1----links"><a class="header" href="#1----links">1    Links</a></h2>
+<p>Links ermöglichen es, auf Dateien oder Verzeichnisse an mehreren Stellen im Dateisystem zu verweisen, ohne die Daten zu duplizieren.</p>
+<h3 id="11----symbolische-links-ln--s"><a class="header" href="#11----symbolische-links-ln--s">1.1    Symbolische Links (<code>ln -s</code>)</a></h3>
+<p>Ein <strong>symbolischer Link</strong> (Symlink, Softlink) ist ein Verweis auf einen Pfad. Er funktioniert wie eine Verknüpfung und kann auf Dateien oder Verzeichnisse zeigen – auch über Dateisystemgrenzen hinweg.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">ln -s ZIEL LINKNAME
+</code></pre>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Symlink auf eine Datei
+ln -s ~/Documents/config.yaml ~/.config/app/config.yaml
+
+# Symlink auf ein Verzeichnis
+ln -s ~/Dropbox/Projekte ~/Projekte
+
+# Symlink mit relativem Pfad
+cd ~/bin
+ln -s ../scripts/backup.sh backup
+
+# Symlink in anderem Verzeichnis erstellen
+ln -s /opt/homebrew/bin/python3 /usr/local/bin/python
+</code></pre>
+<p><strong>Eigenschaften:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>Symbolischer Link</th></tr>
+</thead>
+<tbody>
+<tr><td>Verweist auf</td><td>Pfad (String)</td></tr>
+<tr><td>Ziel gelöscht</td><td>Link wird “broken” (toter Link)</td></tr>
+<tr><td>Über Dateisysteme</td><td>✅ Ja</td></tr>
+<tr><td>Auf Verzeichnisse</td><td>✅ Ja</td></tr>
+<tr><td>Eigene Inode</td><td>✅ Ja (eigene Datei)</td></tr>
+<tr><td>Erkennung</td><td><code>ls -l</code> zeigt <code>l</code> und <code>-&gt;</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Symlink erkennen:</strong></p>
+<pre><code class="language-zsh">ls -l ~/Projekte
+# lrwxr-xr-x  1 max  staff  20 Jan 15 10:30 Projekte -&gt; Dropbox/Projekte
+
+# Nur Symlinks anzeigen
+ls -la | grep "^l"
+
+# Mit file-Befehl
+file ~/Projekte
+# /Users/max/Projekte: symbolic link to Dropbox/Projekte
+</code></pre>
+<h3 id="12----harte-links-ln"><a class="header" href="#12----harte-links-ln">1.2    Harte Links (<code>ln</code>)</a></h3>
+<p>Ein <strong>harter Link</strong> ist ein zusätzlicher Verzeichniseintrag für dieselbe Datei (Inode). Die Datei existiert erst dann nicht mehr, wenn alle harten Links gelöscht wurden.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">ln ZIEL LINKNAME
+</code></pre>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Harter Link auf Datei
+ln original.txt hardlink.txt
+
+# Beide zeigen auf dieselbe Inode
+ls -li original.txt hardlink.txt
+# 12345678 -rw-r--r--  2 max  staff  100 Jan 15 10:30 hardlink.txt
+# 12345678 -rw-r--r--  2 max  staff  100 Jan 15 10:30 original.txt
+#    ^-- gleiche Inode-Nummer        ^-- Link-Count = 2
+</code></pre>
+<p><strong>Eigenschaften:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>Harter Link</th></tr>
+</thead>
+<tbody>
+<tr><td>Verweist auf</td><td>Inode (Daten direkt)</td></tr>
+<tr><td>Ziel gelöscht</td><td>Link funktioniert weiter</td></tr>
+<tr><td>Über Dateisysteme</td><td>❌ Nein</td></tr>
+<tr><td>Auf Verzeichnisse</td><td>❌ Nein (außer <code>.</code> und <code>..</code>)</td></tr>
+<tr><td>Eigene Inode</td><td>❌ Nein (teilt Inode)</td></tr>
+<tr><td>Erkennung</td><td>Link-Count &gt; 1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Einschränkungen unter macOS:</strong></p>
+<pre><code class="language-zsh"># Harte Links auf Verzeichnisse sind nicht erlaubt
+ln /Users/max/Documents /Users/max/Docs
+# ln: /Users/max/Documents: Is a directory
+
+# Harte Links über Volumes hinweg nicht möglich
+ln /Volumes/USB/file.txt ~/file.txt
+# ln: /Volumes/USB/file.txt: Cross-device link
+</code></pre>
+<h3 id="13----unterschiede-und-anwendungsfälle"><a class="header" href="#13----unterschiede-und-anwendungsfälle">1.3    Unterschiede und Anwendungsfälle</a></h3>
+<p><strong>Vergleichstabelle:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>Symbolischer Link</th><th>Harter Link</th></tr>
+</thead>
+<tbody>
+<tr><td>Verweist auf</td><td>Pfadname</td><td>Inode</td></tr>
+<tr><td>Eigene Inode</td><td>Ja</td><td>Nein</td></tr>
+<tr><td>Funktioniert nach Löschen des Originals</td><td>Nein (broken)</td><td>Ja</td></tr>
+<tr><td>Über Dateisysteme</td><td>Ja</td><td>Nein</td></tr>
+<tr><td>Auf Verzeichnisse</td><td>Ja</td><td>Nein</td></tr>
+<tr><td>Platzbedarf</td><td>Minimal (Pfad)</td><td>Keiner (Eintrag)</td></tr>
+<tr><td>Typische Nutzung</td><td>Verknüpfungen, Aliase</td><td>Backups, Deduplizierung</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Wann Symlinks verwenden:</strong></p>
+<ul>
+<li>Verknüpfungen zu Verzeichnissen</li>
+<li>Links über verschiedene Volumes/Partitionen</li>
+<li>Wenn der Link als “Verweis” erkennbar sein soll</li>
+<li>Konfigurationsdateien an mehreren Orten verfügbar machen</li>
+<li>Versionierte Verzeichnisse (z.B. <code>current -&gt; v2.1.0</code>)</li>
+</ul>
+<p><strong>Wann harte Links verwenden:</strong></p>
+<ul>
+<li>Backup-Systeme (Time Machine nutzt harte Links)</li>
+<li>Deduplizierung von Dateien</li>
+<li>Wenn die Datei auch nach Löschen des “Originals” erhalten bleiben soll</li>
+<li>Space-effiziente Kopien</li>
+</ul>
+<p><strong>Beispiel: Versionierung mit Symlinks:</strong></p>
+<pre><code class="language-zsh"># Versionen als Verzeichnisse
+mkdir -p ~/apps/myapp-1.0.0 ~/apps/myapp-1.1.0 ~/apps/myapp-2.0.0
+
+# Symlink auf aktuelle Version
+ln -s ~/apps/myapp-2.0.0 ~/apps/myapp-current
+
+# Update auf neue Version
+rm ~/apps/myapp-current
+ln -s ~/apps/myapp-2.1.0 ~/apps/myapp-current
+
+# Oder mit ln -sf (force)
+ln -sf ~/apps/myapp-2.1.0 ~/apps/myapp-current
+</code></pre>
+<h3 id="14----links-verwalten-readlink-unlink"><a class="header" href="#14----links-verwalten-readlink-unlink">1.4    Links verwalten (<code>readlink</code>, <code>unlink</code>)</a></h3>
+<p><strong>readlink – Linkziel auslesen:</strong></p>
+<pre><code class="language-zsh"># Symlink-Ziel anzeigen
+readlink ~/Projekte
+# Dropbox/Projekte
+
+# Kanonischen (absoluten) Pfad auflösen
+readlink -f ~/Projekte
+# /Users/max/Dropbox/Projekte
+
+# Auch für nicht existierende Pfade
+readlink -f ./relative/path/../file.txt
+# /Users/max/current/file.txt
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-f</code></td><td>Kanonischer Pfad (alle Symlinks auflösen)</td></tr>
+<tr><td><code>-n</code></td><td>Keine Newline am Ende</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>unlink – Link entfernen:</strong></p>
+<pre><code class="language-zsh"># Symlink entfernen (nicht das Ziel!)
+unlink ~/Projekte
+
+# Äquivalent zu rm für einzelne Dateien
+rm ~/Projekte
+</code></pre>
+<div class="mdbook-callouts mdbook-callouts-caution">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  caution
+</p>
+
+<p>Bei Verzeichnis-Symlinks keinen Trailing Slash verwenden!</p>
+<pre><code class="language-zsh"># RICHTIG: Entfernt den Symlink
+rm ~/Projekte
+
+# FALSCH: Versucht Inhalt des Zielverzeichnisses zu löschen!
+rm -r ~/Projekte/
+</code></pre>
+<p>Der Trailing Slash (<code>/</code>) bewirkt, dass die Shell den Symlink auflöst und dem Befehl das Zielverzeichnis übergibt. Mit <code>rm -r ~/Projekte/</code> löscht man daher nicht den Symlink, sondern den Inhalt des verlinkten Verzeichnisses – ein häufiger und folgenschwerer Fehler.</p>
+</div>
+
+<p><strong>Links finden:</strong></p>
+<pre><code class="language-zsh"># Alle Symlinks in einem Verzeichnis
+find ~/Documents -type l
+
+# Broken Symlinks finden
+find ~/Documents -type l ! -exec test -e {} \; -print
+
+# Alle harten Links zu einer Datei finden (gleiche Inode)
+find / -inum $(stat -f %i datei.txt) 2&gt;/dev/null
+</code></pre>
+<p><strong>Link-Informationen mit stat:</strong></p>
+<pre><code class="language-zsh"># Inode und Link-Count anzeigen
+stat -f "Inode: %i, Links: %l" datei.txt
+
+# Bei Symlinks: Link vs. Ziel
+stat -f "Link: %N, Ziel: %Y" ~/Projekte
+</code></pre>
+<h2 id="2----dateisystem-tools"><a class="header" href="#2----dateisystem-tools">2    Dateisystem-Tools</a></h2>
+<h3 id="21----stat--detaillierte-datei-informationen"><a class="header" href="#21----stat--detaillierte-datei-informationen">2.1    <code>stat</code> – Detaillierte Datei-Informationen</a></h3>
+<p><code>stat</code> zeigt umfassende Metadaten einer Datei an.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">stat [Optionen] DATEI
+</code></pre>
+<p><strong>Standardausgabe:</strong></p>
+<pre><code class="language-zsh">stat ~/.zshrc
+# 16777220 8453123 -rw-r--r-- 1 max staff 0 2048 "Jan 15 10:30:00 2024" ...
+</code></pre>
+<p><strong>Formatierte Ausgabe (macOS BSD-stat):</strong></p>
+<pre><code class="language-zsh"># Lesbare Ausgabe
+stat -x ~/.zshrc
+
+# Bestimmte Felder
+stat -f "%N: %z Bytes, modified %Sm" ~/.zshrc
+# .zshrc: 2048 Bytes, modified Jan 15 10:30:00 2024
+
+# Nur Dateigröße
+stat -f %z ~/.zshrc
+# 2048
+
+# Nur Inode
+stat -f %i ~/.zshrc
+# 8453123
+
+# Berechtigungen oktal
+stat -f %Op ~/.zshrc
+# 100644
+
+# Besitzer und Gruppe
+stat -f "%Su:%Sg" ~/.zshrc
+# max:staff
+</code></pre>
+<p><strong>Format-Spezifizierer (BSD/macOS):</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Spezifizierer</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>%N</code></td><td>Dateiname</td></tr>
+<tr><td><code>%z</code></td><td>Größe in Bytes</td></tr>
+<tr><td><code>%i</code></td><td>Inode-Nummer</td></tr>
+<tr><td><code>%l</code></td><td>Anzahl harter Links</td></tr>
+<tr><td><code>%Op</code></td><td>Berechtigungen (oktal)</td></tr>
+<tr><td><code>%Sp</code></td><td>Berechtigungen (symbolisch)</td></tr>
+<tr><td><code>%Su</code></td><td>Besitzer (Name)</td></tr>
+<tr><td><code>%Sg</code></td><td>Gruppe (Name)</td></tr>
+<tr><td><code>%u</code></td><td>Besitzer (UID)</td></tr>
+<tr><td><code>%g</code></td><td>Gruppe (GID)</td></tr>
+<tr><td><code>%Sa</code></td><td>Zugriffszeit</td></tr>
+<tr><td><code>%Sm</code></td><td>Änderungszeit</td></tr>
+<tr><td><code>%Sc</code></td><td>Statusänderungszeit</td></tr>
+<tr><td><code>%SB</code></td><td>Erstellungszeit (macOS)</td></tr>
+<tr><td><code>%Y</code></td><td>Symlink-Ziel</td></tr>
+<tr><td><code>%T</code></td><td>Dateityp</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Erstellungsdatum (macOS-spezifisch)
+stat -f "Erstellt: %SB" -t "%Y-%m-%d %H:%M" ~/.zshrc
+
+# Vergleich zweier Dateien
+for f in file1.txt file2.txt; do
+    stat -f "%N: %z Bytes, %Sm" "$f"
+done
+
+# Alle Infos für Skript
+stat -f "size=%z;inode=%i;mode=%Op;uid=%u;gid=%g" datei.txt
+</code></pre>
+<h3 id="22----file--dateityp-erkennen"><a class="header" href="#22----file--dateityp-erkennen">2.2    <code>file</code> – Dateityp erkennen</a></h3>
+<p><code>file</code> analysiert den Inhalt einer Datei und bestimmt ihren Typ – unabhängig von der Dateiendung.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">file [Optionen] DATEI...
+</code></pre>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh">file document.pdf
+# document.pdf: PDF document, version 1.7
+
+file image.png
+# image.png: PNG image data, 1920 x 1080, 8-bit/color RGBA
+
+file script.sh
+# script.sh: Bourne-Again shell script, ASCII text executable
+
+file binary
+# binary: Mach-O 64-bit executable arm64
+
+file archive.tar.gz
+# archive.tar.gz: gzip compressed data
+
+file unknown
+# unknown: ASCII text, with very long lines
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-b</code></td><td>Brief: Kein Dateiname in Ausgabe</td></tr>
+<tr><td><code>-i</code></td><td>MIME-Typ ausgeben</td></tr>
+<tr><td><code>-I</code></td><td>MIME-Typ mit Encoding</td></tr>
+<tr><td><code>-L</code></td><td>Symlinks folgen</td></tr>
+<tr><td><code>-z</code></td><td>Komprimierte Dateien untersuchen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Anwendungen:</strong></p>
+<pre><code class="language-zsh"># MIME-Typ für Webserver
+file -I document.pdf
+# document.pdf: application/pdf; charset=binary
+
+# Mehrere Dateien
+file *
+# bild.jpg:    JPEG image data
+# script.py:   Python script, ASCII text
+# data.json:   JSON data
+
+# In Skripten: Typ prüfen
+if file -b "$1" | grep -q "shell script"; then
+    echo "Ist ein Shell-Skript"
+fi
+
+# Nur echte Bilder finden
+find . -type f -exec file {} \; | grep "image data"
+</code></pre>
+<h3 id="23----mdls--macos-metadaten-anzeigen"><a class="header" href="#23----mdls--macos-metadaten-anzeigen">2.3    <code>mdls</code> – macOS-Metadaten anzeigen</a></h3>
+<p><code>mdls</code> zeigt Spotlight-Metadaten einer Datei an. Diese umfassen weit mehr als Standard-Dateiattribute.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">mdls [Optionen] DATEI
+</code></pre>
+<p><strong>Beispiel:</strong></p>
+<pre><code class="language-zsh">mdls foto.jpg
+# kMDItemContentType         = "public.jpeg"
+# kMDItemContentTypeTree     = (
+#     "public.jpeg",
+#     "public.image",
+#     "public.data"
+# )
+# kMDItemDateTimeOriginal    = 2024-01-15 10:30:00 +0000
+# kMDItemPixelHeight         = 1080
+# kMDItemPixelWidth          = 1920
+# kMDItemColorSpace          = "RGB"
+# ...
+</code></pre>
+<p><strong>Bestimmte Attribute abfragen:</strong></p>
+<pre><code class="language-zsh"># Nur bestimmtes Attribut
+mdls -name kMDItemContentType foto.jpg
+# kMDItemContentType = "public.jpeg"
+
+# Mehrere Attribute
+mdls -name kMDItemPixelWidth -name kMDItemPixelHeight foto.jpg
+
+# Wert ohne Attributnamen
+mdls -raw -name kMDItemPixelWidth foto.jpg
+# 1920
+</code></pre>
+<p><strong>Wichtige Metadaten-Attribute:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Attribut</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>kMDItemContentType</code></td><td>UTI-Dateityp</td></tr>
+<tr><td><code>kMDItemKind</code></td><td>Lesbare Typbeschreibung</td></tr>
+<tr><td><code>kMDItemFSName</code></td><td>Dateiname</td></tr>
+<tr><td><code>kMDItemFSSize</code></td><td>Dateigröße</td></tr>
+<tr><td><code>kMDItemFSCreationDate</code></td><td>Erstellungsdatum</td></tr>
+<tr><td><code>kMDItemContentCreationDate</code></td><td>Inhalt erstellt</td></tr>
+<tr><td><code>kMDItemContentModificationDate</code></td><td>Inhalt geändert</td></tr>
+<tr><td><code>kMDItemPixelWidth/Height</code></td><td>Bildgröße</td></tr>
+<tr><td><code>kMDItemDurationSeconds</code></td><td>Medien-Dauer</td></tr>
+<tr><td><code>kMDItemTitle</code></td><td>Titel</td></tr>
+<tr><td><code>kMDItemAuthors</code></td><td>Autoren</td></tr>
+<tr><td><code>kMDItemWhereFroms</code></td><td>Download-URL</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Bildabmessungen
+mdls -name kMDItemPixelWidth -name kMDItemPixelHeight *.jpg
+
+# Woher wurde Datei heruntergeladen?
+mdls -name kMDItemWhereFroms ~/Downloads/installer.dmg
+
+# Dauer eines Videos
+mdls -raw -name kMDItemDurationSeconds video.mp4
+
+# Alle PDFs mit Seitenzahl
+for f in *.pdf; do
+    pages=$(mdls -raw -name kMDItemNumberOfPages "$f" 2&gt;/dev/null)
+    echo "$f: $pages Seiten"
+done
+</code></pre>
+<p><strong>Metadaten setzen mit xattr:</strong></p>
+<pre><code class="language-zsh"># Extended Attributes anzeigen
+xattr -l datei.txt
+
+# Quarantäne-Flag entfernen (heruntergeladene Dateien)
+xattr -d com.apple.quarantine datei.app
+
+# Alle xattrs entfernen
+xattr -c datei.txt
+</code></pre>
+<h2 id="3----volumes--mounten"><a class="header" href="#3----volumes--mounten">3    Volumes &amp; Mounten</a></h2>
+<h3 id="31----diskutil--laufwerke-verwalten"><a class="header" href="#31----diskutil--laufwerke-verwalten">3.1    <code>diskutil</code> – Laufwerke verwalten</a></h3>
+<p><code>diskutil</code> ist das zentrale macOS-Tool zur Verwaltung von Festplatten, Partitionen und Volumes.</p>
+<p><strong>Laufwerke auflisten:</strong></p>
+<pre><code class="language-zsh"># Alle Laufwerke
+diskutil list
+
+# Ausgabe:
+# /dev/disk0 (internal, physical):
+#    #:                       TYPE NAME                    SIZE
+#    0:      GUID_partition_scheme                        *500.1 GB
+#    1:                        EFI EFI                     209.7 MB
+#    2:                 Apple_APFS Container disk1         499.9 GB
+#
+# /dev/disk1 (synthesized):
+#    #:                       TYPE NAME                    SIZE
+#    0:      APFS Container Scheme -                      +499.9 GB
+#    1:                APFS Volume Macintosh HD            12.4 GB
+#    2:                APFS Volume Preboot                 23.1 MB
+#    ...
+</code></pre>
+<p><strong>Volume-Informationen:</strong></p>
+<pre><code class="language-zsh"># Detaillierte Infos zu einem Volume
+diskutil info /dev/disk1s1
+
+# Infos über Mount-Point
+diskutil info /Volumes/USB
+
+# Nur bestimmte Info
+diskutil info /dev/disk1s1 | grep "Volume Name"
+</code></pre>
+<p><strong>Volumes ein- und aushängen:</strong></p>
+<pre><code class="language-zsh"># Volume aushängen
+diskutil unmount /Volumes/USB
+diskutil unmount /dev/disk2s1
+
+# Volume einhängen
+diskutil mount /dev/disk2s1
+
+# Alle Volumes eines Laufwerks aushängen
+diskutil unmountDisk /dev/disk2
+
+# Laufwerk sicher auswerfen
+diskutil eject /dev/disk2
+</code></pre>
+<p><strong>Partitionen und Formatierung:</strong></p>
+<pre><code class="language-zsh"># Volume löschen (APFS)
+diskutil eraseVolume APFS "NeuesVolume" /dev/disk2s1
+
+# Ganzes Laufwerk formatieren (ACHTUNG!)
+diskutil eraseDisk APFS "MeinDisk" /dev/disk2
+
+# Verfügbare Dateisystem-Typen
+diskutil listFilesystems
+
+# Partition hinzufügen (APFS Container)
+diskutil apfs addVolume disk1 APFS "Daten"
+</code></pre>
+<p><strong>APFS-spezifische Befehle:</strong></p>
+<pre><code class="language-zsh"># APFS Container auflisten
+diskutil apfs list
+
+# Volume zu Container hinzufügen
+diskutil apfs addVolume disk1 APFS "NeuesVolume"
+
+# Volume löschen
+diskutil apfs deleteVolume disk1s3
+
+# Volume umbenennen
+diskutil rename disk1s2 "Neuer Name"
+</code></pre>
+<p><strong>Festplatten reparieren:</strong></p>
+<pre><code class="language-zsh"># Dateisystem prüfen
+diskutil verifyVolume /dev/disk1s1
+
+# Dateisystem reparieren
+diskutil repairVolume /dev/disk1s1
+
+# First Aid (GUI-Äquivalent)
+diskutil verifyDisk /dev/disk0
+diskutil repairDisk /dev/disk0
+</code></pre>
+<h3 id="32----mount--umount--volumes-ein-aushängen"><a class="header" href="#32----mount--umount--volumes-ein-aushängen">3.2    <code>mount</code> / <code>umount</code> – Volumes ein-/aushängen</a></h3>
+<p>Die klassischen Unix-Befehle <code>mount</code> und <code>umount</code> funktionieren auch unter macOS.</p>
+<p><strong>Aktuelle Mounts anzeigen:</strong></p>
+<pre><code class="language-zsh"># Alle gemounteten Volumes
+mount
+
+# Nur bestimmter Typ
+mount | grep apfs
+mount | grep nfs
+
+# Übersichtlicher mit df
+df -h
+</code></pre>
+<p><strong>Volume manuell mounten:</strong></p>
+<pre><code class="language-zsh"># Mount-Point erstellen
+sudo mkdir /Volumes/MeinUSB
+
+# Volume mounten
+sudo mount -t msdos /dev/disk2s1 /Volumes/MeinUSB
+
+# Mit Optionen
+sudo mount -t hfs -o ro /dev/disk2s1 /Volumes/ReadOnly
+</code></pre>
+<p><strong>Volume aushängen:</strong></p>
+<pre><code class="language-zsh"># Normal aushängen
+sudo umount /Volumes/MeinUSB
+
+# Erzwingen (wenn "busy")
+sudo umount -f /Volumes/MeinUSB
+
+# Besser: diskutil verwenden
+diskutil unmount /Volumes/MeinUSB
+</code></pre>
+<p><strong>Mount-Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-t TYPE</code></td><td>Dateisystem-Typ (apfs, hfs, msdos, ntfs, nfs, smbfs)</td></tr>
+<tr><td><code>-o ro</code></td><td>Read-only</td></tr>
+<tr><td><code>-o rw</code></td><td>Read-write</td></tr>
+<tr><td><code>-o noexec</code></td><td>Keine Ausführung erlauben</td></tr>
+<tr><td><code>-o nosuid</code></td><td>Setuid ignorieren</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="33----netzlaufwerke-mounten-smb-nfs-afp"><a class="header" href="#33----netzlaufwerke-mounten-smb-nfs-afp">3.3    Netzlaufwerke mounten (SMB, NFS, AFP)</a></h3>
+<p><strong>SMB/CIFS (Windows-Freigaben):</strong></p>
+<pre><code class="language-zsh"># Mit mount_smbfs
+mount_smbfs //user@server/share /Volumes/Share
+
+# Mit Passwort (unsicher, besser Keychain nutzen)
+mount_smbfs //user:passwort@server/share /Volumes/Share
+
+# Über Finder-URL (öffnet Finder)
+open smb://server/share
+
+# Mount-Point vorbereiten
+mkdir -p /Volumes/NAS
+mount_smbfs //max@nas.local/Daten /Volumes/NAS
+</code></pre>
+<p><strong>NFS:</strong></p>
+<pre><code class="language-zsh"># NFS-Mount
+sudo mount -t nfs server:/export/share /Volumes/NFS
+
+# Mit Optionen
+sudo mount -t nfs -o resvport,rw server:/share /Volumes/NFS
+
+# NFS-Exports auf Server anzeigen
+showmount -e server
+</code></pre>
+<p><strong>AFP (Apple Filing Protocol, veraltet):</strong></p>
+<pre><code class="language-zsh"># AFP-Mount
+mount_afp afp://user@server/share /Volumes/AFP
+
+# Über Finder
+open afp://server/share
+</code></pre>
+<p><strong>WebDAV:</strong></p>
+<pre><code class="language-zsh"># WebDAV mounten
+mount_webdav https://server/dav /Volumes/WebDAV
+</code></pre>
+<p><strong>Netzlaufwerk per Skript verbinden:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# mount-nas.sh
+
+SERVER="nas.local"
+SHARE="Daten"
+USER="max"
+MOUNTPOINT="/Volumes/NAS"
+
+# Mount-Point erstellen falls nötig
+[-d "$MOUNTPOINT"](-d%20"$MOUNTPOINT".md) || mkdir -p "$MOUNTPOINT"
+
+# Prüfen ob bereits gemountet
+if mount | grep -q "$MOUNTPOINT"; then
+    echo "Bereits verbunden"
+    exit 0
+fi
+
+# Mounten (Passwort aus Keychain)
+mount_smbfs "//${USER}@${SERVER}/${SHARE}" "$MOUNTPOINT"
+
+if [$? -eq 0]($?%20-eq%200.md); then
+    echo "Erfolgreich verbunden: $MOUNTPOINT"
+else
+    echo "Fehler beim Verbinden"
+    exit 1
+fi
+</code></pre>
+<h3 id="34----etcfstab--automatisches-mounten"><a class="header" href="#34----etcfstab--automatisches-mounten">3.4    <code>/etc/fstab</code> – Automatisches Mounten</a></h3>
+<p>Die Datei <code>/etc/fstab</code> definiert Volumes, die beim Systemstart automatisch gemountet werden.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code>DEVICE  MOUNTPOINT  FSTYPE  OPTIONS  DUMP  PASS
+</code></pre>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># /etc/fstab bearbeiten
+sudo nano /etc/fstab
+</code></pre>
+<pre><code># NFS-Share beim Start mounten
+server:/export/data  /Volumes/Data  nfs  rw,resvport  0  0
+
+# SMB-Share (mit Benutzername)
+//user@server/share  /Volumes/Share  smbfs  -N  0  0
+
+# USB-Laufwerk nach UUID
+UUID=1234-5678  /Volumes/USB  msdos  rw  0  0
+
+# Volume read-only mounten
+LABEL=Backup  /Volumes/Backup  apfs  ro  0  0
+</code></pre>
+<p><strong>UUID ermitteln:</strong></p>
+<pre><code class="language-zsh">diskutil info /dev/disk2s1 | grep "Volume UUID"
+</code></pre>
+<p><strong>fstab neu einlesen:</strong></p>
+<pre><code class="language-zsh">sudo automount -vc
+</code></pre>
+<div class="mdbook-callouts mdbook-callouts-note">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  note
+</p>
+
+<p>macOS verwendet primär <code>/etc/auto_master</code> für Automounts. Für Netzlaufwerke ist oft ein Login-Item oder launchd-Job praktischer.</p>
+</div>
+
+<p><strong>Automatisches Mounten mit launchd:</strong></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.user.mount-nas&lt;/string&gt;
+
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/bin/mount_smbfs&lt;/string&gt;
+        &lt;string&gt;//user@server/share&lt;/string&gt;
+        &lt;string&gt;/Volumes/NAS&lt;/string&gt;
+    &lt;/array&gt;
+
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+
+    &lt;key&gt;WatchPaths&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/etc/resolv.conf&lt;/string&gt;
+    &lt;/array&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+<h2 id="4----disk-images--sparse-files"><a class="header" href="#4----disk-images--sparse-files">4    Disk Images &amp; Sparse Files</a></h2>
+<p>Disk Images sind Container-Dateien, die ein virtuelles Dateisystem enthalten. Unter macOS sind sie allgegenwärtig für Software-Verteilung, verschlüsselte Container und Backups.</p>
+<p><strong>Typen von Disk Images:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Typ</th><th>Endung</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>Read-only</td><td><code>.dmg</code></td><td>Komprimiert, nicht veränderbar</td></tr>
+<tr><td>Read/write</td><td><code>.dmg</code></td><td>Veränderbar, feste Größe</td></tr>
+<tr><td>Sparse</td><td><code>.sparseimage</code></td><td>Wächst bei Bedarf</td></tr>
+<tr><td>Sparse Bundle</td><td><code>.sparsebundle</code></td><td>Wächst, besteht aus Bändern</td></tr>
+<tr><td>DVD/CD Master</td><td><code>.cdr</code></td><td>Für Brennen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Sparse Files:</strong></p>
+<p>Ein Sparse File belegt nur so viel Platz wie tatsächlich geschriebene Daten:</p>
+<pre><code class="language-zsh"># Sparse File erstellen (10GB logisch, 0 Bytes real)
+dd if=/dev/zero of=sparse.img bs=1 count=0 seek=10G
+
+# Tatsächliche vs. logische Größe
+ls -lh sparse.img    # zeigt 10G
+du -h sparse.img     # zeigt 0B (oder wenige KB)
+
+# Mit stat
+stat -f "Logisch: %z, Blöcke: %b" sparse.img
+</code></pre>
+<h2 id="5----erweiterte-datei--und-backupwerkzeuge"><a class="header" href="#5----erweiterte-datei--und-backupwerkzeuge">5    Erweiterte Datei- und Backupwerkzeuge</a></h2>
+<p>In diesem Kapitel geht es um Befehle, mit denen man ganze Verzeichnisse oder Datenbestände effizient <strong>kopieren, klonen oder synchronisieren</strong> kannst.</p>
+<p>Während einfache Kopierbefehle wie <code>cp</code> für einzelne Dateien ausreichen, sind <code>ditto</code> und <code>rsync</code> leistungsfähige Werkzeuge für komplexere Aufgaben, wie beispielsweise die Erstellung von Backups, der Übertragung großer Datenmengen oder beim der Spiegelung von Ordnern inklusive Berechtigungen, Metadaten und versteckten Dateien.</p>
+<h3 id="51----cp--der-klassische-kopierbefehl"><a class="header" href="#51----cp--der-klassische-kopierbefehl">5.1    <code>cp</code> – Der klassische Kopierbefehl</a></h3>
+<p><code>cp</code> ist der einfachste Befehl zum Kopieren von Dateien oder Verzeichnissen. Mit der Option <code>-R</code> (rekursiv) kopiert er auch Unterordner.</p>
+<p><strong>Beispiel:</strong></p>
+<pre><code class="language-zsh">cp -R Quelle Ziel
+</code></pre>
+<p><strong>Verwendung:</strong></p>
+<p>Für schnelle, einfache Kopiervorgänge, etwa einzelne Dateien oder kleine Ordner.</p>
+<p><strong>Vorteile:</strong></p>
+<ul>
+<li>immer verfügbar, sehr einfach</li>
+<li>Schnell bei wenigen Dateien</li>
+</ul>
+<p><strong>Nachteile:</strong></p>
+<ul>
+<li>Keine Fortschrittsanzeige</li>
+<li>Keine Synchronisation</li>
+<li>Kopiert oft keine versteckten Metadaten</li>
+<li>Keine Option zum Erstellen von Archiven</li>
+</ul>
+<h3 id="52----ditto--systemgerechtes-kopieren-und-archivieren"><a class="header" href="#52----ditto--systemgerechtes-kopieren-und-archivieren">5.2    <code>ditto</code> – Systemgerechtes Kopieren und Archivieren</a></h3>
+<p>Mit dem Befehl <code>ditto</code> werden Verzeichnisse kopiert/dupliziert.</p>
+<div class="mdbook-callouts mdbook-callouts-note">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  note
+</p>
+
+<p>Im Gegensatz zu <code>cp</code> kann <code>ditto</code> Ressourcendateien, Metadaten, Rechte, unsichtbare Dateien und Paketstrukturen (z. B. App-Bundles) korrekt handhaben.</p>
+</div>
+
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">ditto [Optionen] Quelle Ziel
+</code></pre>
+<p><strong>Verwendung:</strong></p>
+<p>Ideal zum Klonen von Projekten, App-Bundles oder Backups auf demselben System. Auch nützlich zum Erstellen von ZIP-Archiven mit <code>-c -k</code>.</p>
+<p><strong>Vorteile:</strong></p>
+<ul>
+<li>Bewahrt Metadaten, ACLs, Ressourcen</li>
+<li>Zusammenführen statt stumpfem Überschreiben</li>
+<li>Kann ZIP-Archive erstellen</li>
+<li>macOS-optimiert</li>
+</ul>
+<p><strong>Nachteile:</strong></p>
+<ul>
+<li>Arbeitet nur lokal (kein Netzwerktransfer)</li>
+<li>Weniger effizient bei großen oder häufigen Synchronisationen</li>
+</ul>
+<h4 id="521----beispiele"><a class="header" href="#521----beispiele">5.2.1    Beispiele</a></h4>
+<p>Ordner vollständig kopieren (inklusive versteckter Dateien wie <code>.DS_Store</code> und <code>.git</code>):</p>
+<pre><code class="language-zsh">ditto ~/Projekte/ProjektA ~/Backup/ProjektA
+</code></pre>
+<p>Eine App korrekt klonen (inkl. Metadaten):</p>
+<pre><code class="language-zsh">sudo ditto /Applications/App.app /Applications/App-Kopie.app
+</code></pre>
+<p>Nur neue oder geänderte Dateien kopieren:</p>
+<pre><code class="language-zsh">ditto --update ~/Projekte/ ~/Backup/Projekte/
+</code></pre>
+<p>Eine ZIP-Datei aus einem Ordner erzeugen:</p>
+<pre><code class="language-zsh">ditto -c -k --sequesterRsrc --keepParent "MeinOrdner" "MeinOrdner.zip"
+</code></pre>
+<p>→ Erstellt ein ZIP-Archiv, das auch Ressourcendateien und Metadaten beibehält.</p>
+<h4 id="522----häufige-optionen"><a class="header" href="#522----häufige-optionen">5.2.2    Häufige Optionen</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>--update</code></td><td>Nur neuere Dateien kopieren</td></tr>
+<tr><td><code>--norsrc</code></td><td>Ressourcen-Forks <strong>nicht</strong> mitkopieren</td></tr>
+<tr><td><code>--rsrc</code></td><td>Ressourcen-Forks mitkopieren (Standardverhalten)</td></tr>
+<tr><td><code>-V</code></td><td>Zeigt detaillierte Ausgaben (Verbose-Modus)</td></tr>
+<tr><td><code>-X</code></td><td>Bewahrt erweiterte Attribute (ACLs, Metadaten)</td></tr>
+<tr><td><code>-c -k</code></td><td>Erstellt ein ZIP-Archiv</td></tr>
+<tr><td><code>--sequesterRsrc --keepParent</code></td><td>Erhält Ressourcen und übergeordnete Ordnerstruktur beim Archivieren</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="523----typische-anwendungsfälle"><a class="header" href="#523----typische-anwendungsfälle">5.2.3    <strong>Typische Anwendungsfälle</strong></a></h4>
+<ul>
+<li>Vollständige Kopien von App-Bundles, Projekten oder Verzeichnissen unter Beibehaltung macOS-spezifischer Dateiattribute (z. B. ACLs, HFS+ Metadaten)</li>
+<li>Erstellung von Backups und ZIP-Archiven</li>
+<li>Zusammenführen von Ordnern mit Erhalt von Metadaten</li>
+<li>Alternative zu <code>cp -R</code> mit besserer macOS-Kompatibilität</li>
+<li>Installer-Skripte und Backup-Tools</li>
+</ul>
+<h3 id="53----rsync--effiziente-synchronisation-und-spiegelung"><a class="header" href="#53----rsync--effiziente-synchronisation-und-spiegelung">5.3    <code>rsync</code> – Effiziente Synchronisation und Spiegelung</a></h3>
+<p>Der Befehl <code>rsync</code> wird verwendet, um Dateien und Verzeichnisse effizient zu synchronisieren – lokal oder über ein Netzwerk. Er überträgt nur geänderte Teile von Dateien, was ihn besonders schnell und bandbreitenschonend macht. <code>rsync</code> ist ideal für Backups, Spiegelungen und regelmäßige Synchronisationen zwischen Verzeichnissen oder Rechnern.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">rsync [Optionen] Quelle Ziel
+</code></pre>
+<p><strong>Verwendung:</strong></p>
+<p>Für effiziente Backups, Netzwerkübertragungen und automatisierte Synchronisationen.</p>
+<p><strong>Vorteile:</strong></p>
+<ul>
+<li>Überträgt nur geänderte Dateien → sehr schnell bei Wiederholungen</li>
+<li>Netzwerkfähig (via SSH)</li>
+<li>Fortschrittsanzeige, Testlauf-Modus (-n)</li>
+<li>Ideal für Skripte und Automatisierung</li>
+</ul>
+<p><strong>Nachteile:</strong></p>
+<ul>
+<li>Etwas komplexer in der Handhabung</li>
+<li>Irrtümlich gesetzte Optionen (z. B. <code>--delete</code>) können Daten löschen</li>
+<li>Nicht alle macOS-spezifischen Metadaten werden immer exakt kopiert</li>
+</ul>
+<h4 id="531----beispiele"><a class="header" href="#531----beispiele">5.3.1    Beispiele</a></h4>
+<p><strong>Einen Ordner lokal synchronisieren:</strong></p>
+<pre><code class="language-zsh">rsync -av ~/Projekte/MeinApp/ ~/Backup/MeinApp/
+</code></pre>
+<p>→ Kopiert alle Dateien und Unterordner, behält Berechtigungen und Zeiten bei, synchronisiert nur geänderte Dateien.</p>
+<p><strong>Dateien auf einen anderen Rechner übertragen:</strong></p>
+<pre><code class="language-zsh">rsync -avz ~/Projekte/MeinApp/ user@server:/Users/user/Backup/MeinApp/
+</code></pre>
+<p>→ Überträgt den Ordner über SSH auf einen entfernten Rechner. Die Option <code>-z</code> komprimiert die Daten während der Übertragung.</p>
+<p><strong>Nur geänderte Dateien aktualisieren:</strong></p>
+<pre><code class="language-zsh">rsync -avu ~/Projekte/MeinApp/ ~/Backup/MeinApp/
+</code></pre>
+<p>→ Die Option <code>-u</code> sorgt dafür, dass nur neuere Dateien kopiert werden.</p>
+<p><strong>Dateien löschen, die im Ziel nicht mehr existieren:</strong></p>
+<pre><code class="language-zsh">rsync -av --delete ~/Projekte/MeinApp/ ~/Backup/MeinApp/
+</code></pre>
+<p>→ Hält das Zielverzeichnis exakt synchron mit der Quelle (Achtung: löscht zusätzliche Dateien im Ziel!).</p>
+<h4 id="532----häufige-optionen"><a class="header" href="#532----häufige-optionen">5.3.2    Häufige Optionen</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><strong>Option</strong></th><th><strong>Beschreibung</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><code>-n</code></td><td>“Testlauf” – zeigt, was passieren würde, ohne Änderungen vorzunehmen</td></tr>
+<tr><td><code>-a</code></td><td>Archivmodus: kopiert rekursiv und bewahrt Berechtigungen, Zeiten und Symlinks</td></tr>
+<tr><td><code>-v</code></td><td>Verbose: zeigt detaillierte Fortschrittsinformationen</td></tr>
+<tr><td><code>-z</code></td><td>Komprimiert Daten während der Übertragung</td></tr>
+<tr><td><code>-u</code></td><td>Überspringt Dateien, die im Ziel neuer sind</td></tr>
+<tr><td><code>--delete</code></td><td>Löscht Dateien im Ziel, die in der Quelle nicht mehr existieren</td></tr>
+<tr><td><code>--progress</code></td><td>Zeigt den Fortschritt jeder Dateiübertragung</td></tr>
+<tr><td><code>-e ssh</code></td><td>Erzwingt die Verwendung von SSH (meist automatisch aktiv)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="533----typische-anwendungsfälle"><a class="header" href="#533----typische-anwendungsfälle">5.3.3    Typische Anwendungsfälle</a></h4>
+<ul>
+<li>Erstellung und Aktualisierung von Backups´</li>
+<li>Synchronisation zwischen zwei Festplatten oder Rechnern</li>
+<li>Spiegelung von Verzeichnisstrukturen auf Servern</li>
+<li>Automatisierte Sicherungsskripte (z. B. via <code>cron</code>)</li>
+<li>Übertragung großer Datenmengen mit minimaler Redundanz</li>
+</ul>
+<h3 id="54----vergleich-cp-ditto-und-rsync"><a class="header" href="#54----vergleich-cp-ditto-und-rsync">5.4    Vergleich: <code>cp</code>, <code>ditto</code> und <code>rsync</code></a></h3>
+<p>Es gibt mehrere Befehle, um Dateien und Ordner zu kopieren oder zu sichern. Die drei wichtigsten sind <code>cp</code>, <code>ditto</code> und <code>rsync</code>. Obwohl sie ähnliche Aufgaben erfüllen, unterscheiden sie sich deutlich in Funktionsumfang, Zuverlässigkeit und Einsatzgebiet.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th><code>cp</code></th><th><code>ditto</code></th><th><code>rsync</code></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Kopiert Verzeichnisse rekursiv</strong></td><td>✅ (<code>-R</code>)</td><td>✅</td><td>✅</td></tr>
+<tr><td><strong>Bewahrt Metadaten / ACLs</strong></td><td>⚠️ Teilweise</td><td>✅ Vollständig</td><td>⚠️ Teilweise</td></tr>
+<tr><td><strong>Versteckte Dateien (.git, .DS_Store)</strong></td><td>❌ Nicht immer</td><td>✅</td><td>✅</td></tr>
+<tr><td><strong>Nur geänderte Dateien kopieren</strong></td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td><strong>Fortschrittsanzeige</strong></td><td>❌</td><td>⚠️ (mit <code>-V</code>)</td><td>✅ (<code>--progress</code>)</td></tr>
+<tr><td><strong>Zusammenführen statt Überschreiben</strong></td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td><strong>Erstellung von Archiven (ZIP etc.)</strong></td><td>❌</td><td>✅ (<code>-c -k</code>)</td><td>❌</td></tr>
+<tr><td><strong>Netzwerkfähig</strong></td><td>❌</td><td>❌</td><td>✅ (SSH)</td></tr>
+<tr><td><strong>Skript-/Backup-tauglich</strong></td><td>⚠️ Einfach</td><td>✅ Lokal</td><td>✅ Sehr gut</td></tr>
+<tr><td><strong>Komplexität</strong></td><td>⭐ Einfach</td><td>⭐⭐ Mittel</td><td>⭐⭐⭐ Anspruchsvoll</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong><code>cp</code></strong>: Für einfache, schnelle Kopien – ideal bei Einzeldaten.</li>
+<li><strong><code>ditto</code></strong>: Für vollständige, macOS-gerechte Kopien und Archive.</li>
+<li><strong><code>rsync</code></strong>: Für effiziente, wiederholbare Backups und Synchronisationen – auch über Netzwerke.</li>
+</ul>
+<h3 id="55----hdiutil--disk-images-erstellen-und-verwalten"><a class="header" href="#55----hdiutil--disk-images-erstellen-und-verwalten">5.5    <code>hdiutil</code> – Disk Images erstellen und verwalten</a></h3>
+<p><code>hdiutil</code> ist das mächtige Kommandozeilen-Tool für alle Disk-Image-Operationen unter macOS.</p>
+<p><strong>Image erstellen:</strong></p>
+<pre><code class="language-zsh"># Leeres DMG (100 MB, HFS+)
+hdiutil create -size 100m -fs HFS+ -volname "MeinVolume" MeinImage.dmg
+
+# APFS-Image
+hdiutil create -size 100m -fs APFS -volname "MeinVolume" MeinImage.dmg
+
+# Aus Ordner erstellen
+hdiutil create -srcfolder ~/MeinOrdner -volname "Backup" Backup.dmg
+
+# Mit Komprimierung
+hdiutil create -srcfolder ~/MeinOrdner -format UDZO -volname "Backup" Backup.dmg
+</code></pre>
+<p><strong>Image-Formate:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Format</th><th>Code</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>Read/write</td><td><code>UDRW</code></td><td>Veränderbar</td></tr>
+<tr><td>Compressed</td><td><code>UDZO</code></td><td>zlib-komprimiert, read-only</td></tr>
+<tr><td>LZMA compressed</td><td><code>ULMO</code></td><td>Stark komprimiert</td></tr>
+<tr><td>Sparse</td><td><code>UDSP</code></td><td>Wachsend, veränderbar</td></tr>
+<tr><td>Sparse bundle</td><td><code>UDSB</code></td><td>Band-basiert, wachsend</td></tr>
+<tr><td>DVD/CD Master</td><td><code>UDTO</code></td><td>Für Brennen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Image mounten:</strong></p>
+<pre><code class="language-zsh"># Standard-Mount (im Finder sichtbar)
+hdiutil attach MeinImage.dmg
+
+# Mount ohne Finder-Fenster
+hdiutil attach MeinImage.dmg -nobrowse
+
+# Mount an bestimmtem Punkt
+hdiutil attach MeinImage.dmg -mountpoint /Volumes/MeinMount
+
+# Read-only mounten
+hdiutil attach MeinImage.dmg -readonly
+
+# Ohne Verifizierung (schneller)
+hdiutil attach MeinImage.dmg -noverify
+</code></pre>
+<p><strong>Image aushängen:</strong></p>
+<pre><code class="language-zsh"># Nach Volume-Name
+hdiutil detach /Volumes/MeinVolume
+
+# Erzwingen
+hdiutil detach /Volumes/MeinVolume -force
+
+# Alle Images aushängen
+hdiutil detach -all
+</code></pre>
+<p><strong>Image konvertieren:</strong></p>
+<pre><code class="language-zsh"># Zu komprimiertem Read-only
+hdiutil convert original.dmg -format UDZO -o komprimiert.dmg
+
+# Zu read/write
+hdiutil convert readonly.dmg -format UDRW -o readwrite.dmg
+
+# Zu Sparse Bundle
+hdiutil convert original.dmg -format UDSB -o sparse.sparsebundle
+</code></pre>
+<p><strong>Image-Größe ändern:</strong></p>
+<pre><code class="language-zsh"># Größe erweitern (nur sparse/read-write)
+hdiutil resize -size 200m MeinImage.dmg
+
+# Auf minimale Größe schrumpfen
+hdiutil resize -size min MeinImage.dmg
+
+# Um Betrag erweitern
+hdiutil resize -growonly -size 100m MeinImage.dmg
+</code></pre>
+<p><strong>Image-Informationen:</strong></p>
+<pre><code class="language-zsh"># Image-Info anzeigen
+hdiutil imageinfo MeinImage.dmg
+
+# Nur Format
+hdiutil imageinfo -format MeinImage.dmg
+
+# Prüfsumme verifizieren
+hdiutil verify MeinImage.dmg
+</code></pre>
+<h3 id="56----sparse-images-und-sparse-bundles"><a class="header" href="#56----sparse-images-und-sparse-bundles">5.6    Sparse Images und Sparse Bundles</a></h3>
+<p>Sparse Images wachsen dynamisch und belegen nur so viel Platz wie der tatsächliche Inhalt.</p>
+<p><strong>Sparse Image erstellen:</strong></p>
+<pre><code class="language-zsh"># Sparse Image (max 50 GB, wächst bei Bedarf)
+hdiutil create -size 50g -type SPARSE -fs APFS -volname "Daten" Daten.sparseimage
+
+# Sparse Bundle (bessere Performance bei Time Machine/Netzwerk)
+hdiutil create -size 50g -type SPARSEBUNDLE -fs APFS -volname "Daten" Daten.sparsebundle
+</code></pre>
+<p><strong>Unterschied Sparse Image vs. Sparse Bundle:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>Sparse Image</th><th>Sparse Bundle</th></tr>
+</thead>
+<tbody>
+<tr><td>Dateistruktur</td><td>Eine Datei</td><td>Ordner mit Bändern</td></tr>
+<tr><td>Backup-freundlich</td><td>❌ Ganze Datei</td><td>✅ Nur geänderte Bänder</td></tr>
+<tr><td>Time Machine</td><td>Nicht optimal</td><td>Empfohlen</td></tr>
+<tr><td>Netzwerk</td><td>Langsam</td><td>Schneller</td></tr>
+<tr><td>Kompaktieren</td><td>Möglich</td><td>Möglich</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Sparse Bundle Struktur:</strong></p>
+<pre><code class="language-zsh">ls Daten.sparsebundle/
+# Info.plist
+# bands/
+#   0
+#   1
+#   2
+#   ...
+# token
+</code></pre>
+<p><strong>Größe kompaktieren (ungenutzten Platz freigeben):</strong></p>
+<pre><code class="language-zsh"># Erst aushängen
+hdiutil detach /Volumes/Daten
+
+# Kompaktieren
+hdiutil compact Daten.sparsebundle
+
+# Oder für Sparse Image
+hdiutil compact Daten.sparseimage
+</code></pre>
+<p><strong>Bandgröße für Sparse Bundle festlegen:</strong></p>
+<pre><code class="language-zsh"># 8 MB Bänder (Standard)
+hdiutil create -size 50g -type SPARSEBUNDLE -fs APFS \
+    -imagekey sparse-band-size=16384 \
+    -volname "Daten" Daten.sparsebundle
+
+# sparse-band-size ist in 512-Byte-Sektoren
+# 16384 * 512 = 8 MB
+# 131072 * 512 = 64 MB
+</code></pre>
+<h3 id="57----verschlüsselte-disk-images"><a class="header" href="#57----verschlüsselte-disk-images">5.7    Verschlüsselte Disk Images</a></h3>
+<p>Disk Images können mit AES-128 oder AES-256 verschlüsselt werden – ideal für sensible Daten.</p>
+<p><strong>Verschlüsseltes Image erstellen:</strong></p>
+<pre><code class="language-zsh"># AES-256 (empfohlen)
+hdiutil create -size 100m -fs APFS -volname "Geheim" \
+    -encryption AES-256 -stdinpass Geheim.dmg
+# Passwort eingeben...
+
+# AES-128 (schneller)
+hdiutil create -size 100m -fs APFS -volname "Geheim" \
+    -encryption AES-128 Geheim.dmg
+
+# Aus Ordner mit Verschlüsselung
+hdiutil create -srcfolder ~/Vertraulich \
+    -encryption AES-256 -format UDZO \
+    -volname "Vertraulich" Vertraulich.dmg
+</code></pre>
+<p><strong>Verschlüsseltes Sparse Bundle (empfohlen für wachsende Daten):</strong></p>
+<pre><code class="language-zsh">hdiutil create -size 10g -type SPARSEBUNDLE -fs APFS \
+    -encryption AES-256 -volname "Tresor" Tresor.sparsebundle
+</code></pre>
+<p><strong>Verschlüsseltes Image mounten:</strong></p>
+<pre><code class="language-zsh"># Passwort-Abfrage
+hdiutil attach Geheim.dmg
+
+# Passwort in Keychain speichern (beim ersten Mount)
+# → Option im Dialog wählen
+
+# Passwort per stdin
+echo -n "geheim123" | hdiutil attach Geheim.dmg -stdinpass
+</code></pre>
+<p><strong>Passwort ändern:</strong></p>
+<pre><code class="language-zsh">hdiutil chpass Geheim.dmg
+# Altes Passwort eingeben
+# Neues Passwort eingeben
+</code></pre>
+<p><strong>Bestehendes Image verschlüsseln:</strong></p>
+<pre><code class="language-zsh"># Konvertieren mit Verschlüsselung
+hdiutil convert Unverschluesselt.dmg \
+    -format UDZO -encryption AES-256 \
+    -o Verschluesselt.dmg
+</code></pre>
+<p><strong>Sicherheits-Best-Practices:</strong></p>
+<ul>
+<li>AES-256 für sensitive Daten verwenden</li>
+<li>Starkes Passwort wählen (Passphrase)</li>
+<li>Passwort nicht im Schlüsselbund speichern für höchste Sicherheit</li>
+<li>Image nach Gebrauch aushängen</li>
+<li>Bei Sparse Bundles: Nach Löschen von Dateien kompaktieren</li>
+</ul>
+<h3 id="58----dmg-dateien-per-terminal"><a class="header" href="#58----dmg-dateien-per-terminal">5.8    DMG-Dateien per Terminal</a></h3>
+<p><strong>DMG aus Ordner erstellen (App-Verteilung):</strong></p>
+<pre><code class="language-zsh"># Einfaches DMG
+hdiutil create -srcfolder MeinApp.app \
+    -volname "MeinApp" \
+    -format UDZO \
+    MeinApp.dmg
+
+# Mit Hintergrundbild und Icon-Positionen
+# (Erfordert erst ein Read/Write Image)
+hdiutil create -srcfolder MeinApp.app \
+    -volname "MeinApp" \
+    -format UDRW \
+    -fs HFS+ \
+    temp.dmg
+
+# Mounten und anpassen
+hdiutil attach temp.dmg
+
+# Finder-Einstellungen setzen (AppleScript oder manuell)
+# ...
+
+# Zu komprimiertem DMG konvertieren
+hdiutil convert temp.dmg -format UDZO -o MeinApp.dmg
+rm temp.dmg
+</code></pre>
+<p><strong>Internet-Enabled DMG (automatisches Entpacken):</strong></p>
+<pre><code class="language-zsh">hdiutil internet-enable -yes MeinApp.dmg
+</code></pre>
+<p><strong>DMG verifizieren:</strong></p>
+<pre><code class="language-zsh"># Prüfsumme verifizieren
+hdiutil verify MeinApp.dmg
+
+# Inhalt auflisten ohne Mounten
+hdiutil imageinfo MeinApp.dmg
+</code></pre>
+<p><strong>DMG in ISO konvertieren:</strong></p>
+<pre><code class="language-zsh">hdiutil convert original.dmg -format UDTO -o converted.cdr
+mv converted.cdr converted.iso
+</code></pre>
+<p><strong>ISO/CDR erstellen:</strong></p>
+<pre><code class="language-zsh"># Aus Ordner
+hdiutil makehybrid -iso -joliet -o output.iso source_folder/
+
+# CD/DVD-Master für Brennen
+hdiutil create -srcfolder Daten -format UDTO -o Master.cdr
+</code></pre>
+<p><strong>Bootfähiges USB-Medium erstellen:</strong></p>
+<pre><code class="language-zsh"># macOS-Installer auf USB
+sudo /Applications/Install\ macOS\ Sonoma.app/Contents/Resources/createinstallmedia \
+    --volume /Volumes/USB
+
+# Alternativ mit dd (für Linux ISOs etc.)
+diskutil unmountDisk /dev/disk2
+sudo dd if=linux.iso of=/dev/rdisk2 bs=1m
+diskutil eject /dev/disk2
+</code></pre>
+<p><strong>Praktische Aliase:</strong></p>
+<pre><code class="language-zsh"># ~/.zshrc
+
+# DMG schnell erstellen
+dmg-create() {
+    local src="$1"
+    local name="${2:-${src:t}}"
+    hdiutil create -srcfolder "$src" -volname "$name" -format UDZO "${name}.dmg"
+}
+
+# Verschlüsseltes Sparse Bundle erstellen
+vault-create() {
+    local name="$1"
+    local size="${2:-10g}"
+    hdiutil create -size "$size" -type SPARSEBUNDLE -fs APFS \
+        -encryption AES-256 -volname "$name" "${name}.sparsebundle"
+}
+
+# DMG schnell mounten
+alias dmg-mount='hdiutil attach'
+alias dmg-unmount='hdiutil detach'
+</code></pre>
+<p><strong>Cheatsheet hdiutil:</strong></p>
+<pre><code># Erstellen
+hdiutil create -size 100m -fs APFS -volname NAME out.dmg
+hdiutil create -srcfolder ORDNER -format UDZO out.dmg
+hdiutil create -size 10g -type SPARSEBUNDLE -encryption AES-256 out.sparsebundle
+
+# Mounten
+hdiutil attach image.dmg
+hdiutil attach image.dmg -mountpoint /Volumes/MOUNT
+hdiutil attach image.dmg -readonly
+
+# Aushängen
+hdiutil detach /Volumes/NAME
+
+# Konvertieren
+hdiutil convert in.dmg -format UDZO -o out.dmg
+hdiutil convert in.dmg -format UDRW -o out.dmg
+
+# Größe ändern
+hdiutil resize -size 200m image.sparseimage
+hdiutil compact image.sparsebundle
+
+# Info
+hdiutil imageinfo image.dmg
+hdiutil verify image.dmg
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/zle-widgets.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/netzwerk-erweitert.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/zle-widgets.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/netzwerk-erweitert.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

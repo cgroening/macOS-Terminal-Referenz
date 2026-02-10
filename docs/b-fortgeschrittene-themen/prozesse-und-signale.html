@@ -1,0 +1,1345 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Prozesse und Signale - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="prozesse--signale"><a class="header" href="#prozesse--signale">Prozesse &amp; Signale</a></h1>
+<p>Dieses Kapitel behandelt erweiterte Tools zur Prozessüberwachung, das Signal-System zur Prozesskommunikation und die Verwaltung von Prozessgruppen und Jobs.</p>
+<h2 id="1----erweiterte-monitoring-tools"><a class="header" href="#1----erweiterte-monitoring-tools">1    Erweiterte Monitoring-Tools</a></h2>
+<p>Neben den Standard-Tools <code>ps</code>, <code>top</code> und <code>htop</code> bietet macOS spezialisierte Werkzeuge für detailliertes System-Monitoring.</p>
+<h3 id="11----iotop--io-überwachung"><a class="header" href="#11----iotop--io-überwachung">1.1    <code>iotop</code> – I/O-Überwachung</a></h3>
+<p>macOS hat kein natives <code>iotop</code> wie Linux, aber es gibt Alternativen:</p>
+<p><strong>Alternative 1: <code>sudo iotop</code> (falls installiert)</strong></p>
+<pre><code class="language-zsh"># Installation (falls verfügbar)
+brew install iotop
+
+# Ausführen (benötigt root)
+sudo iotop
+</code></pre>
+<p><strong>Alternative 2: <code>fs_usage</code> für I/O-Überwachung</strong></p>
+<pre><code class="language-zsh"># Disk-I/O aller Prozesse
+sudo fs_usage -f diskio
+
+# Bestimmter Prozess
+sudo fs_usage -f diskio -w | grep Safari
+</code></pre>
+<p><strong>Alternative 3: <code>iostat</code> – Disk-Statistiken</strong></p>
+<pre><code class="language-zsh"># Disk-I/O Statistiken
+iostat
+
+# Alle 2 Sekunden aktualisieren
+iostat -w 2
+
+# Detailliert mit Disk-Namen
+iostat -d
+
+# Bestimmtes Intervall, 5 Messungen
+iostat 2 5
+</code></pre>
+<p><strong>Ausgabe verstehen:</strong></p>
+<pre><code>          disk0       cpu    load average
+    KB/t  tps  MB/s  us sy id   1m   5m   15m
+   24.00   45  1.06   5  3 92  1.23 1.45 1.67
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Spalte</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>KB/t</td><td>Kilobytes pro Transfer</td></tr>
+<tr><td>tps</td><td>Transfers pro Sekunde</td></tr>
+<tr><td>MB/s</td><td>Megabytes pro Sekunde</td></tr>
+<tr><td>us/sy/id</td><td>CPU: User/System/Idle %</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Alternative 4: Activity Monitor CLI-Daten</strong></p>
+<pre><code class="language-zsh"># Top-Prozesse nach Disk-Nutzung
+top -o disk -l 1 -n 10 | tail -n +13
+</code></pre>
+<h3 id="12----vm_stat--speicherstatistiken"><a class="header" href="#12----vm_stat--speicherstatistiken">1.2    <code>vm_stat</code> – Speicherstatistiken</a></h3>
+<p><code>vm_stat</code> zeigt detaillierte Statistiken des virtuellen Speichersystems.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Einmalige Ausgabe
+vm_stat
+
+# Ausgabe:
+# Mach Virtual Memory Statistics: (page size of 16384 bytes)
+# Pages free:                               12345.
+# Pages active:                             67890.
+# Pages inactive:                           11111.
+# Pages speculative:                         2222.
+# Pages throttled:                              0.
+# Pages wired down:                         33333.
+# Pages purgeable:                           4444.
+# ...
+</code></pre>
+<p><strong>Kontinuierliche Überwachung:</strong></p>
+<pre><code class="language-zsh"># Alle 1 Sekunde
+vm_stat 1
+
+# Alle 5 Sekunden
+vm_stat 5
+</code></pre>
+<p><strong>Ausgabe verstehen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Metrik</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>Pages free</td><td>Freie Speicherseiten</td></tr>
+<tr><td>Pages active</td><td>Aktiv genutzter Speicher</td></tr>
+<tr><td>Pages inactive</td><td>Kürzlich ungenutzt, noch im RAM</td></tr>
+<tr><td>Pages speculative</td><td>Spekulativ geladene Daten</td></tr>
+<tr><td>Pages wired down</td><td>Vom Kernel gesperrt (nicht auslagerbar)</td></tr>
+<tr><td>Pages purgeable</td><td>Kann bei Bedarf freigegeben werden</td></tr>
+<tr><td>Pageins</td><td>Von Disk in RAM geladen</td></tr>
+<tr><td>Pageouts</td><td>Von RAM auf Disk ausgelagert</td></tr>
+<tr><td>Swapins/Swapouts</td><td>Swap-Aktivität</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>In lesbare Werte umrechnen:</strong></p>
+<pre><code class="language-zsh"># Page-Größe ermitteln
+pagesize=$(vm_stat | head -1 | grep -oE '[0-9]+')
+
+# Freier Speicher in MB
+free_pages=$(vm_stat | grep "Pages free" | awk '{print $3}' | tr -d '.')
+echo "Frei: $(( free_pages * pagesize / 1024 / 1024 )) MB"
+</code></pre>
+<p><strong>Skript für lesbare Ausgabe:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# mem-usage.sh
+
+pagesize=$(pagesize)
+
+get_pages() {
+    vm_stat | grep "$1" | awk '{print $NF}' | tr -d '.'
+}
+
+free=$(($(get_pages "Pages free") * pagesize / 1024 / 1024))
+active=$(($(get_pages "Pages active") * pagesize / 1024 / 1024))
+inactive=$(($(get_pages "Pages inactive") * pagesize / 1024 / 1024))
+wired=$(($(get_pages "Pages wired") * pagesize / 1024 / 1024))
+
+echo "Speicher-Nutzung:"
+echo "  Frei:     ${free} MB"
+echo "  Aktiv:    ${active} MB"
+echo "  Inaktiv:  ${inactive} MB"
+echo "  Wired:    ${wired} MB"
+</code></pre>
+<h3 id="13----fs_usage--dateisystem-aktivität"><a class="header" href="#13----fs_usage--dateisystem-aktivität">1.3    <code>fs_usage</code> – Dateisystem-Aktivität</a></h3>
+<p><code>fs_usage</code> zeigt Dateisystem-Aktivität in Echtzeit – ideal zum Debuggen von I/O-Problemen.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Alle Dateisystem-Aktivität (benötigt root)
+sudo fs_usage
+
+# Nur Disk-I/O
+sudo fs_usage -f diskio
+
+# Nur Netzwerk
+sudo fs_usage -f network
+
+# Nur Dateisystem-Calls
+sudo fs_usage -f filesys
+</code></pre>
+<p><strong>Nach Prozess filtern:</strong></p>
+<pre><code class="language-zsh"># Bestimmter Prozess (Name)
+sudo fs_usage -w Safari
+
+# Bestimmte PID
+sudo fs_usage -w -p 1234
+
+# Mehrere Prozesse
+sudo fs_usage -w Safari Chrome Firefox
+
+# Prozess ausschließen
+sudo fs_usage -e Safari
+</code></pre>
+<p><strong>Ausgabe-Optionen:</strong></p>
+<pre><code class="language-zsh"># Breite Ausgabe (vollständige Pfade)
+sudo fs_usage -w
+
+# Mit Timestamps
+sudo fs_usage -t
+
+# Kombiniert
+sudo fs_usage -w -f diskio -t
+</code></pre>
+<p><strong>Ausgabe verstehen:</strong></p>
+<pre><code>14:23:45  RdData     D=0x012345  B=0x1000  /path/to/file   Safari
+14:23:45  open       F=3         /path/to/file             Safari
+14:23:45  read       F=3  B=0x400                          Safari
+14:23:45  close      F=3                                   Safari
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Spalte</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td>Timestamp</td><td>Zeitstempel</td></tr>
+<tr><td>Operation</td><td>read, write, open, close, stat, etc.</td></tr>
+<tr><td>F=</td><td>File Descriptor</td></tr>
+<tr><td>B=</td><td>Bytes</td></tr>
+<tr><td>D=</td><td>Disk Block</td></tr>
+<tr><td>Pfad</td><td>Betroffene Datei</td></tr>
+<tr><td>Prozess</td><td>Prozessname</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Anwendungen:</strong></p>
+<pre><code class="language-zsh"># Was liest/schreibt ein Prozess?
+sudo fs_usage -w -f diskio Spotlight
+
+# Welche Dateien öffnet eine App beim Start?
+sudo fs_usage -w -f filesys Safari 2&gt;&amp;1 | grep open
+
+# Netzwerkaktivität eines Prozesses
+sudo fs_usage -w -f network curl
+
+# In Datei protokollieren
+sudo fs_usage -w Safari &gt; fs_log.txt 2&gt;&amp;1 &amp;
+# Später: kill %1
+</code></pre>
+<h3 id="14----nettop--netzwerk-pro-prozess"><a class="header" href="#14----nettop--netzwerk-pro-prozess">1.4    <code>nettop</code> – Netzwerk pro Prozess</a></h3>
+<p><code>nettop</code> zeigt Netzwerkverbindungen und Bandbreite pro Prozess – wie <code>top</code> für Netzwerk.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Interaktive Ansicht
+nettop
+
+# Nicht-interaktiv (einmalig)
+nettop -l 1
+
+# Alle 2 Sekunden, 5 Messungen
+nettop -l 5 -s 2
+</code></pre>
+<p><strong>Filter-Optionen:</strong></p>
+<pre><code class="language-zsh"># Nur TCP
+nettop -t tcp
+
+# Nur UDP
+nettop -t udp
+
+# Bestimmter Prozess
+nettop -p Safari
+
+# Nur mit Traffic (Delta-Modus)
+nettop -d
+</code></pre>
+<p><strong>Ausgabe-Optionen:</strong></p>
+<pre><code class="language-zsh"># Nur bestimmte Spalten
+nettop -c all       # Alle Spalten
+nettop -c bytes_in,bytes_out
+
+# Sortieren
+nettop -o bytes_in  # Nach eingehenden Bytes
+
+# JSON-Ausgabe
+nettop -j -l 1
+</code></pre>
+<p><strong>Interaktive Tastenkürzel:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Taste</th><th>Funktion</th></tr>
+</thead>
+<tbody>
+<tr><td><code>q</code></td><td>Beenden</td></tr>
+<tr><td><code>d</code></td><td>Delta-Modus (nur Änderungen)</td></tr>
+<tr><td><code>e</code></td><td>Prozesse ein-/ausklappen</td></tr>
+<tr><td><code>h</code></td><td>Hilfe</td></tr>
+<tr><td><code>p</code></td><td>Nach Prozess sortieren</td></tr>
+<tr><td><code>b</code></td><td>Nach Bytes sortieren</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Ausgabe verstehen:</strong></p>
+<pre><code>                        bytes_in  bytes_out  rx_dupe  ...
+Safari.1234               1.2MB     45.6KB       0
+  tcp4  192.168.1.100:52341  -&gt;  93.184.216.34:443   512KB   12KB
+Chrome.5678               800KB    123.4KB       0
+</code></pre>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Top-Netzwerknutzer
+nettop -l 1 -t wifi | head -20
+
+# Verbindungen eines Prozesses
+nettop -p Safari -l 1
+
+# Bandbreite überwachen
+watch -n 1 "nettop -l 1 -d | head -15"
+</code></pre>
+<p><strong>Alternativen:</strong></p>
+<pre><code class="language-zsh"># lsof für Netzwerkverbindungen
+lsof -i -n -P
+
+# netstat
+netstat -an -p tcp
+
+# Aktivitätsmonitor CLI (Netzwerk-Tab)
+nettop -c state,bytes_in,bytes_out -l 1
+</code></pre>
+<h2 id="2----signale"><a class="header" href="#2----signale">2    Signale</a></h2>
+<p>Signale sind der primäre Mechanismus zur Kommunikation mit Prozessen unter Unix. Sie können Prozesse beenden, pausieren, fortsetzen oder benutzerdefinierte Aktionen auslösen.</p>
+<h3 id="21----signal-übersicht-sigterm-sigkill-sighup-"><a class="header" href="#21----signal-übersicht-sigterm-sigkill-sighup-">2.1    Signal-Übersicht (SIGTERM, SIGKILL, SIGHUP, …)</a></h3>
+<p><strong>Wichtige Signale:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Signal</th><th>Nummer</th><th>Beschreibung</th><th>Abfangbar</th></tr>
+</thead>
+<tbody>
+<tr><td><code>SIGHUP</code></td><td>1</td><td>Hangup (Terminal geschlossen)</td><td>Ja</td></tr>
+<tr><td><code>SIGINT</code></td><td>2</td><td>Interrupt (Ctrl+C)</td><td>Ja</td></tr>
+<tr><td><code>SIGQUIT</code></td><td>3</td><td>Quit mit Core-Dump (Ctrl+)</td><td>Ja</td></tr>
+<tr><td><code>SIGKILL</code></td><td>9</td><td>Sofort beenden (nicht abfangbar!)</td><td><strong>Nein</strong></td></tr>
+<tr><td><code>SIGTERM</code></td><td>15</td><td>Sauber beenden (Standard)</td><td>Ja</td></tr>
+<tr><td><code>SIGSTOP</code></td><td>17</td><td>Prozess anhalten</td><td><strong>Nein</strong></td></tr>
+<tr><td><code>SIGTSTP</code></td><td>18</td><td>Terminal Stop (Ctrl+Z)</td><td>Ja</td></tr>
+<tr><td><code>SIGCONT</code></td><td>19</td><td>Fortsetzen</td><td>Ja</td></tr>
+<tr><td><code>SIGUSR1</code></td><td>30</td><td>Benutzerdefiniert 1</td><td>Ja</td></tr>
+<tr><td><code>SIGUSR2</code></td><td>31</td><td>Benutzerdefiniert 2</td><td>Ja</td></tr>
+<tr><td><code>SIGCHLD</code></td><td>20</td><td>Kind-Prozess beendet</td><td>Ja</td></tr>
+<tr><td><code>SIGALRM</code></td><td>14</td><td>Timer abgelaufen</td><td>Ja</td></tr>
+<tr><td><code>SIGPIPE</code></td><td>13</td><td>Schreiben in geschlossene Pipe</td><td>Ja</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Alle Signale anzeigen:</strong></p>
+<pre><code class="language-zsh">kill -l
+# HUP INT QUIT ILL TRAP ABRT EMT FPE KILL BUS SEGV SYS PIPE ALRM TERM ...
+</code></pre>
+<p><strong>Signal-Verhalten:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Signal</th><th>Typische Reaktion</th></tr>
+</thead>
+<tbody>
+<tr><td>SIGTERM</td><td>Sauberes Herunterfahren, Aufräumen</td></tr>
+<tr><td>SIGKILL</td><td>Sofortiger Tod, keine Aufräumarbeiten</td></tr>
+<tr><td>SIGHUP</td><td>Konfiguration neu laden (Daemons)</td></tr>
+<tr><td>SIGINT</td><td>Interaktiver Abbruch</td></tr>
+<tr><td>SIGSTOP/CONT</td><td>Pausieren/Fortsetzen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Best Practice:</strong></p>
+<pre><code>1. Erst SIGTERM (15) versuchen – gibt Prozess Zeit zum Aufräumen
+2. Warten (einige Sekunden)
+3. Falls nötig: SIGKILL (9) – als letzter Ausweg
+</code></pre>
+<h3 id="22----kill--signale-an-prozesse-senden"><a class="header" href="#22----kill--signale-an-prozesse-senden">2.2    <code>kill</code> – Signale an Prozesse senden</a></h3>
+<p>Trotz des Namens kann <code>kill</code> alle Signale senden, nicht nur beenden.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">kill [-SIGNAL] PID...
+</code></pre>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Standard: SIGTERM (15)
+kill 1234
+
+# SIGKILL (sofort beenden)
+kill -9 1234
+kill -KILL 1234
+
+# SIGHUP (Konfiguration neu laden)
+kill -1 1234
+kill -HUP 1234
+
+# SIGSTOP (pausieren)
+kill -STOP 1234
+
+# SIGCONT (fortsetzen)
+kill -CONT 1234
+</code></pre>
+<p><strong>Mehrere Prozesse:</strong></p>
+<pre><code class="language-zsh"># Mehrere PIDs
+kill 1234 5678 9012
+
+# Alle Prozesse einer Gruppe
+kill -TERM -1234    # Negative PID = Prozessgruppe
+
+# Mit $! (letzter Hintergrundprozess)
+sleep 100 &amp;
+kill $!
+</code></pre>
+<p><strong>Existenz prüfen:</strong></p>
+<pre><code class="language-zsh"># Signal 0 prüft nur, ob Prozess existiert
+kill -0 1234 &amp;&amp; echo "Prozess existiert" || echo "Nicht gefunden"
+</code></pre>
+<h3 id="23----kill--s--signal-nach-name"><a class="header" href="#23----kill--s--signal-nach-name">2.3    <code>kill -s</code> – Signal nach Name</a></h3>
+<p>Signale können auch mit <code>-s</code> und Namen angegeben werden.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">kill -s SIGNALNAME PID
+</code></pre>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Nach Name
+kill -s TERM 1234
+kill -s KILL 1234
+kill -s HUP 1234
+
+# Äquivalent zu
+kill -TERM 1234
+kill -15 1234
+</code></pre>
+<p><strong>Alle verfügbaren Signalnamen:</strong></p>
+<pre><code class="language-zsh">kill -l
+# 1) SIGHUP     2) SIGINT     3) SIGQUIT    4) SIGILL
+# 5) SIGTRAP    6) SIGABRT    7) SIGEMT     8) SIGFPE
+# 9) SIGKILL   10) SIGBUS    11) SIGSEGV   12) SIGSYS
+# ...
+</code></pre>
+<h3 id="24----pkill--prozesse-nach-name-beenden"><a class="header" href="#24----pkill--prozesse-nach-name-beenden">2.4    <code>pkill</code> – Prozesse nach Name beenden</a></h3>
+<p><code>pkill</code> sendet Signale an Prozesse basierend auf Namen oder anderen Kriterien.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">pkill [Optionen] MUSTER
+</code></pre>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Nach Prozessname (Teilmatch)
+pkill Safari
+pkill -9 Safari      # SIGKILL
+
+# Exakter Name
+pkill -x Safari
+
+# Case-insensitive
+pkill -i safari
+</code></pre>
+<p><strong>Erweiterte Filter:</strong></p>
+<pre><code class="language-zsh"># Nach Benutzer
+pkill -u max Safari
+
+# Nach Gruppe
+pkill -g staff Firefox
+
+# Nach Terminal
+pkill -t ttys001
+
+# Ältere als X Sekunden
+pkill -o -older 3600 process
+
+# Jüngste Instanz
+pkill -n process
+
+# Eltern-PID
+pkill -P 1234
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-SIGNAL</code></td><td>Signal angeben (-9, -HUP, etc.)</td></tr>
+<tr><td><code>-u USER</code></td><td>Nach Benutzer</td></tr>
+<tr><td><code>-g GROUP</code></td><td>Nach Gruppe</td></tr>
+<tr><td><code>-t TTY</code></td><td>Nach Terminal</td></tr>
+<tr><td><code>-P PPID</code></td><td>Nach Eltern-PID</td></tr>
+<tr><td><code>-x</code></td><td>Exakter Name</td></tr>
+<tr><td><code>-i</code></td><td>Case-insensitive</td></tr>
+<tr><td><code>-n</code></td><td>Nur neuester Prozess</td></tr>
+<tr><td><code>-o</code></td><td>Nur ältester Prozess</td></tr>
+<tr><td><code>-f</code></td><td>Vollständige Kommandozeile matchen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Trockenlauf mit <code>pgrep</code>:</strong></p>
+<pre><code class="language-zsh"># Erst prüfen was gematcht wird
+pgrep -l Safari
+# 1234 Safari
+
+# Dann killen
+pkill Safari
+</code></pre>
+<h3 id="25----killall--alle-prozesse-eines-namens"><a class="header" href="#25----killall--alle-prozesse-eines-namens">2.5    <code>killall</code> – Alle Prozesse eines Namens</a></h3>
+<p><code>killall</code> beendet alle Prozesse mit exakt dem angegebenen Namen.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="language-zsh">killall [Optionen] PROZESSNAME
+</code></pre>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Alle Safari-Prozesse beenden
+killall Safari
+
+# Mit SIGKILL
+killall -9 Safari
+killall -KILL Safari
+
+# Mit SIGHUP
+killall -HUP nginx
+</code></pre>
+<p><strong>Optionen:</strong></p>
+<pre><code class="language-zsh"># Interaktiv (Bestätigung)
+killall -i Safari
+
+# Verbose
+killall -v Safari
+
+# Nach Benutzer
+killall -u max Safari
+
+# Ältere als X Sekunden
+killall -o 1h Safari    # älter als 1 Stunde
+killall -y 5m Safari    # jünger als 5 Minuten
+
+# Regex
+killall -r "^Safari"
+</code></pre>
+<p><strong>Optionen-Übersicht:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-SIGNAL</code></td><td>Signal angeben</td></tr>
+<tr><td><code>-v</code></td><td>Verbose</td></tr>
+<tr><td><code>-i</code></td><td>Interaktiv (fragen)</td></tr>
+<tr><td><code>-u USER</code></td><td>Nach Benutzer</td></tr>
+<tr><td><code>-o TIME</code></td><td>Älter als</td></tr>
+<tr><td><code>-y TIME</code></td><td>Jünger als</td></tr>
+<tr><td><code>-r</code></td><td>Regex-Match</td></tr>
+<tr><td><code>-z</code></td><td>Auch Zombies</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Unterschied <code>pkill</code> vs <code>killall</code>:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>pkill</th><th>killall</th></tr>
+</thead>
+<tbody>
+<tr><td>Matching</td><td>Teilstring/Regex</td><td>Exakter Name (Standard)</td></tr>
+<tr><td>Kommandozeile</td><td>Mit <code>-f</code></td><td>Nein</td></tr>
+<tr><td>Filter</td><td>Umfangreich</td><td>Basis</td></tr>
+<tr><td>Portabilität</td><td>POSIX-ähnlich</td><td>BSD/macOS</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-zsh"># Alle Python-Prozesse
+killall python3
+
+# Alle Hintergrund-Jobs des Users
+killall -u $(whoami)
+
+# Nginx graceful restart
+killall -HUP nginx
+
+# Alle Node.js-Prozesse älter als 1 Tag
+killall -o 24h node
+</code></pre>
+<h2 id="3----prozessgruppen--jobs"><a class="header" href="#3----prozessgruppen--jobs">3    Prozessgruppen &amp; Jobs</a></h2>
+<h3 id="31----vordergrund--und-hintergrundprozesse"><a class="header" href="#31----vordergrund--und-hintergrundprozesse">3.1    Vordergrund- und Hintergrundprozesse</a></h3>
+<p><strong>Vordergrundprozess:</strong></p>
+<ul>
+<li>Blockiert das Terminal</li>
+<li>Empfängt Tastatureingaben</li>
+<li>Ctrl+C sendet SIGINT</li>
+<li>Ctrl+Z sendet SIGTSTP (pausieren)</li>
+</ul>
+<p><strong>Hintergrundprozess:</strong></p>
+<ul>
+<li>Terminal bleibt nutzbar</li>
+<li>Kein direkter Tastaturzugriff</li>
+<li>Läuft parallel</li>
+</ul>
+<p><strong>Prozess im Hintergrund starten:</strong></p>
+<pre><code class="language-zsh"># Mit &amp; am Ende
+long-running-command &amp;
+
+# Beispiel
+sleep 100 &amp;
+# [1] 12345   (Job-Nummer und PID)
+</code></pre>
+<p><strong>Jobs verwalten:</strong></p>
+<pre><code class="language-zsh"># Alle Jobs anzeigen
+jobs
+# [1]  + running    sleep 100
+# [2]  - running    another-command
+
+# Mit PIDs
+jobs -p
+
+# Mit Status
+jobs -l
+</code></pre>
+<p><strong>Zwischen Vorder- und Hintergrund wechseln:</strong></p>
+<pre><code class="language-zsh"># Prozess starten
+sleep 100
+
+# Pausieren mit Ctrl+Z
+^Z
+# [1]  + 12345 suspended  sleep 100
+
+# Im Hintergrund fortsetzen
+bg
+bg %1       # Bestimmter Job
+
+# In den Vordergrund holen
+fg
+fg %1       # Bestimmter Job
+</code></pre>
+<p><strong>Job-Referenzen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Referenz</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>%1</code></td><td>Job Nummer 1</td></tr>
+<tr><td><code>%+</code> oder <code>%%</code></td><td>Aktueller Job</td></tr>
+<tr><td><code>%-</code></td><td>Vorheriger Job</td></tr>
+<tr><td><code>%string</code></td><td>Job der mit “string” beginnt</td></tr>
+<tr><td><code>%?string</code></td><td>Job der “string” enthält</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Drei Jobs starten
+sleep 100 &amp;
+vim file.txt &amp;
+python script.py &amp;
+
+# Jobs anzeigen
+jobs
+# [1]    running    sleep 100
+# [2]  - running    vim file.txt
+# [3]  + running    python script.py
+
+# Vim in Vordergrund
+fg %2
+fg %vi       # Nach Name
+
+# Python beenden
+kill %3
+kill %?python
+</code></pre>
+<h3 id="32----nohup--prozesse-vom-terminal-lösen"><a class="header" href="#32----nohup--prozesse-vom-terminal-lösen">3.2    <code>nohup</code> – Prozesse vom Terminal lösen</a></h3>
+<p><code>nohup</code> (No Hangup) verhindert, dass ein Prozess beendet wird wenn das Terminal geschlossen wird.</p>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Prozess startet und läuft nach Terminal-Schließung weiter
+nohup command &amp;
+
+# Beispiel
+nohup ./long-script.sh &amp;
+# nohup: ignoring input and appending output to 'nohup.out'
+</code></pre>
+<p><strong>Ausgabe umleiten:</strong></p>
+<pre><code class="language-zsh"># Standard: Ausgabe geht nach nohup.out
+nohup command &amp;
+
+# Eigene Log-Datei
+nohup command &gt; output.log 2&gt;&amp;1 &amp;
+
+# Ausgabe verwerfen
+nohup command &gt; /dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<p><strong>Typischer Workflow:</strong></p>
+<pre><code class="language-zsh"># 1. Prozess mit nohup starten
+nohup ./backup.sh &gt; backup.log 2&gt;&amp;1 &amp;
+
+# 2. PID notieren
+echo $!
+# 12345
+
+# 3. Terminal schließen (Prozess läuft weiter)
+exit
+
+# 4. Später: Status prüfen
+ps -p 12345
+tail -f backup.log
+</code></pre>
+<p><strong>Praktisches Beispiel:</strong></p>
+<pre><code class="language-zsh"># Langer Download
+nohup wget -c https://example.com/large-file.zip &gt; wget.log 2&gt;&amp;1 &amp;
+
+# Server starten
+nohup python -m http.server 8000 &gt; server.log 2&gt;&amp;1 &amp;
+
+# Backup-Skript
+nohup rsync -avz /source/ /backup/ &gt; rsync.log 2&gt;&amp;1 &amp;
+</code></pre>
+<h3 id="33----disown--jobs-aus-shell-entfernen"><a class="header" href="#33----disown--jobs-aus-shell-entfernen">3.3    <code>disown</code> – Jobs aus Shell entfernen</a></h3>
+<p><code>disown</code> entfernt einen Job aus der Job-Tabelle der Shell, sodass er nicht beendet wird wenn die Shell beendet wird.</p>
+<p><strong>Unterschied zu nohup:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>nohup</th><th>disown</th></tr>
+</thead>
+<tbody>
+<tr><td>Zeitpunkt</td><td>Vor dem Start</td><td>Nach dem Start</td></tr>
+<tr><td>SIGHUP ignorieren</td><td>Ja</td><td>Mit -h</td></tr>
+<tr><td>Job-Tabelle</td><td>Normal</td><td>Entfernt</td></tr>
+<tr><td>Ausgabe</td><td>nohup.out</td><td>Unverändert</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Grundlegende Nutzung:</strong></p>
+<pre><code class="language-zsh"># Job starten
+long-command &amp;
+
+# Aus Job-Tabelle entfernen
+disown
+
+# Bestimmten Job
+disown %1
+
+# SIGHUP ignorieren (Job bleibt in Liste)
+disown -h %1
+
+# Alle Jobs
+disown -a
+</code></pre>
+<p><strong>Typischer Workflow:</strong></p>
+<pre><code class="language-zsh"># 1. Prozess gestartet (vergessen nohup zu nutzen)
+./script.sh
+^Z
+bg
+
+# 2. Jetzt disown um ihn zu behalten
+disown -h %1
+
+# 3. Shell kann sicher beendet werden
+exit
+</code></pre>
+<p><strong>Praktisches Beispiel:</strong></p>
+<pre><code class="language-zsh"># Server versehentlich ohne nohup gestartet
+python server.py &amp;
+
+# Oops! Terminal schließen würde Server beenden
+# Lösung: disown
+disown -h
+
+# Jetzt sicher Terminal schließen
+exit
+</code></pre>
+<p><strong>Nachträglich von Terminal lösen:</strong></p>
+<pre><code class="language-zsh"># Prozess läuft im Vordergrund
+long-running-process
+
+# Ctrl+Z pausiert
+^Z
+# [1]  + suspended  long-running-process
+
+# Im Hintergrund fortsetzen
+bg
+
+# Von Shell lösen
+disown -h
+
+# Terminal kann geschlossen werden
+</code></pre>
+<h3 id="34----prozessgruppen-und-session-ids"><a class="header" href="#34----prozessgruppen-und-session-ids">3.4    Prozessgruppen und Session-IDs</a></h3>
+<p><strong>Konzepte:</strong></p>
+<pre><code>Session (SID)
+    └── Prozessgruppe (PGID)
+            └── Prozess (PID)
+            └── Prozess (PID)
+    └── Prozessgruppe (PGID)
+            └── Prozess (PID)
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Begriff</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>PID</strong></td><td>Process ID – eindeutige Prozess-Kennung</td></tr>
+<tr><td><strong>PPID</strong></td><td>Parent PID – PID des Elternprozesses</td></tr>
+<tr><td><strong>PGID</strong></td><td>Process Group ID – Gruppe zusammengehöriger Prozesse</td></tr>
+<tr><td><strong>SID</strong></td><td>Session ID – Login-Session</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>IDs anzeigen:</strong></p>
+<pre><code class="language-zsh"># Aktuelle IDs
+echo "PID: $$"
+echo "PPID: $PPID"
+
+# Mit ps
+ps -o pid,ppid,pgid,sid,comm
+
+# Für bestimmten Prozess
+ps -o pid,ppid,pgid,sid,comm -p 1234
+</code></pre>
+<p><strong>Prozessgruppen verstehen:</strong></p>
+<pre><code class="language-zsh"># Pipeline erstellt Prozessgruppe
+cat file | grep pattern | sort
+
+# Alle drei Prozesse haben gleiche PGID
+ps -o pid,pgid,comm
+# PID   PGID  COMM
+# 1001  1001  cat
+# 1002  1001  grep
+# 1003  1001  sort
+</code></pre>
+<p><strong>Signal an Prozessgruppe senden:</strong></p>
+<pre><code class="language-zsh"># Negative PID = Prozessgruppe
+kill -TERM -1001
+
+# Alle Prozesse der Gruppe beenden
+kill -9 -$(ps -o pgid= -p $PID)
+</code></pre>
+<p><strong>Sessions verstehen:</strong></p>
+<ul>
+<li>Jedes Terminal startet eine neue Session</li>
+<li>Session-Leader ist meist die Shell</li>
+<li>Alle von der Shell gestarteten Prozesse gehören zur Session</li>
+</ul>
+<pre><code class="language-zsh"># Neue Session erstellen (für Daemons)
+setsid command
+
+# Prozess von Terminal lösen
+setsid ./daemon.sh
+</code></pre>
+<p><strong>Prozessbaum anzeigen:</strong></p>
+<pre><code class="language-zsh"># Mit pstree (falls installiert)
+brew install pstree
+pstree
+
+# Mit ps
+ps -axjf
+
+# Kinder eines Prozesses
+pgrep -P 1234
+ps --ppid 1234
+</code></pre>
+<p><strong>Waisen- und Zombie-Prozesse:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Typ</th><th>Beschreibung</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Waise</strong></td><td>Elternprozess beendet, init übernimmt</td><td>Normal</td></tr>
+<tr><td><strong>Zombie</strong></td><td>Beendet, aber Eltern hat Exit-Code nicht gelesen</td><td><code>Z</code> in ps</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-zsh"># Zombies finden
+ps aux | awk '$8=="Z"'
+
+# Oder
+ps -eo pid,ppid,stat,comm | grep Z
+</code></pre>
+<p><strong>Zombie-Prozesse bereinigen:</strong></p>
+<p>Zombies können nicht direkt beendet werden. Lösungen:</p>
+<pre><code class="language-zsh"># 1. SIGCHLD an Elternprozess
+kill -SIGCHLD $(ps -o ppid= -p $ZOMBIE_PID)
+
+# 2. Elternprozess beenden (Zombie wird von init übernommen)
+kill $(ps -o ppid= -p $ZOMBIE_PID)
+
+# 3. Im schlimmsten Fall: Neustart
+</code></pre>
+<p><strong>Daemon-Muster (doppelter Fork):</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# daemon.sh - Prozess vollständig vom Terminal lösen
+
+(
+    # Erster Fork
+    cd /
+    umask 0
+    exec setsid ./actual-daemon.sh &amp;
+) &amp;
+
+# Shell kann sofort beenden
+exit 0
+</code></pre>
+<p><strong>Zusammenfassung Job-Control:</strong></p>
+<pre><code># Starten
+command &amp;                    # Im Hintergrund
+nohup command &amp;              # Immun gegen SIGHUP
+
+# Kontrolle
+jobs                         # Jobs anzeigen
+fg %n                        # In Vordergrund
+bg %n                        # Im Hintergrund fortsetzen
+Ctrl+Z                       # Pausieren
+Ctrl+C                       # Abbrechen
+
+# Loslösen
+disown %n                    # Aus Job-Liste entfernen
+disown -h %n                 # SIGHUP ignorieren
+
+# Beenden
+kill %n                      # Job beenden
+kill -9 %n                   # Erzwungen
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/datenformate-und-streams.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/sicherheit-und-verschluesselung.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/datenformate-und-streams.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/sicherheit-und-verschluesselung.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

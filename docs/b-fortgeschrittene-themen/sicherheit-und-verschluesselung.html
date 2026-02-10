@@ -1,0 +1,1234 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Sicherheit und Verschlüsselung - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="sicherheit--verschlüsselung"><a class="header" href="#sicherheit--verschlüsselung">Sicherheit &amp; Verschlüsselung</a></h1>
+<p>Dieses Kapitel behandelt Werkzeuge für Verschlüsselung, digitale Signaturen und sichere Systemadministration.</p>
+<h2 id="1----gpg-gnupg"><a class="header" href="#1----gpg-gnupg">1    GPG (GnuPG)</a></h2>
+<p>GnuPG (GNU Privacy Guard) ist die freie Implementierung des OpenPGP-Standards für asymmetrische Verschlüsselung und digitale Signaturen.</p>
+<h3 id="11----installation-und-schlüsselerstellung"><a class="header" href="#11----installation-und-schlüsselerstellung">1.1    Installation und Schlüsselerstellung</a></h3>
+<p><strong>Installation:</strong></p>
+<pre><code class="language-zsh">brew install gnupg
+
+# Version prüfen
+gpg --version
+</code></pre>
+<p><strong>Optionale GUI-Tools:</strong></p>
+<pre><code class="language-zsh"># GPG Suite (macOS GUI)
+brew install --cask gpg-suite
+
+# Oder nur Pinentry für Passphrase-Eingabe
+brew install pinentry-mac
+</code></pre>
+<p><strong>Schlüsselpaar generieren:</strong></p>
+<pre><code class="language-zsh"># Interaktiver Assistent
+gpg --full-generate-key
+
+# Ausgabe:
+# Bitte wählen Sie, welche Art von Schlüssel Sie möchten:
+#    (1) RSA und RSA
+#    (2) DSA und Elgamal
+#    (3) DSA (nur signieren)
+#    (4) RSA (nur signieren)
+#    (9) ECC (signieren und verschlüsseln) *Standard*
+#   (10) ECC (nur signieren)
+# Ihre Auswahl? 9
+</code></pre>
+<p><strong>Empfohlene Einstellungen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Einstellung</th><th>Empfehlung</th></tr>
+</thead>
+<tbody>
+<tr><td>Algorithmus</td><td>ECC (Curve 25519) oder RSA 4096</td></tr>
+<tr><td>Gültigkeit</td><td>1-2 Jahre (kann verlängert werden)</td></tr>
+<tr><td>Name</td><td>Vollständiger Name</td></tr>
+<tr><td>E-Mail</td><td>Haupt-E-Mail-Adresse</td></tr>
+<tr><td>Passphrase</td><td>Stark und einzigartig</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Schnelle Schlüsselerstellung:</strong></p>
+<pre><code class="language-zsh"># Schnell mit Defaults
+gpg --quick-generate-key "Max Mustermann &lt;max@example.com&gt;"
+
+# Mit spezifischen Optionen
+gpg --quick-generate-key "Max Mustermann &lt;max@example.com&gt;" rsa4096 cert 2y
+</code></pre>
+<p><strong>Schlüssel nach Erstellung:</strong></p>
+<pre><code class="language-zsh"># Öffentliche Schlüssel anzeigen
+gpg --list-keys
+gpg -k
+
+# Private Schlüssel anzeigen
+gpg --list-secret-keys
+gpg -K
+
+# Ausgabe:
+# pub   ed25519 2024-01-15 [SC] [expires: 2026-01-15]
+#       ABCD1234EFGH5678IJKL9012MNOP3456QRST7890
+# uid           [ultimate] Max Mustermann &lt;max@example.com&gt;
+# sub   cv25519 2024-01-15 [E] [expires: 2026-01-15]
+</code></pre>
+<p><strong>Schlüssel-IDs verstehen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Länge</th><th>Beispiel</th><th>Verwendung</th></tr>
+</thead>
+<tbody>
+<tr><td>Fingerprint (40)</td><td><code>ABCD1234...7890</code></td><td>Vollständige Identifikation</td></tr>
+<tr><td>Long ID (16)</td><td><code>MNOP3456QRST7890</code></td><td>Eindeutig genug</td></tr>
+<tr><td>Short ID (8)</td><td><code>QRST7890</code></td><td>Veraltet, Kollisionsgefahr</td></tr>
+<tr><td>E-Mail</td><td><code>max@example.com</code></td><td>Bequem, aber nicht eindeutig</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12----dateien-verschlüsseln-und-entschlüsseln"><a class="header" href="#12----dateien-verschlüsseln-und-entschlüsseln">1.2    Dateien verschlüsseln und entschlüsseln</a></h3>
+<p><strong>Asymmetrisch verschlüsseln (für Empfänger):</strong></p>
+<pre><code class="language-zsh"># Für einen Empfänger
+gpg --encrypt --recipient max@example.com datei.txt
+# Ergebnis: datei.txt.gpg
+
+# Kurzform
+gpg -e -r max@example.com datei.txt
+
+# Für mehrere Empfänger
+gpg -e -r alice@example.com -r bob@example.com datei.txt
+
+# Mit ASCII-Armor (Textformat)
+gpg -e -a -r max@example.com datei.txt
+# Ergebnis: datei.txt.asc
+
+# Ausgabedatei angeben
+gpg -e -r max@example.com -o geheim.gpg datei.txt
+</code></pre>
+<p><strong>Asymmetrisch entschlüsseln:</strong></p>
+<pre><code class="language-zsh"># Standard (fragt nach Passphrase)
+gpg --decrypt datei.txt.gpg
+# Ausgabe auf stdout
+
+# In Datei speichern
+gpg -d datei.txt.gpg &gt; datei.txt
+gpg -d -o datei.txt datei.txt.gpg
+
+# Kurzform
+gpg datei.txt.gpg
+# Erstellt automatisch datei.txt
+</code></pre>
+<p><strong>Symmetrisch verschlüsseln (mit Passwort):</strong></p>
+<pre><code class="language-zsh"># Mit Passwort verschlüsseln
+gpg --symmetric datei.txt
+gpg -c datei.txt
+# Fragt nach Passphrase, erstellt datei.txt.gpg
+
+# Mit spezifischem Algorithmus
+gpg -c --cipher-algo AES256 datei.txt
+
+# Als ASCII
+gpg -c -a datei.txt
+</code></pre>
+<p><strong>Symmetrisch entschlüsseln:</strong></p>
+<pre><code class="language-zsh">gpg -d datei.txt.gpg
+gpg -d -o datei.txt datei.txt.gpg
+</code></pre>
+<p><strong>Kombiniert (symmetrisch + asymmetrisch):</strong></p>
+<pre><code class="language-zsh"># Sowohl mit Passwort als auch für Empfänger
+gpg -c -e -r max@example.com datei.txt
+</code></pre>
+<p><strong>Verzeichnisse verschlüsseln:</strong></p>
+<pre><code class="language-zsh"># Erst tar, dann gpg
+tar -czvf - ordner/ | gpg -c -o ordner.tar.gz.gpg
+
+# Entschlüsseln und entpacken
+gpg -d ordner.tar.gz.gpg | tar -xzvf -
+</code></pre>
+<h3 id="13----signaturen-erstellen-und-prüfen"><a class="header" href="#13----signaturen-erstellen-und-prüfen">1.3    Signaturen erstellen und prüfen</a></h3>
+<p>Digitale Signaturen beweisen Authentizität und Integrität.</p>
+<p><strong>Datei signieren:</strong></p>
+<pre><code class="language-zsh"># Detached Signature (separate .sig Datei)
+gpg --detach-sign datei.txt
+# Ergebnis: datei.txt.sig
+
+# ASCII-Format
+gpg --detach-sign -a datei.txt
+# Ergebnis: datei.txt.asc
+
+# Klartext-Signatur (Signatur + Original)
+gpg --clearsign datei.txt
+# Ergebnis: datei.txt.asc (enthält Original + Signatur)
+
+# Signatur eingebettet (binär)
+gpg --sign datei.txt
+# Ergebnis: datei.txt.gpg
+</code></pre>
+<p><strong>Signatur prüfen:</strong></p>
+<pre><code class="language-zsh"># Detached Signature prüfen
+gpg --verify datei.txt.sig datei.txt
+
+# Ausgabe bei gültiger Signatur:
+# gpg: Signature made Mon Jan 15 10:30:00 2024 CET
+# gpg:                using EDDSA key ABCD...7890
+# gpg: Good signature from "Max Mustermann &lt;max@example.com&gt;"
+
+# Clearsign oder eingebettete Signatur
+gpg --verify datei.txt.asc
+
+# Signierte Datei extrahieren und prüfen
+gpg --decrypt datei.txt.gpg
+</code></pre>
+<p><strong>Signieren und Verschlüsseln:</strong></p>
+<pre><code class="language-zsh"># Verschlüsseln + Signieren
+gpg -e -s -r empfaenger@example.com datei.txt
+
+# Entschlüsseln prüft automatisch Signatur
+gpg -d datei.txt.gpg
+</code></pre>
+<p><strong>Git-Commits signieren:</strong></p>
+<pre><code class="language-zsh"># GPG-Schlüssel für Git konfigurieren
+git config --global user.signingkey ABCD1234EFGH5678
+
+# Einzelnen Commit signieren
+git commit -S -m "Signierter Commit"
+
+# Alle Commits signieren
+git config --global commit.gpgsign true
+
+# Signaturen anzeigen
+git log --show-signature
+</code></pre>
+<h3 id="14----schlüsselverwaltung"><a class="header" href="#14----schlüsselverwaltung">1.4    Schlüsselverwaltung</a></h3>
+<p><strong>Schlüssel exportieren:</strong></p>
+<pre><code class="language-zsh"># Öffentlichen Schlüssel exportieren (zum Teilen)
+gpg --export -a max@example.com &gt; publickey.asc
+gpg --export --armor ABCD1234 &gt; publickey.asc
+
+# Privaten Schlüssel exportieren (Backup!)
+gpg --export-secret-keys -a max@example.com &gt; privatekey.asc
+
+# Alle Schlüssel exportieren
+gpg --export -a &gt; all-public-keys.asc
+gpg --export-secret-keys -a &gt; all-private-keys.asc
+</code></pre>
+<p><strong>Schlüssel importieren:</strong></p>
+<pre><code class="language-zsh"># Öffentlichen Schlüssel importieren
+gpg --import publickey.asc
+
+# Privaten Schlüssel importieren
+gpg --import privatekey.asc
+
+# Von Keyserver
+gpg --keyserver hkps://keys.openpgp.org --recv-keys ABCD1234EFGH5678
+</code></pre>
+<p><strong>Schlüssel auf Keyserver hochladen:</strong></p>
+<pre><code class="language-zsh">gpg --keyserver hkps://keys.openpgp.org --send-keys ABCD1234EFGH5678
+</code></pre>
+<p><strong>Schlüssel bearbeiten:</strong></p>
+<pre><code class="language-zsh"># Interaktiver Editor
+gpg --edit-key max@example.com
+
+# Verfügbare Befehle:
+# uid       - UID auswählen
+# trust     - Vertrauensstufe setzen
+# expire    - Ablaufdatum ändern
+# passwd    - Passphrase ändern
+# adduid    - E-Mail hinzufügen
+# deluid    - E-Mail entfernen
+# save      - Speichern und beenden
+# quit      - Ohne Speichern beenden
+</code></pre>
+<p><strong>Vertrauensstufen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Stufe</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td>Unknown</td><td>Nicht bewertet</td></tr>
+<tr><td>Never</td><td>Nicht vertrauenswürdig</td></tr>
+<tr><td>Marginal</td><td>Teilweise vertrauenswürdig</td></tr>
+<tr><td>Full</td><td>Voll vertrauenswürdig</td></tr>
+<tr><td>Ultimate</td><td>Eigener Schlüssel</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-zsh"># Vertrauen setzen
+gpg --edit-key alice@example.com
+gpg&gt; trust
+# Stufe wählen
+gpg&gt; save
+</code></pre>
+<p><strong>Schlüssel widerrufen:</strong></p>
+<pre><code class="language-zsh"># Widerrufszertifikat erstellen (bei Erstellung!)
+gpg --gen-revoke ABCD1234 &gt; revoke.asc
+
+# Schlüssel widerrufen (wenn kompromittiert)
+gpg --import revoke.asc
+gpg --keyserver hkps://keys.openpgp.org --send-keys ABCD1234
+</code></pre>
+<p><strong>Schlüssel löschen:</strong></p>
+<pre><code class="language-zsh"># Öffentlichen Schlüssel löschen
+gpg --delete-keys ABCD1234
+
+# Privaten Schlüssel löschen
+gpg --delete-secret-keys ABCD1234
+
+# Beides
+gpg --delete-secret-and-public-keys ABCD1234
+</code></pre>
+<p><strong>GPG-Agent konfigurieren:</strong></p>
+<pre><code class="language-zsh"># ~/.gnupg/gpg-agent.conf
+default-cache-ttl 3600
+max-cache-ttl 86400
+pinentry-program /opt/homebrew/bin/pinentry-mac
+</code></pre>
+<pre><code class="language-zsh"># Agent neu starten
+gpgconf --kill gpg-agent
+gpg-agent --daemon
+</code></pre>
+<h2 id="2----openssl"><a class="header" href="#2----openssl">2    OpenSSL</a></h2>
+<p>OpenSSL ist das Schweizer Taschenmesser für Kryptographie: Zertifikate, Verschlüsselung, Hashes und mehr.</p>
+<h3 id="21----zertifikate-anzeigen-und-prüfen"><a class="header" href="#21----zertifikate-anzeigen-und-prüfen">2.1    Zertifikate anzeigen und prüfen</a></h3>
+<p><strong>Zertifikat einer Website anzeigen:</strong></p>
+<pre><code class="language-zsh"># Zertifikat abrufen und anzeigen
+openssl s_client -connect example.com:443 -servername example.com &lt;/dev/null 2&gt;/dev/null | \
+    openssl x509 -noout -text
+
+# Nur wichtige Infos
+openssl s_client -connect example.com:443 -servername example.com &lt;/dev/null 2&gt;/dev/null | \
+    openssl x509 -noout -subject -issuer -dates
+
+# Ausgabe:
+# subject=CN = example.com
+# issuer=C = US, O = DigiCert Inc, CN = DigiCert TLS RSA SHA256 2020 CA1
+# notBefore=Jan 15 00:00:00 2024 GMT
+# notAfter=Jan 15 23:59:59 2025 GMT
+</code></pre>
+<p><strong>Lokales Zertifikat anzeigen:</strong></p>
+<pre><code class="language-zsh"># PEM-Datei
+openssl x509 -in certificate.pem -noout -text
+
+# DER-Format
+openssl x509 -in certificate.der -inform DER -noout -text
+
+# Nur bestimmte Felder
+openssl x509 -in cert.pem -noout -subject
+openssl x509 -in cert.pem -noout -issuer
+openssl x509 -in cert.pem -noout -dates
+openssl x509 -in cert.pem -noout -fingerprint
+openssl x509 -in cert.pem -noout -serial
+</code></pre>
+<p><strong>Zertifikatskette prüfen:</strong></p>
+<pre><code class="language-zsh"># Kette verifizieren
+openssl verify -CAfile ca-bundle.crt certificate.pem
+
+# Mit Zwischenzertifikaten
+openssl verify -CAfile root.crt -untrusted intermediate.crt server.crt
+</code></pre>
+<p><strong>TLS-Verbindung testen:</strong></p>
+<pre><code class="language-zsh"># Verbindung und Handshake testen
+openssl s_client -connect example.com:443
+
+# Mit bestimmtem Protokoll
+openssl s_client -connect example.com:443 -tls1_2
+openssl s_client -connect example.com:443 -tls1_3
+
+# Zertifikatskette anzeigen
+openssl s_client -connect example.com:443 -showcerts
+
+# SNI (Server Name Indication)
+openssl s_client -connect server.com:443 -servername www.example.com
+</code></pre>
+<p><strong>Ablaufdatum prüfen:</strong></p>
+<pre><code class="language-zsh"># Website-Zertifikat
+echo | openssl s_client -connect example.com:443 -servername example.com 2&gt;/dev/null | \
+    openssl x509 -noout -enddate
+# notAfter=Jan 15 23:59:59 2025 GMT
+
+# Tage bis Ablauf
+expiry=$(echo | openssl s_client -connect example.com:443 2&gt;/dev/null | \
+    openssl x509 -noout -enddate | cut -d= -f2)
+echo $(( ($(date -jf "%b %d %H:%M:%S %Y %Z" "$expiry" +%s) - $(date +%s)) / 86400 )) Tage
+</code></pre>
+<p><strong>Selbstsigniertes Zertifikat erstellen:</strong></p>
+<pre><code class="language-zsh"># Schlüssel und Zertifikat in einem Schritt
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+
+# Mit spezifischen Angaben
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes \
+    -subj "/CN=localhost/O=Development/C=DE"
+</code></pre>
+<h3 id="22----dateien-verschlüsseln-symmetrisch"><a class="header" href="#22----dateien-verschlüsseln-symmetrisch">2.2    Dateien verschlüsseln (symmetrisch)</a></h3>
+<p><strong>Datei verschlüsseln:</strong></p>
+<pre><code class="language-zsh"># AES-256-CBC (empfohlen)
+openssl enc -aes-256-cbc -salt -pbkdf2 -in datei.txt -out datei.enc
+
+# Mit explizitem Passwort (unsicher für Skripte!)
+openssl enc -aes-256-cbc -salt -pbkdf2 -in datei.txt -out datei.enc -pass pass:geheim
+
+# Passwort aus Datei
+openssl enc -aes-256-cbc -salt -pbkdf2 -in datei.txt -out datei.enc -pass file:password.txt
+
+# Base64-kodiert (für E-Mail etc.)
+openssl enc -aes-256-cbc -salt -pbkdf2 -a -in datei.txt -out datei.enc
+</code></pre>
+<p><strong>Datei entschlüsseln:</strong></p>
+<pre><code class="language-zsh"># Standard
+openssl enc -aes-256-cbc -d -pbkdf2 -in datei.enc -out datei.txt
+
+# Base64-kodiert
+openssl enc -aes-256-cbc -d -pbkdf2 -a -in datei.enc -out datei.txt
+</code></pre>
+<p><strong>Verfügbare Algorithmen:</strong></p>
+<pre><code class="language-zsh"># Alle Cipher auflisten
+openssl enc -list
+
+# Empfohlene Algorithmen:
+# aes-256-cbc    - AES 256-bit, CBC-Modus
+# aes-256-gcm    - AES 256-bit, GCM-Modus (authentifiziert)
+# chacha20       - ChaCha20 Stream-Cipher
+</code></pre>
+<p><strong>Wichtige Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-e</code></td><td>Encrypt (Standard)</td></tr>
+<tr><td><code>-d</code></td><td>Decrypt</td></tr>
+<tr><td><code>-salt</code></td><td>Salt verwenden (Standard, wichtig!)</td></tr>
+<tr><td><code>-pbkdf2</code></td><td>Moderne Key-Derivation (empfohlen)</td></tr>
+<tr><td><code>-iter N</code></td><td>PBKDF2-Iterationen</td></tr>
+<tr><td><code>-a</code></td><td>Base64-Encoding</td></tr>
+<tr><td><code>-in FILE</code></td><td>Eingabedatei</td></tr>
+<tr><td><code>-out FILE</code></td><td>Ausgabedatei</td></tr>
+<tr><td><code>-pass</code></td><td>Passwort-Quelle</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="23----hashes-und-checksummen"><a class="header" href="#23----hashes-und-checksummen">2.3    Hashes und Checksummen</a></h3>
+<p><strong>Einzelne Datei hashen:</strong></p>
+<pre><code class="language-zsh"># SHA-256 (empfohlen)
+openssl sha256 datei.txt
+# SHA256(datei.txt)= abc123...
+
+# Nur Hash (ohne Dateiname)
+openssl sha256 -r datei.txt | cut -d' ' -f1
+
+# Verschiedene Algorithmen
+openssl md5 datei.txt        # veraltet
+openssl sha1 datei.txt       # veraltet
+openssl sha256 datei.txt     # empfohlen
+openssl sha384 datei.txt
+openssl sha512 datei.txt
+</code></pre>
+<p><strong>Alternative: Standard-Tools:</strong></p>
+<pre><code class="language-zsh"># macOS eingebaute Tools
+shasum -a 256 datei.txt
+md5 datei.txt
+
+# SHA-256
+shasum -a 256 datei.txt
+# abc123...  datei.txt
+
+# SHA-512
+shasum -a 512 datei.txt
+</code></pre>
+<p><strong>Checksumme prüfen:</strong></p>
+<pre><code class="language-zsh"># Checksummen-Datei erstellen
+shasum -a 256 *.zip &gt; checksums.sha256
+
+# Prüfen
+shasum -a 256 -c checksums.sha256
+# file1.zip: OK
+# file2.zip: OK
+</code></pre>
+<p><strong>HMAC (Hash mit Schlüssel):</strong></p>
+<pre><code class="language-zsh"># HMAC-SHA256
+openssl dgst -sha256 -hmac "geheimer-schluessel" datei.txt
+
+# Aus Datei
+openssl dgst -sha256 -hmac "$(cat key.txt)" datei.txt
+</code></pre>
+<p><strong>String hashen:</strong></p>
+<pre><code class="language-zsh"># String statt Datei
+echo -n "zu hashender text" | openssl sha256
+echo -n "zu hashender text" | shasum -a 256
+
+# Wichtig: -n verhindert Newline am Ende!
+</code></pre>
+<p><strong>Passwort-Hash erstellen:</strong></p>
+<pre><code class="language-zsh"># Für /etc/shadow-ähnliche Hashes
+openssl passwd -6 "meinpasswort"    # SHA-512
+openssl passwd -5 "meinpasswort"    # SHA-256
+openssl passwd -1 "meinpasswort"    # MD5 (veraltet)
+
+# Mit Salt
+openssl passwd -6 -salt "randomsalt" "meinpasswort"
+</code></pre>
+<h3 id="24----zufallsdaten-generieren"><a class="header" href="#24----zufallsdaten-generieren">2.4    Zufallsdaten generieren</a></h3>
+<p><strong>Zufällige Bytes:</strong></p>
+<pre><code class="language-zsh"># 32 Bytes als Hex
+openssl rand -hex 32
+# a1b2c3d4e5f6...
+
+# 32 Bytes als Base64
+openssl rand -base64 32
+# QUJDREVGR0hJSktMTU5PUFE=
+
+# In Datei
+openssl rand -out random.bin 256
+
+# Für Passwörter (URL-safe)
+openssl rand -base64 24 | tr -dc 'a-zA-Z0-9' | head -c 32
+</code></pre>
+<p><strong>Sichere Passwörter generieren:</strong></p>
+<pre><code class="language-zsh"># Zufälliges Passwort
+openssl rand -base64 18
+# kQ7xY9mN2pL4vR6t8wZa
+
+# Alphanumerisch
+openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 16
+
+# Mit Sonderzeichen
+openssl rand -base64 32 | head -c 20
+</code></pre>
+<p><strong>Alternative: macOS <code>security</code>:</strong></p>
+<pre><code class="language-zsh"># Zufälliges Passwort mit Keychain-Tool
+security random-string 20
+
+# UUID generieren
+uuidgen
+</code></pre>
+<p><strong>Für Kryptographie:</strong></p>
+<pre><code class="language-zsh"># AES-256 Schlüssel (32 Bytes)
+openssl rand -hex 32
+
+# IV für AES (16 Bytes)
+openssl rand -hex 16
+
+# Salt
+openssl rand -hex 8
+</code></pre>
+<h2 id="3----sichere-administration"><a class="header" href="#3----sichere-administration">3    Sichere Administration</a></h2>
+<h3 id="31----sudoedit--dateien-sicher-bearbeiten"><a class="header" href="#31----sudoedit--dateien-sicher-bearbeiten">3.1    <code>sudoedit</code> – Dateien sicher bearbeiten</a></h3>
+<p><code>sudoedit</code> (oder <code>sudo -e</code>) bearbeitet Dateien sicher, ohne den Editor als root zu starten.</p>
+<p><strong>Problem mit <code>sudo vim</code>:</strong></p>
+<pre><code class="language-zsh"># UNSICHER: vim läuft als root
+sudo vim /etc/hosts
+# vim-Plugins, Shell-Escapes etc. laufen alle als root!
+</code></pre>
+<p><strong>Lösung mit <code>sudoedit</code>:</strong></p>
+<pre><code class="language-zsh"># SICHER: Editor läuft als normaler User
+sudoedit /etc/hosts
+# oder
+sudo -e /etc/hosts
+</code></pre>
+<p><strong>Wie es funktioniert:</strong></p>
+<ol>
+<li>Erstellt temporäre Kopie der Datei</li>
+<li>Öffnet Editor als normaler Benutzer</li>
+<li>Kopiert Änderungen nach Schließen zurück (als root)</li>
+</ol>
+<p><strong>Editor konfigurieren:</strong></p>
+<pre><code class="language-zsh"># In ~/.zshrc
+export SUDO_EDITOR="nano"
+# oder
+export SUDO_EDITOR="vim"
+export SUDO_EDITOR="code --wait"
+
+# Alternativ
+export VISUAL="nano"
+export EDITOR="nano"
+</code></pre>
+<p><strong>Vorteile:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>sudo vim</th><th>sudoedit</th></tr>
+</thead>
+<tbody>
+<tr><td>Editor als root</td><td>Editor als User</td></tr>
+<tr><td>Plugins als root</td><td>Plugins als User</td></tr>
+<tr><td>Shell-Escape = root</td><td>Shell-Escape = User</td></tr>
+<tr><td>Unsicher</td><td>Sicher</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32----etcsudoers-und-visudo"><a class="header" href="#32----etcsudoers-und-visudo">3.2    <code>/etc/sudoers</code> und <code>visudo</code></a></h3>
+<p>Die Datei <code>/etc/sudoers</code> kontrolliert sudo-Berechtigungen. Sie darf <strong>nur</strong> mit <code>visudo</code> bearbeitet werden.</p>
+<p><strong>visudo verwenden:</strong></p>
+<pre><code class="language-zsh"># Konfiguration bearbeiten (prüft Syntax!)
+sudo visudo
+
+# Mit spezifischem Editor
+sudo EDITOR=nano visudo
+
+# Syntax einer Datei prüfen
+sudo visudo -c
+sudo visudo -cf /etc/sudoers.d/custom
+</code></pre>
+<p><strong>Warum visudo?</strong></p>
+<ul>
+<li>Prüft Syntax vor dem Speichern</li>
+<li>Verhindert gleichzeitige Bearbeitung</li>
+<li>Fehlerhafte Syntax = kein sudo mehr möglich!</li>
+</ul>
+<p><strong>sudoers-Syntax:</strong></p>
+<pre><code># Grundformat
+WER  WO = (ALS_WER)  WAS
+
+# Beispiele
+root    ALL=(ALL:ALL) ALL
+%admin  ALL=(ALL) ALL
+max     ALL=(ALL) NOPASSWD: ALL
+</code></pre>
+<p><strong>Felder erklärt:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Feld</th><th>Bedeutung</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td>WER</td><td>Benutzer oder %gruppe</td><td><code>max</code>, <code>%admin</code></td></tr>
+<tr><td>WO</td><td>Hosts</td><td><code>ALL</code>, <code>localhost</code></td></tr>
+<tr><td>ALS_WER</td><td>Zielbenutzer:gruppe</td><td><code>(ALL)</code>, <code>(root)</code></td></tr>
+<tr><td>WAS</td><td>Erlaubte Befehle</td><td><code>ALL</code>, <code>/usr/bin/apt</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Praktische Beispiele:</strong></p>
+<pre><code class="language-sudoers"># Benutzer max darf alles ohne Passwort
+max ALL=(ALL) NOPASSWD: ALL
+
+# Gruppe developers darf Docker ohne Passwort
+%developers ALL=(ALL) NOPASSWD: /usr/bin/docker, /usr/bin/docker-compose
+
+# Benutzer backup darf nur rsync als root
+backup ALL=(root) NOPASSWD: /usr/bin/rsync
+
+# Benutzer webadmin darf Webserver neustarten
+webadmin ALL=(root) NOPASSWD: /usr/bin/systemctl restart nginx, /usr/bin/systemctl restart apache2
+
+# Umgebungsvariablen erhalten
+Defaults env_keep += "HOME"
+Defaults env_keep += "SSH_AUTH_SOCK"
+</code></pre>
+<p><strong>Include-Dateien:</strong></p>
+<pre><code class="language-zsh"># Separate Dateien in /etc/sudoers.d/
+sudo visudo -f /etc/sudoers.d/developers
+
+# In /etc/sudoers aktiviert durch:
+@includedir /etc/sudoers.d
+# oder (ältere Syntax)
+#includedir /etc/sudoers.d
+</code></pre>
+<p><strong>Aliase definieren:</strong></p>
+<pre><code class="language-sudoers"># Benutzer-Aliase
+User_Alias ADMINS = alice, bob, carol
+User_Alias DEVELOPERS = dev1, dev2, dev3
+
+# Befehls-Aliase
+Cmnd_Alias SERVICES = /usr/bin/systemctl restart *, /usr/bin/systemctl status *
+Cmnd_Alias DOCKER = /usr/bin/docker, /usr/bin/docker-compose
+Cmnd_Alias NETWORKING = /sbin/ifconfig, /sbin/route, /usr/bin/ping
+
+# Verwendung
+ADMINS ALL=(ALL) ALL
+DEVELOPERS ALL=(root) NOPASSWD: DOCKER, SERVICES
+</code></pre>
+<h3 id="33----einschränkungen-mit-sudo"><a class="header" href="#33----einschränkungen-mit-sudo">3.3    Einschränkungen mit <code>sudo</code></a></h3>
+<p><strong>Befehle einschränken:</strong></p>
+<pre><code class="language-sudoers"># Nur bestimmte Befehle
+max ALL=(root) /usr/bin/apt update, /usr/bin/apt upgrade
+
+# Mit Wildcards
+max ALL=(root) /usr/bin/systemctl restart nginx*
+
+# Ohne Argumente
+max ALL=(root) /usr/bin/reboot ""
+
+# Bestimmte Argumente verbieten
+max ALL=(root) /usr/bin/rm, !/usr/bin/rm -rf /
+</code></pre>
+<p><strong>NOPASSWD vs PASSWD:</strong></p>
+<pre><code class="language-sudoers"># Ohne Passwort
+max ALL=(ALL) NOPASSWD: /usr/bin/docker
+
+# Mit Passwort (Standard)
+max ALL=(ALL) PASSWD: /usr/bin/visudo
+
+# Gemischt
+max ALL=(ALL) PASSWD: ALL, NOPASSWD: /usr/bin/docker
+</code></pre>
+<p><strong>Verbote (!):</strong></p>
+<pre><code class="language-sudoers"># Alles außer bestimmte Befehle
+max ALL=(ALL) ALL, !/bin/su, !/bin/bash, !/usr/bin/passwd root
+
+# Shell-Escape verhindern
+max ALL=(ALL) NOEXEC: /usr/bin/vim
+</code></pre>
+<p><strong>NOEXEC – Shell-Escapes verhindern:</strong></p>
+<pre><code class="language-sudoers"># Verhindert dass vim Shell startet
+max ALL=(root) NOEXEC: /usr/bin/vim
+</code></pre>
+<p><strong>Logging:</strong></p>
+<pre><code class="language-sudoers"># Alle Befehle loggen
+Defaults log_input, log_output
+Defaults logfile="/var/log/sudo.log"
+
+# I/O-Logging
+Defaults iolog_dir="/var/log/sudo-io"
+</code></pre>
+<p><strong>Timeout-Einstellungen:</strong></p>
+<pre><code class="language-sudoers"># Passwort-Timeout (Minuten)
+Defaults timestamp_timeout=15
+
+# Sofort Passwort verlangen
+Defaults timestamp_timeout=0
+
+# Nie wieder fragen (Session)
+Defaults timestamp_timeout=-1
+
+# Anzahl Passwort-Versuche
+Defaults passwd_tries=3
+</code></pre>
+<p><strong>Sicherheits-Empfehlungen:</strong></p>
+<pre><code class="language-sudoers"># Sichere PATH-Einstellung
+Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Root-Passwort bei Authentifizierung verlangen
+Defaults rootpw
+
+# TTY erforderlich (verhindert Skript-Missbrauch)
+Defaults requiretty
+
+# Insults bei falschem Passwort (Spaß)
+Defaults insults
+</code></pre>
+<p><strong>Sudo-Berechtigungen prüfen:</strong></p>
+<pre><code class="language-zsh"># Eigene Berechtigungen anzeigen
+sudo -l
+
+# Ausgabe:
+# User max may run the following commands on hostname:
+#     (ALL) ALL
+#     (root) NOPASSWD: /usr/bin/docker
+
+# Für anderen Benutzer
+sudo -l -U alice
+</code></pre>
+<p><strong>Sudo-Session beenden:</strong></p>
+<pre><code class="language-zsh"># Timestamp zurücksetzen (Passwort wird wieder verlangt)
+sudo -k
+
+# Timestamp komplett löschen
+sudo -K
+</code></pre>
+<p><strong>Best Practices:</strong></p>
+<ol>
+<li><strong>Minimal notwendige Rechte</strong>: Nur spezifische Befehle erlauben</li>
+<li><strong>Keine Shell-Befehle</strong>: <code>/bin/bash</code>, <code>/bin/su</code> vermeiden</li>
+<li><strong>NOEXEC nutzen</strong>: Bei Editoren und Programmen mit Shell-Escape</li>
+<li><strong>Separate Dateien</strong>: <code>/etc/sudoers.d/</code> für Organisation</li>
+<li><strong>Logging aktivieren</strong>: Für Audit-Trail</li>
+<li><strong>Regelmäßig prüfen</strong>: <code>sudo -l</code> und <code>visudo -c</code></li>
+</ol>
+<p><strong>Cheatsheet sudoers:</strong></p>
+<pre><code class="language-sudoers"># Format
+USER HOST=(RUNAS) COMMAND
+
+# Beispiele
+root        ALL=(ALL:ALL) ALL           # root darf alles
+%admin      ALL=(ALL) ALL               # Gruppe admin darf alles
+max         ALL=(ALL) NOPASSWD: ALL     # max ohne Passwort
+deploy      ALL=(root) /usr/bin/docker  # deploy nur docker
+backup      ALL=(root) NOPASSWD: /usr/bin/rsync  # backup rsync ohne PW
+
+# Verbote
+max         ALL=(ALL) ALL, !/bin/su     # alles außer su
+
+# Aliase
+User_Alias DEVS = alice, bob
+Cmnd_Alias DOCKER = /usr/bin/docker
+DEVS        ALL=(root) NOPASSWD: DOCKER
+
+# Sicherheit
+Defaults    requiretty
+Defaults    timestamp_timeout=5
+Defaults    secure_path="..."
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/prozesse-und-signale.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/macos-integration.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/prozesse-und-signale.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/macos-integration.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

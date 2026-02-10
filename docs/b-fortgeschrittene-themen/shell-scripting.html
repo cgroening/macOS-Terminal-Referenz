@@ -1,0 +1,1430 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Shell Scripting - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="shell-scripting"><a class="header" href="#shell-scripting">Shell-Scripting</a></h1>
+<h2 id="1----motivation--abgrenzung-shell-scripting-vs-python"><a class="header" href="#1----motivation--abgrenzung-shell-scripting-vs-python">1    Motivation &amp; Abgrenzung: Shell-Scripting vs. Python</a></h2>
+<p>Auch wenn man Python beherrscht, lohnt es sich, Shell-Scripting zu lernen. Beide haben unterschiedliche Stärken und Einsatzzwecke und werden in der Praxis sehr häufig kombiniert, statt sich gegenseitig zu ersetzen.</p>
+<p><strong>Grundlegende Unterschiede:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Shell-Scripting</th><th>Python</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Zweck</strong></td><td>Automatisierung von System- und Terminalaufgaben</td><td>Universelle Programmiersprache für komplexe Logik</td></tr>
+<tr><td><strong>Startzeit</strong></td><td>Extrem schnell, sofort verfügbar</td><td>Interpreter-Start kostet mehr Zeit</td></tr>
+<tr><td><strong>Verfügbarkeit</strong></td><td>Überall vorinstalliert (Unix, Linux, macOS)</td><td>Nicht immer vorinstalliert (abhängig vom System)</td></tr>
+<tr><td><strong>Datei- und Systemsteuerung</strong></td><td>Sehr direkt, ideal für kleine Automatisierungen</td><td>Gut, aber oft umfangreichere Syntax/Module nötig</td></tr>
+<tr><td><strong>Textverarbeitung</strong></td><td>Überragend durch <code>sed</code>, <code>awk</code>, <code>grep</code>, Pipes</td><td>Möglich, aber weniger kompakt</td></tr>
+<tr><td><strong>Komplexe Programme</strong></td><td>Schwer wartbar bei großer Logik</td><td>Optimale Wahl für komplexe Software</td></tr>
+<tr><td><strong>Konfiguration / DevOps</strong></td><td>Standard für Deployment, Cronjobs, Server-Skripte</td><td>Standard für Automatisierung, APIs, Datenverarbeitung</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2----was-kann-shell-scripting-besser-als-python"><a class="header" href="#2----was-kann-shell-scripting-besser-als-python">2    was kann shell-scripting besser als python?</a></h2>
+<h3 id="21----1-schnelle-systembefehle-und-administrative-tasks"><a class="header" href="#21----1-schnelle-systembefehle-und-administrative-tasks">2.1    <strong>1. Schnelle Systembefehle und Administrative Tasks:</strong></a></h3>
+<p>Beispiel: fünf Dateien verschieben und einen Dienst neu starten:</p>
+<pre><code class="language-zsh">mv *.log /backup/logs &amp;&amp; systemctl restart apache2
+</code></pre>
+<p>In Python ist es deutlich umständlicher:</p>
+<pre><code class="language-python">import glob
+import shutil
+import subprocess
+
+# Find all .log files
+for file in glob.glob('*.log'):
+    shutil.move(file, '/backup/logs')
+
+# Restart service
+result = subprocess.run(
+    ['systemctl', 'restart', 'apache2'], capture_output=True, text=True
+)
+
+if result.returncode == 0:
+    print('Service started.')
+else:
+    print('Error: ', result.stderr)
+</code></pre>
+<p>Hier kann man klar sehen, dass Shell-Scripting bei einfachen Systemaufgaben schneller und präziser ist, während Python mehr Kontrolle und Fehlerbehandlung ermöglicht, aber auch mehr Code erfordert.</p>
+<h4 id="211----2-pipelines-und-stream-verarbeitung"><a class="header" href="#211----2-pipelines-und-stream-verarbeitung">2.1.1    <strong>2. Pipelines und Stream-Verarbeitung:</strong></a></h4>
+<p>Shell + Tools sind darauf optimiert, Streams zu verarbeiten, z. B.:</p>
+<pre><code class="language-zsh">ps aux | grep python | awk '{print $2}' | xargs kill
+</code></pre>
+<p>In Python müsste man Prozesse einlesen, parsen, filtern, Subprozesse starten …</p>
+<h4 id="212----3-automatisierung-in-systemstart-cron-deployment"><a class="header" href="#212----3-automatisierung-in-systemstart-cron-deployment">2.1.2    <strong>3. Automatisierung in Systemstart, Cron, Deployment:</strong></a></h4>
+<ul>
+<li>cronjobs</li>
+<li><code>launchd</code></li>
+<li><code>systemd</code></li>
+<li>Installationsskripte (<code>install.sh</code> sind Standard)</li>
+</ul>
+<h4 id="213----4-universelle-verfügbarkeit"><a class="header" href="#213----4-universelle-verfügbarkeit">2.1.3    <strong>4. Universelle Verfügbarkeit</strong></a></h4>
+<p>Shell steht auf jedem Server bereit. Python nicht immer.</p>
+<p>Shell-Scripting ist</p>
+<ul>
+<li>essentiell für DevOps, Sysadmins, Server &amp; Deployment;</li>
+<li>perfekt für kleine Tools, Setup-Skripte und wiederkehrende Aufgaben;</li>
+<li>unverzichtbar für CI/CD &amp; Cloud und</li>
+<li>enorm zeitsparend bei Routine-Aufgaben.</li>
+</ul>
+<h3 id="22----was-kann-python-besser-als-shell"><a class="header" href="#22----was-kann-python-besser-als-shell">2.2    Was kann Python besser als Shell?</a></h3>
+<p>Python ist ideal für:</p>
+<ul>
+<li>komplexe Logik &amp; Algorithmen</li>
+<li>APIs &amp; Webservices</li>
+<li>Datenanalyse &amp; Machine Learning</li>
+<li>GUI-Tools</li>
+<li>saubere Tests &amp; Wartbarkeit</li>
+</ul>
+<p><strong>Beispiel: JSON-Parsing in Python:</strong></p>
+<pre><code class="language-python">import json
+data = json.loads(json_string)
+</code></pre>
+<p>In Shell wäre das schwierig und fehleranfälliger. Es ist <code>jq</code> erforderlich (Kommandozeilenwerkzeug zur Verarbeitung von JSON-Daten).</p>
+<h3 id="23----warum-beides-kombinieren"><a class="header" href="#23----warum-beides-kombinieren">2.3    Warum beides kombinieren?</a></h3>
+<p>Man muss sich nicht entscheiden: Häufig wird beides verwendet ⇒ Best-of-Both-Worlds.</p>
+<p><strong>Python aus einem Shell-Script heraus aufrufen:</strong></p>
+<pre><code class="language-python">#!/bin/zsh
+echo "Starte Datenverarbeitung..."
+python3 analyse.py input.csv
+echo "Fertig!"
+</code></pre>
+<p><strong>Shell aus Python heraus verwenden:</strong></p>
+<pre><code class="language-python">import subprocess
+subprocess.run(["ls", "-la"])
+</code></pre>
+<p><strong>Python als Tool + Shell als Wrapper (häufigste Variante):</strong></p>
+<pre><code class="language-python">#!/bin/zsh
+INPUT=$1
+python3 process.py "$INPUT" | tee results.txt
+</code></pre>
+<ul>
+<li>Shell übernimmt Dateihandling und Prozesslogik</li>
+<li>Python rechnet, verarbeitet, analysiert</li>
+</ul>
+<h3 id="24----zusammenfassung"><a class="header" href="#24----zusammenfassung">2.4    Zusammenfassung</a></h3>
+<p>Es ist wie ein Schraubendrehen vs. Akkuschrauber:</p>
+<ul>
+<li>Beides sind Werkzeuge.</li>
+<li>Shell = leicht, schnell, überall verfügbar</li>
+<li>Python = leistungsstark, modular, bei großen Aufgaben überlegen</li>
+</ul>
+<p><strong>Empfehlung:</strong></p>
+<ul>
+<li>Shell für kleine Automatisierungen (10–50 Zeilen)</li>
+<li>Python für komplexe Logik, APIs, Datenverarbeitung, ML</li>
+<li>Beides kombinieren für professionelle DevOps-Workflows</li>
+</ul>
+<h2 id="3----grundlagen-des-shell-scripting"><a class="header" href="#3----grundlagen-des-shell-scripting">3    Grundlagen des Shell-Scripting</a></h2>
+<p>Ein Shell-Skript ist eine Textdatei mit einer Folge von Befehlen, die nacheinander ausgeführt werden. Skripte ermöglichen die Automatisierung wiederkehrender Aufgaben und können beliebig komplex werden.</p>
+<p><strong>Minimales Beispiel:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+echo "Hallo Welt"
+</code></pre>
+<h3 id="31----aliase-vs-funktionen"><a class="header" href="#31----aliase-vs-funktionen">3.1    Aliase vs. Funktionen</a></h3>
+<p>Sowohl Aliase als auch Funktionen dienen dazu, häufig verwendete Befehle abzukürzen. Sie unterscheiden sich jedoch in ihren Möglichkeiten.</p>
+<p><strong>Aliase:</strong></p>
+<p>Ein Alias ist eine einfache Textersetzung. Er eignet sich für kurze, statische Befehlsketten.</p>
+<pre><code class="language-zsh"># Definition
+alias ll="ls -lah"
+alias gs="git status"
+alias ..="cd .."
+
+# Verwendung
+ll
+gs
+..
+</code></pre>
+<p><strong>Einschränkungen von Aliasen:</strong></p>
+<ul>
+<li>Keine Argumente an beliebiger Stelle möglich</li>
+<li>Keine Kontrollstrukturen (<code>if</code>, <code>for</code>, <code>while</code>)</li>
+<li>Keine lokalen Variablen</li>
+</ul>
+<pre><code class="language-zsh"># Das funktioniert NICHT wie erwartet:
+alias greet="echo Hallo $1"  # $1 wird sofort ausgewertet, nicht beim Aufruf
+</code></pre>
+<p><strong>Funktionen:</strong></p>
+<p>Funktionen sind flexibler und ermöglichen komplexere Logik mit Argumenten, Variablen und Kontrollstrukturen.</p>
+<pre><code class="language-zsh"># Definition
+greet() {
+    echo "Hallo $1!"
+}
+
+# Verwendung
+greet "Welt"    # Ausgabe: Hallo Welt!
+greet "Max"     # Ausgabe: Hallo Max!
+</code></pre>
+<p><strong>Beispiel mit mehreren Argumenten:</strong></p>
+<pre><code class="language-zsh">mkcd() {
+    mkdir -p "$1" &amp;&amp; cd "$1"
+}
+
+# Verwendung
+mkcd neuer_ordner  # Erstellt Ordner und wechselt hinein
+</code></pre>
+<p><strong>Beispiel mit Kontrollstruktur:</strong></p>
+<pre><code class="language-zsh">backup() {
+    if [-z "$1"](-z%20"$1".md); then
+        echo "Fehler: Kein Dateiname angegeben"
+        return 1
+    fi
+    cp "$1" "$1.bak"
+    echo "Backup erstellt: $1.bak"
+}
+</code></pre>
+<p><strong>Vergleich:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>Alias</th><th>Funktion</th></tr>
+</thead>
+<tbody>
+<tr><td>Argumente verarbeiten</td><td>❌ Nein</td><td>✅ Ja (<code>$1</code>, <code>$2</code>, …)</td></tr>
+<tr><td>Kontrollstrukturen</td><td>❌ Nein</td><td>✅ Ja</td></tr>
+<tr><td>Lokale Variablen</td><td>❌ Nein</td><td>✅ Ja (<code>local</code>)</td></tr>
+<tr><td>Mehrzeilige Logik</td><td>❌ Nein</td><td>✅ Ja</td></tr>
+<tr><td>Rückgabewerte</td><td>❌ Nein</td><td>✅ Ja (<code>return</code>)</td></tr>
+<tr><td>Einfache Ersetzung</td><td>✅ Ideal</td><td>Überdimensioniert</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Faustregel:</strong></p>
+<ul>
+<li><strong>Alias:</strong> Für einfache Abkürzungen ohne Argumente</li>
+<li><strong>Funktion:</strong> Sobald Argumente, Logik oder Variablen benötigt werden</li>
+</ul>
+<p><strong>Speicherort:</strong></p>
+<p>Beide werden typischerweise in <code>~/.zshrc</code> definiert. Bei vielen Aliasen und Funktionen empfiehlt sich eine Auslagerung:</p>
+<pre><code class="language-zsh"># In ~/.zshrc
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/functions.zsh
+</code></pre>
+<p>Einbindung in <code>.zshrc</code>:</p>
+<pre><code class="language-zsh">SCRIPT_DIR="/parent/folder/of/zshrc"
+source "$SCRIPT_DIR/aliases.zsh"
+source "$SCRIPT_DIR/functions.zsh"
+</code></pre>
+<h2 id="4----variablen"><a class="header" href="#4----variablen">4    Variablen</a></h2>
+<p>Variablen speichern Werte, die im Skript wiederverwendet werden können.</p>
+<h3 id="41----variablenzuweisung"><a class="header" href="#41----variablenzuweisung">4.1    Variablenzuweisung</a></h3>
+<div class="mdbook-callouts mdbook-callouts-warning">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  warning
+</p>
+
+<p>Bei der Zuweisung von Werten, dürfen sich keine Leerzeichen um das <code>=</code> befinden!</p>
+</div>
+
+<pre><code class="language-zsh"># Richtig
+name="Max"
+zahl=42
+pfad="/Users/max/Documents"
+
+# FALSCH – führt zu Fehlern
+name = "Max"    # Fehler: "name" wird als Befehl interpretiert
+</code></pre>
+<p><strong>Variablen verwenden:</strong></p>
+<pre><code class="language-zsh">name="Max"
+echo "Hallo $name"           # Ausgabe: Hallo Max
+echo "Hallo ${name}!"        # Ausgabe: Hallo Max!
+echo "Pfad: ${name}_backup"  # Geschweifte Klammern bei Verkettung
+</code></pre>
+<p><strong>Befehlsausgabe in Variable speichern:</strong></p>
+<pre><code class="language-zsh"># Moderne Syntax (empfohlen)
+datum=$(date +%Y-%m-%d)
+dateien=$(ls -1 | wc -l)
+
+# Alte Syntax (Backticks) – funktioniert, aber weniger lesbar
+datum=`date +%Y-%m-%d`
+
+echo "Heute ist $datum"
+echo "Anzahl Dateien: $dateien"
+</code></pre>
+<p><strong>Rechnen mit Variablen:</strong></p>
+<pre><code class="language-zsh">a=5
+b=3
+
+# Arithmetische Auswertung
+summe=$((a + b))
+produkt=$((a * b))
+
+echo "Summe: $summe"       # Ausgabe: Summe: 8
+echo "Produkt: $produkt"   # Ausgabe: Produkt: 15
+</code></pre>
+<h3 id="42----environment-variablen-vs-lokale-variablen"><a class="header" href="#42----environment-variablen-vs-lokale-variablen">4.2    Environment-Variablen vs. lokale Variablen</a></h3>
+<p><strong>Lokale Variablen:</strong></p>
+<p>Lokale Variablen existieren nur in der aktuellen Shell oder Funktion. Sie werden nicht an Kindprozesse vererbt.</p>
+<pre><code class="language-zsh">meine_var="lokal"
+echo $meine_var  # Funktioniert
+
+# In einem Subprozess:
+bash -c 'echo $meine_var'  # Ausgabe: (leer)
+</code></pre>
+<p><strong>Environment-Variablen (exportiert):</strong></p>
+<p>Mit <code>export</code> wird eine Variable zur Environment-Variable. Sie wird an alle Kindprozesse vererbt.</p>
+<pre><code class="language-zsh">export MEINE_VAR="global"
+echo $MEINE_VAR  # Funktioniert
+
+# In einem Subprozess:
+bash -c 'echo $MEINE_VAR'  # Ausgabe: global
+</code></pre>
+<p><strong>Wichtige System-Environment-Variablen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Variable</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>$HOME</code></td><td>Home-Verzeichnis des Benutzers</td></tr>
+<tr><td><code>$PATH</code></td><td>Suchpfade für ausführbare Programme</td></tr>
+<tr><td><code>$USER</code></td><td>Aktueller Benutzername</td></tr>
+<tr><td><code>$SHELL</code></td><td>Pfad zur aktuellen Shell</td></tr>
+<tr><td><code>$PWD</code></td><td>Aktuelles Arbeitsverzeichnis</td></tr>
+<tr><td><code>$OLDPWD</code></td><td>Vorheriges Verzeichnis</td></tr>
+<tr><td><code>$EDITOR</code></td><td>Standard-Texteditor</td></tr>
+<tr><td><code>$LANG</code></td><td>Spracheinstellung</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Alle Environment-Variablen anzeigen:</strong></p>
+<pre><code class="language-zsh">env
+printenv
+</code></pre>
+<p><strong>Lokale Variablen in Funktionen:</strong></p>
+<p>Mit <code>local</code> wird eine Variable auf die Funktion beschränkt:</p>
+<pre><code class="language-zsh">test_funktion() {
+    local lokale_var="nur hier sichtbar"
+    globale_var="überall sichtbar"
+    echo "In Funktion: $lokale_var"
+}
+
+test_funktion
+echo "Außerhalb: $lokale_var"   # Ausgabe: (leer)
+echo "Außerhalb: $globale_var"  # Ausgabe: überall sichtbar
+</code></pre>
+<h2 id="5----strings"><a class="header" href="#5----strings">5    Strings</a></h2>
+<h3 id="51----strings-über-mehrere-zeilen"><a class="header" href="#51----strings-über-mehrere-zeilen">5.1    Strings über mehrere Zeilen</a></h3>
+<p><strong>Methode 1: Here-Document (heredoc):</strong></p>
+<pre><code class="language-zsh">cat &lt;&lt; EOF
+Dies ist ein mehrzeiliger Text.
+Er kann Variablen enthalten: $USER
+Und mehrere Zeilen umfassen.
+EOF
+</code></pre>
+<p><strong>In Variable speichern:</strong></p>
+<pre><code class="language-zsh">text=$(cat &lt;&lt; EOF
+Zeile 1
+Zeile 2
+Zeile 3
+EOF
+)
+
+echo "$text"
+</code></pre>
+<p><strong>Ohne Variablenexpansion (Anführungszeichen um EOF):</strong></p>
+<pre><code class="language-zsh">cat &lt;&lt; 'EOF'
+Hier wird $USER NICHT ersetzt.
+Alles bleibt literal.
+EOF
+</code></pre>
+<p><strong>Methode 2: Anführungszeichen:</strong></p>
+<pre><code class="language-zsh">text="Zeile 1
+Zeile 2
+Zeile 3"
+
+echo "$text"
+</code></pre>
+<p><strong>Methode 3: String-Verkettung:</strong></p>
+<pre><code class="language-zsh">text="Zeile 1\n"
+text+="Zeile 2\n"
+text+="Zeile 3"
+
+echo -e "$text"  # -e interpretiert \n als Zeilenumbruch
+</code></pre>
+<h3 id="52----string-interpolation"><a class="header" href="#52----string-interpolation">5.2    String-Interpolation</a></h3>
+<p><strong>Einfache Anführungszeichen vs. doppelte Anführungszeichen:</strong></p>
+<pre><code class="language-zsh">name="Max"
+
+# Doppelte Anführungszeichen: Variablen werden ersetzt
+echo "Hallo $name"    # Ausgabe: Hallo Max
+
+# Einfache Anführungszeichen: Alles literal
+echo 'Hallo $name'    # Ausgabe: Hallo $name
+</code></pre>
+<p><strong>Geschweifte Klammern für Eindeutigkeit:</strong></p>
+<pre><code class="language-zsh">frucht="Apfel"
+
+echo "$fruchtmus"     # Fehler: Variable $fruchtmus existiert nicht
+echo "${frucht}mus"   # Korrekt: Apfelmus
+</code></pre>
+<p><strong>Befehlssubstitution im String:</strong></p>
+<pre><code class="language-zsh">echo "Heute ist $(date +%A)"           # Ausgabe: Heute ist Montag
+echo "Es gibt $(ls | wc -l) Dateien"   # Ausgabe: Es gibt 42 Dateien
+</code></pre>
+<p><strong>Arithmetik im String:</strong></p>
+<pre><code class="language-zsh">echo "5 + 3 = $((5 + 3))"  # Ausgabe: 5 + 3 = 8
+</code></pre>
+<p><strong>String-Manipulationen in zsh:</strong></p>
+<pre><code class="language-zsh">text="Hallo Welt"
+
+# Länge
+echo ${#text}              # Ausgabe: 10
+
+# Substring (0-basiert)
+echo ${text:0:5}           # Ausgabe: Hallo
+echo ${text:6}             # Ausgabe: Welt
+
+# Ersetzen
+echo ${text/Welt/Max}      # Ausgabe: Hallo Max
+echo ${text//l/L}          # Alle ersetzen: HaLLo WeLt
+
+# Groß-/Kleinschreibung (zsh)
+echo ${text:u}             # Ausgabe: HALLO WELT
+echo ${text:l}             # Ausgabe: hallo welt
+</code></pre>
+<h2 id="6----argumente-verarbeiten"><a class="header" href="#6----argumente-verarbeiten">6    Argumente verarbeiten</a></h2>
+<p>Skripte und Funktionen können Argumente entgegennehmen, die beim Aufruf übergeben werden.</p>
+<h3 id="61----zugriff-über-1-2-"><a class="header" href="#61----zugriff-über-1-2-">6.1    Zugriff über <code>$1</code>, <code>$2</code> …</a></h3>
+<p>Die übergebenen Argumente sind über nummerierte Variablen zugänglich:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Variable</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>$0</code></td><td>Name des Skripts</td></tr>
+<tr><td><code>$1</code></td><td>Erstes Argument</td></tr>
+<tr><td><code>$2</code></td><td>Zweites Argument</td></tr>
+<tr><td><code>$3</code> … <code>$9</code></td><td>Weitere Argumente</td></tr>
+<tr><td><code>${10}</code></td><td>Ab 10: Geschweifte Klammern nötig</td></tr>
+<tr><td><code>$#</code></td><td>Anzahl der Argumente</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiel:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# Datei: greet.sh
+
+echo "Skriptname: $0"
+echo "Erstes Argument: $1"
+echo "Zweites Argument: $2"
+echo "Anzahl Argumente: $#"
+</code></pre>
+<p><strong>Aufruf:</strong></p>
+<pre><code class="language-zsh">./greet.sh Hallo Welt
+# Ausgabe:
+# Skriptname: ./greet.sh
+# Erstes Argument: Hallo
+# Zweites Argument: Welt
+# Anzahl Argumente: 2
+</code></pre>
+<p><strong>Prüfen ob Argument vorhanden:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+
+if [-z "$1"](-z%20"$1".md); then
+    echo "Fehler: Kein Argument angegeben"
+    echo "Verwendung: $0 &lt;name&gt;"
+    exit 1
+fi
+
+echo "Hallo $1!"
+</code></pre>
+<h3 id="62-----und-"><a class="header" href="#62-----und-">6.2    <code>$@</code> und <code>$*</code></a></h3>
+<p>Beide repräsentieren alle übergebenen Argumente, verhalten sich aber unterschiedlich:</p>
+<p><strong><code>$@</code> – Jedes Argument separat (empfohlen):</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# Datei: args.sh
+
+echo "Mit \$@:"
+for arg in "$@"; do
+    echo "  Argument: '$arg'"
+done
+</code></pre>
+<p><strong>Aufruf:</strong></p>
+<pre><code class="language-zsh">./args.sh "Hallo Welt" foo bar
+# Ausgabe:
+#   Argument: 'Hallo Welt'
+#   Argument: 'foo'
+#   Argument: 'bar'
+</code></pre>
+<p><strong><code>$*</code> – Alle Argumente als ein String:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+
+echo "Mit \$*:"
+for arg in "$*"; do
+    echo "  Argument: '$arg'"
+done
+</code></pre>
+<p><strong>Aufruf:</strong></p>
+<pre><code class="language-zsh">./args.sh "Hallo Welt" foo bar
+# Ausgabe:
+#   Argument: 'Hallo Welt foo bar'
+</code></pre>
+<p><strong>Zusammenfassung:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Syntax</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>"$@"</code></td><td>Jedes Argument als separates Wort (Leerzeichen in Argumenten bleiben erhalten)</td></tr>
+<tr><td><code>"$*"</code></td><td>Alle Argumente als ein einziger String</td></tr>
+<tr><td><code>$@</code> / <code>$*</code></td><td>Ohne Anführungszeichen: Wörter werden bei Leerzeichen getrennt</td></tr>
+</tbody>
+</table>
+</div>
+<p>In der Regel wird <code>"$@"</code> verwendet.</p>
+<p><strong>Alle Argumente an anderen Befehl weitergeben:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# Wrapper-Skript
+
+echo "Starte Programm mit allen Argumenten..."
+/pfad/zum/programm "$@"
+</code></pre>
+<h3 id="63----optionen-parsen-getopts"><a class="header" href="#63----optionen-parsen-getopts">6.3    Optionen parsen (<code>getopts</code>)</a></h3>
+<p>Für Skripte mit Optionen (z. B. <code>-v</code>, <code>-f datei</code>) bietet <code>getopts</code> eine strukturierte Lösung.</p>
+<p><strong>Grundsyntax:</strong></p>
+<pre><code class="language-zsh">while getopts "vf:o:" opt; do
+    case $opt in
+        v) verbose=true ;;
+        f) input_file="$OPTARG" ;;
+        o) output_file="$OPTARG" ;;
+        ?) echo "Ungültige Option"; exit 1 ;;
+    esac
+done
+</code></pre>
+<p><strong>Erklärung:</strong></p>
+<ul>
+<li><code>v</code> – Option ohne Wert (Flag)</li>
+<li><code>f:</code> – Option mit erforderlichem Wert (Doppelpunkt)</li>
+<li><code>$OPTARG</code> – Enthält den Wert der Option</li>
+</ul>
+<p><strong>Vollständiges Beispiel:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+# Datei: prozess.sh
+
+# Standardwerte
+verbose=false
+input_file=""
+output_file="output.txt"
+
+# Hilfe-Funktion
+show_help() {
+    echo "Verwendung: $0 [-v] [-f eingabe] [-o ausgabe]"
+    echo ""
+    echo "Optionen:"
+    echo "  -v          Ausführliche Ausgabe"
+    echo "  -f DATEI    Eingabedatei (erforderlich)"
+    echo "  -o DATEI    Ausgabedatei (Standard: output.txt)"
+    echo "  -h          Diese Hilfe anzeigen"
+}
+
+# Optionen parsen
+while getopts "vf:o:h" opt; do
+    case $opt in
+        v) verbose=true ;;
+        f) input_file="$OPTARG" ;;
+        o) output_file="$OPTARG" ;;
+        h) show_help; exit 0 ;;
+        ?) show_help; exit 1 ;;
+    esac
+done
+
+# Restliche Argumente (nach den Optionen)
+shift $((OPTIND - 1))
+remaining_args="$@"
+
+# Validierung
+if [-z "$input_file"](-z%20"$input_file".md); then
+    echo "Fehler: Eingabedatei erforderlich (-f)"
+    exit 1
+fi
+
+# Hauptlogik
+if $verbose; then
+    echo "Eingabe: $input_file"
+    echo "Ausgabe: $output_file"
+    echo "Weitere Argumente: $remaining_args"
+fi
+
+echo "Verarbeite $input_file..."
+</code></pre>
+<p><strong>Aufruf:</strong></p>
+<pre><code class="language-zsh">./prozess.sh -v -f input.txt -o result.txt zusatz1 zusatz2
+</code></pre>
+<h2 id="7----rückgabewerte-und-exit-codes"><a class="header" href="#7----rückgabewerte-und-exit-codes">7    Rückgabewerte und Exit-Codes</a></h2>
+<p>Jeder Befehl in Unix gibt einen Exit-Code zurück, der Erfolg oder Misserfolg signalisiert.</p>
+<h3 id="71----exit-und-"><a class="header" href="#71----exit-und-">7.1    <code>exit</code> und <code>$?</code></a></h3>
+<p><strong>Exit-Codes:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Code</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0</code></td><td>Erfolg</td></tr>
+<tr><td><code>1</code></td><td>Allgemeiner Fehler</td></tr>
+<tr><td><code>2</code></td><td>Falsche Verwendung (z. B. fehlende Argumente)</td></tr>
+<tr><td><code>126</code></td><td>Befehl nicht ausführbar</td></tr>
+<tr><td><code>127</code></td><td>Befehl nicht gefunden</td></tr>
+<tr><td><code>128+N</code></td><td>Beendet durch Signal N</td></tr>
+<tr><td><code>130</code></td><td>Beendet durch Ctrl+C (SIGINT)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong><code>$?</code> – Exit-Code des letzten Befehls:</strong></p>
+<pre><code class="language-zsh">ls /existiert
+echo $?  # Ausgabe: 0 (Erfolg)
+
+ls /existiert_nicht
+echo $?  # Ausgabe: 1 (Fehler)
+</code></pre>
+<p><strong><code>exit</code> in Skripten:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+
+if [! -f "$1"](!%20-f%20"$1".md); then
+    echo "Fehler: Datei nicht gefunden"
+    exit 1
+fi
+
+echo "Datei gefunden"
+exit 0
+</code></pre>
+<p><strong><code>return</code> in Funktionen:</strong></p>
+<p>Funktionen verwenden <code>return</code> statt <code>exit</code>:</p>
+<pre><code class="language-zsh">pruefe_datei() {
+    if [-f "$1"](-f%20"$1".md); then
+        return 0  # Erfolg
+    else
+        return 1  # Fehler
+    fi
+}
+
+if pruefe_datei "test.txt"; then
+    echo "Datei existiert"
+else
+    echo "Datei nicht gefunden"
+fi
+</code></pre>
+<p><strong>Exit-Code direkt in Bedingung:</strong></p>
+<pre><code class="language-zsh">if grep -q "suchbegriff" datei.txt; then
+    echo "Gefunden"
+else
+    echo "Nicht gefunden"
+fi
+</code></pre>
+<h3 id="72----fehlerbehandlung"><a class="header" href="#72----fehlerbehandlung">7.2    Fehlerbehandlung</a></h3>
+<p><strong>Befehlsverkettung mit <code>&amp;&amp;</code> und <code>||</code>:</strong></p>
+<pre><code class="language-zsh"># &amp;&amp; – Nächster Befehl nur bei Erfolg
+mkdir neuer_ordner &amp;&amp; cd neuer_ordner &amp;&amp; echo "Erfolgreich"
+
+# || – Nächster Befehl nur bei Fehler
+cd /existiert_nicht || echo "Verzeichnis nicht gefunden"
+
+# Kombination
+cd /verzeichnis &amp;&amp; echo "OK" || echo "Fehler"
+</code></pre>
+<p><strong>Prüfung mit <code>if</code>:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+
+if ! command -v git &amp;&gt; /dev/null; then
+    echo "Git ist nicht installiert"
+    exit 1
+fi
+
+echo "Git ist verfügbar"
+</code></pre>
+<p><strong>Fehlerausgabe umleiten:</strong></p>
+<pre><code class="language-zsh"># Nur Fehler unterdrücken
+befehl 2&gt;/dev/null
+
+# Alles unterdrücken
+befehl &amp;&gt;/dev/null
+
+# Fehler in Datei schreiben
+befehl 2&gt;&gt; fehler.log
+</code></pre>
+<h2 id="8----ausführen-und-debuggen"><a class="header" href="#8----ausführen-und-debuggen">8    Ausführen und Debuggen</a></h2>
+<h3 id="81----chmod-x"><a class="header" href="#81----chmod-x">8.1    <code>chmod +x</code></a></h3>
+<p>Bevor ein Skript direkt ausgeführt werden kann, muss es als ausführbar markiert werden:</p>
+<pre><code class="language-zsh"># Ausführbar machen
+chmod +x mein_skript.sh
+
+# Ausführen
+./mein_skript.sh
+</code></pre>
+<p><strong>Alternativ ohne chmod:</strong></p>
+<pre><code class="language-zsh">zsh mein_skript.sh
+bash mein_skript.sh
+</code></pre>
+<p><strong>Berechtigungen prüfen:</strong></p>
+<pre><code class="language-zsh">ls -l mein_skript.sh
+# -rwxr-xr-x  1 user  staff  123 Jan 1 12:00 mein_skript.sh
+#  ^^^
+#  Die x's zeigen Ausführbarkeit an
+</code></pre>
+<h3 id="82----set--x-debugging"><a class="header" href="#82----set--x-debugging">8.2    <code>set -x</code> Debugging</a></h3>
+<p>Mit <code>set -x</code> wird jeder ausgeführte Befehl vor der Ausführung angezeigt:</p>
+<pre><code class="language-zsh">#!/bin/zsh
+set -x  # Debug-Modus aktivieren
+
+name="Max"
+echo "Hallo $name"
+datum=$(date)
+echo "Datum: $datum"
+</code></pre>
+<p><strong>Ausgabe:</strong></p>
+<pre><code>+name=Max
++echo 'Hallo Max'
+Hallo Max
++date
++datum='Mon Jan 1 12:00:00 CET 2024'
++echo 'Datum: Mon Jan 1 12:00:00 CET 2024'
+Datum: Mon Jan 1 12:00:00 CET 2024
+</code></pre>
+<p><strong>Debug-Modus ein-/ausschalten:</strong></p>
+<pre><code class="language-zsh">set -x  # Aktivieren
+# ... Debug-relevanter Code ...
+set +x  # Deaktivieren
+</code></pre>
+<p><strong>Nur beim Aufruf aktivieren:</strong></p>
+<pre><code class="language-zsh">zsh -x mein_skript.sh
+bash -x mein_skript.sh
+</code></pre>
+<h3 id="83----fehlerbehandlung-set--e-trap"><a class="header" href="#83----fehlerbehandlung-set--e-trap">8.3    Fehlerbehandlung (<code>set -e</code>, <code>trap</code>)</a></h3>
+<p><strong><code>set -e</code> – Bei Fehler abbrechen:</strong></p>
+<p>Standardmäßig läuft ein Skript weiter, auch wenn ein Befehl fehlschlägt. Mit <code>set -e</code> wird bei jedem Fehler abgebrochen:</p>
+<pre><code class="language-zsh">#!/bin/zsh
+set -e
+
+echo "Schritt 1"
+falsch_geschriebener_befehl  # Skript bricht hier ab
+echo "Schritt 2"             # Wird nicht erreicht
+</code></pre>
+<p><strong><code>set -u</code> – Fehler bei undefinierten Variablen:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+set -u
+
+echo $undefinierte_variable  # Skript bricht ab
+</code></pre>
+<p><strong><code>set -o pipefail</code> – Pipe-Fehler erkennen:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+set -o pipefail
+
+# Ohne pipefail: Exit-Code ist 0 (von wc)
+# Mit pipefail: Exit-Code ist 1 (von cat)
+cat nicht_vorhanden.txt | wc -l
+</code></pre>
+<p><strong>Empfohlene Kombination:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+set -euo pipefail
+</code></pre>
+<p><strong><code>trap</code> – Aufräumen bei Beendigung:</strong></p>
+<p><code>trap</code> führt Befehle aus, wenn das Skript beendet wird (normal oder durch Fehler):</p>
+<pre><code class="language-zsh">#!/bin/zsh
+set -e
+
+# Temporäre Datei erstellen
+temp_file=$(mktemp)
+echo "Temp-Datei: $temp_file"
+
+# Bei Beendigung aufräumen
+trap "rm -f $temp_file; echo 'Aufgeräumt'" EXIT
+
+# Hauptlogik
+echo "Arbeite..."
+sleep 2
+echo "Fertig"
+
+# temp_file wird automatisch gelöscht
+</code></pre>
+<p><strong>Verschiedene Signale abfangen:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+
+cleanup() {
+    echo "Räume auf..."
+    # Aufräumarbeiten hier
+}
+
+trap cleanup EXIT      # Bei normalem Ende
+trap cleanup SIGINT    # Bei Ctrl+C
+trap cleanup SIGTERM   # Bei kill
+</code></pre>
+<p><strong>Praktisches Beispiel:</strong></p>
+<pre><code class="language-zsh">#!/bin/zsh
+set -euo pipefail
+
+# Temporäres Verzeichnis
+work_dir=$(mktemp -d)
+trap "rm -rf $work_dir" EXIT
+
+echo "Arbeitsverzeichnis: $work_dir"
+
+# Dateien im temp-Verzeichnis verarbeiten
+cd "$work_dir"
+curl -O https://example.com/datei.zip
+unzip datei.zip
+# ... weitere Verarbeitung ...
+
+# work_dir wird automatisch gelöscht
+</code></pre>
+<h3 id="84----profiling-time-dtruss"><a class="header" href="#84----profiling-time-dtruss">8.4    Profiling (<code>time</code>, <code>dtruss</code>)</a></h3>
+<p><strong><code>time</code> – Ausführungszeit messen:</strong></p>
+<pre><code class="language-zsh">time ./mein_skript.sh
+</code></pre>
+<p><strong>Ausgabe:</strong></p>
+<pre><code>./mein_skript.sh  0.05s user 0.02s system 89% cpu 0.078 total
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Wert</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>user</code></td><td>CPU-Zeit im User-Mode</td></tr>
+<tr><td><code>system</code></td><td>CPU-Zeit im Kernel-Mode</td></tr>
+<tr><td><code>cpu</code></td><td>CPU-Auslastung in Prozent</td></tr>
+<tr><td><code>total</code></td><td>Gesamte verstrichene Zeit</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Einzelne Befehle messen:</strong></p>
+<pre><code class="language-zsh">time sleep 2
+time find / -name "*.log" 2&gt;/dev/null
+</code></pre>
+<p><strong><code>dtruss</code> – Systemaufrufe verfolgen (macOS):</strong></p>
+<p><code>dtruss</code> ist das macOS-Äquivalent zu <code>strace</code> unter Linux. Es zeigt alle Systemaufrufe eines Prozesses:</p>
+<pre><code class="language-zsh"># Erfordert Root-Rechte
+sudo dtruss ./mein_skript.sh
+</code></pre>
+<p><strong>Nur bestimmte Syscalls:</strong></p>
+<pre><code class="language-zsh">sudo dtruss -t open ./mein_skript.sh   # Nur open()-Aufrufe
+sudo dtruss -t read ./mein_skript.sh   # Nur read()-Aufrufe
+</code></pre>
+<p><strong>Laufenden Prozess analysieren:</strong></p>
+<pre><code class="language-zsh">sudo dtruss -p &lt;PID&gt;
+</code></pre>
+<p><strong>Alternative: <code>dtrace</code>:</strong></p>
+<p>Für komplexere Analysen bietet macOS <code>dtrace</code>:</p>
+<pre><code class="language-zsh">sudo dtrace -n 'syscall:::entry /execname == "zsh"/ { @[probefunc] = count(); }'
+</code></pre>
+<h3 id="85----shebang-binzsh"><a class="header" href="#85----shebang-binzsh">8.5    Shebang <code>#!/bin/zsh</code></a></h3>
+<p>Die erste Zeile eines Skripts (Shebang) bestimmt, welcher Interpreter verwendet wird:</p>
+<pre><code class="language-zsh">#!/bin/zsh
+</code></pre>
+<p><strong>Häufige Shebangs:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Shebang</th><th>Interpreter</th></tr>
+</thead>
+<tbody>
+<tr><td><code>#!/bin/zsh</code></td><td>Z-Shell (macOS-Standard)</td></tr>
+<tr><td><code>#!/bin/bash</code></td><td>Bash</td></tr>
+<tr><td><code>#!/bin/sh</code></td><td>POSIX-Shell (portabel)</td></tr>
+<tr><td><code>#!/usr/bin/env zsh</code></td><td>zsh aus PATH (flexibler)</td></tr>
+<tr><td><code>#!/usr/bin/env python3</code></td><td>Python 3</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong><code>/usr/bin/env</code> – Flexibler Ansatz:</strong></p>
+<pre><code class="language-zsh">#!/usr/bin/env zsh
+</code></pre>
+<p>Vorteile:</p>
+<ul>
+<li>Findet den Interpreter im <code>$PATH</code></li>
+<li>Funktioniert auch wenn zsh nicht in <code>/bin/zsh</code> liegt</li>
+<li>Portabler zwischen verschiedenen Systemen</li>
+</ul>
+<p><strong>Wichtig:</strong></p>
+<ul>
+<li>Der Shebang muss in der <strong>ersten Zeile</strong> stehen</li>
+<li>Vor <code>#!</code> dürfen <strong>keine Zeichen</strong> stehen (auch keine Leerzeichen)</li>
+<li>Die Zeile muss mit einem Zeilenumbruch enden</li>
+</ul>
+<h2 id="9----formatierung-der-ausgabe"><a class="header" href="#9----formatierung-der-ausgabe">9    Formatierung der Ausgabe</a></h2>
+<p>Insbesondere beim Schreiben von Aliasen, Funktionen und Skripten kann der Einsatz Farbe und Fettmarkierungen hilfreich sein, um die Ausgabe übersichtlich zu halten.</p>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh">echo "\033[31mRot\033[0m"          # Rot
+echo "\033[32mGrün\033[0m"         # Grün
+echo "\033[1;33mFett Gelb\033[0m"  # Fetter Text
+echo -e "\033[34m$(pwd)\033[0m"    # Ausgabe von `pwd` in blau
+</code></pre>
+<ul>
+<li><code>\033[</code> leitet eine Escape-Sequenz ein</li>
+<li><code>31</code> = Rot, <code>32</code> = Grün, <code>34</code> = Blau</li>
+<li><code>1</code> = Fett</li>
+<li><code>0m</code> = Zurücksetzen der Formatierung</li>
+</ul>
+<p><strong>Häufig verwendete Farben:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Code</th><th>Farbe</th><th>Stil</th></tr>
+</thead>
+<tbody>
+<tr><td><code>30</code></td><td>Schwarz</td><td>normal</td></tr>
+<tr><td><code>31</code></td><td>Rot</td><td>normal</td></tr>
+<tr><td><code>32</code></td><td>Grün</td><td>normal</td></tr>
+<tr><td><code>33</code></td><td>Gelb</td><td>normal</td></tr>
+<tr><td><code>34</code></td><td>Blau</td><td>normal</td></tr>
+<tr><td><code>35</code></td><td>Magenta</td><td>normal</td></tr>
+<tr><td><code>36</code></td><td>Cyan</td><td>normal</td></tr>
+<tr><td><code>37</code></td><td>Weiß</td><td>normal</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Stile:</strong></p>
+<p><strong>Erweiterte Stiltabelle:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Code</th><th>Stil</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0</code></td><td>Reset/Normal</td></tr>
+<tr><td><code>1</code></td><td>Fett</td></tr>
+<tr><td><code>2</code></td><td>Gedimmt</td></tr>
+<tr><td><code>3</code></td><td>Kursiv</td></tr>
+<tr><td><code>4</code></td><td>Unterstrichen</td></tr>
+<tr><td><code>5</code></td><td>Blinkend</td></tr>
+<tr><td><code>7</code></td><td>Invertiert</td></tr>
+<tr><td><code>9</code></td><td>Durchgestrichen</td></tr>
+</tbody>
+</table>
+</div>
+<div class="mdbook-callouts mdbook-callouts-warning">
+<p class="mdbook-callouts-title">
+  <span class="mdbook-callouts-icon"></span>
+  warning
+</p>
+
+<p>Kursiv wird nicht von allen Terminals unterstützt. In manchen Terminals wird es als inverse Darstellung oder gar nicht angezeigt. Die meisten modernen Terminal-Emulatoren (iTerm2, Terminal.app ab neueren Versionen, etc.) unterstützen es jedoch.</p>
+</div>
+
+<h2 id="10----skript-vorlage"><a class="header" href="#10----skript-vorlage">10    Skript-Vorlage</a></h2>
+<pre><code class="language-zsh">#!/usr/bin/env zsh
+set -euo pipefail
+
+# [Short description of the script]
+
+# --- Configuration ---
+readonly SCRIPT_DIR="$(cd "$(dirname "$0")" &amp;&amp; pwd)"
+readonly SCRIPT_NAME="$(basename "$0")"
+
+# --- Functions ---
+show_help() {
+    cat &lt;&lt; EOF
+Usage: $SCRIPT_NAME [OPTIONS] &lt;argument&gt;
+
+Description of the script.
+
+Options:
+  -h, --help    Show this help
+
+Example:
+  $SCRIPT_NAME -v input.txt
+EOF
+}
+
+log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" }
+
+
+# --- Main program ---
+main() {
+    if [$]($.md#-eq-0); then
+        show_help
+        exit 1
+    fi
+
+    # Parse command line options
+    while getopts "h:" opt; do  # Add further flags here
+        case $opt in
+            h)  show_help; exit 0 ;;
+            \?) echo "Invalid option: -$OPTARG" &gt;&amp;2; exit 1 ;;
+            :)  echo "Option -$OPTARG requires an argument" &gt;&amp;2; exit 1 ;;
+        esac
+    done
+
+    log "Script started"
+    # ... Main logic here ...
+    log "Script finished"
+}
+
+main "$@"
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../a-grundlagen/beispiele-alltaegliche-aufgaben.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/regex-sed-awk.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../a-grundlagen/beispiele-alltaegliche-aufgaben.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/regex-sed-awk.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

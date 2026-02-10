@@ -1,0 +1,1325 @@
+<!DOCTYPE HTML>
+<html lang="de" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Regex, sed und awk - Terminal-Referenz</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-80432388.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "ayu";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-bfb3672c.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-76266586.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terminal-Referenz</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/cgroening/macOS-Terminal-Referenz" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <style>
+.mdbook-callouts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
+  background: var(--mdbook-callouts-background);
+}
+
+.mdbook-callouts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-callouts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-callouts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-callouts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-callouts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-callouts-icon);
+  mask-image: var(--mdbook-callouts-icon);
+}
+
+/* icons at: https://lucide.dev/icons/ */
+
+.mdbook-callouts-info {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/info */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-note {
+  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
+  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
+  /* https://lucide.dev/icons/pencil */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-tip,
+.mdbook-callouts-hint {
+  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
+  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
+  /* https://lucide.dev/icons/flame */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-important {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-success,
+.mdbook-callouts-check,
+.mdbook-callouts-done {
+  --mdbook-callouts-color: rgb(var(--color-green-rgb));
+  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
+  /* https://lucide.dev/icons/check */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-question,
+.mdbook-callouts-help,
+.mdbook-callouts-faq {
+  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
+  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
+  /* https://lucide.dev/icons/help-circle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-warning,
+.mdbook-callouts-warn {
+  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
+  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
+  /* https://lucide.dev/icons/alert-triangle */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-caution {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/shield-alert */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-failure,
+.mdbook-callouts-fail,
+.mdbook-callouts-missing {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/x */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
+}
+
+.mdbook-callouts-error,
+.mdbook-callouts-danger {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/zap */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
+}
+
+.mdbook-callouts-bug {
+  --mdbook-callouts-color: rgb(var(--color-red-rgb));
+  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
+  /* https://lucide.dev/icons/bug */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
+}
+
+.mdbook-callouts-examples,
+.mdbook-callouts-example {
+  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
+  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
+  /* https://lucide.dev/icons/list */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
+}
+
+.mdbook-callouts-quote {
+  --mdbook-callouts-color: rgb(158, 158, 158);
+  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
+  /* https://lucide.dev/icons/quote */
+  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
+}
+
+
+.ayu {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.light {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+
+.coal {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.navy {
+  --color-red-rgb: 251, 70, 76;
+  --color-red: #fb464c;
+  --color-orange-rgb: 233, 151, 63;
+  --color-orange: #e9973f;
+  --color-yellow-rgb: 224, 222, 113;
+  --color-yellow: #e0de71;
+  --color-green-rgb: 68, 207, 110;
+  --color-green: #44cf6e;
+  --color-cyan-rgb: 83, 223, 221;
+  --color-cyan: #53dfdd;
+  --color-blue-rgb: 2, 122, 255;
+  --color-blue: #027aff;
+  --color-purple-rgb: 168, 130, 255;
+  --color-purple: #a882ff;
+  --color-pink-rgb: 250, 153, 205;
+  --color-pink: #fa99cd;
+}
+
+.rust {
+  --color-red-rgb: 233, 49, 71;
+  --color-red: #e93147;
+  --color-orange-rgb: 236, 117, 0;
+  --color-orange: #ec7500;
+  --color-yellow-rgb: 224, 172, 0;
+  --color-yellow: #e0ac00;
+  --color-green-rgb: 8, 185, 78;
+  --color-green: #08b94e;
+  --color-cyan-rgb: 0, 191, 188;
+  --color-cyan: #00bfbc;
+  --color-blue-rgb: 8, 109, 221;
+  --color-blue: #086ddd;
+  --color-purple-rgb: 120, 82, 238;
+  --color-purple: #7852ee;
+  --color-pink-rgb: 213, 57, 132;
+  --color-pink: #d53984;
+}
+</style>
+<h1 id="regex-sed--awk"><a class="header" href="#regex-sed--awk">Regex, <code>sed</code> &amp; <code>awk</code></a></h1>
+<p>Reguläre Ausdrücke (Regex) sind ein mächtiges Werkzeug zur Mustererkennung in Texten. In Kombination mit <code>sed</code> und <code>awk</code> ermöglichen sie komplexe Textverarbeitung direkt im Terminal.</p>
+<h2 id="1----regex-grundlagen"><a class="header" href="#1----regex-grundlagen">1    Regex-Grundlagen</a></h2>
+<p>Reguläre Ausdrücke beschreiben Suchmuster für Text. Sie werden von vielen Tools unterstützt: <code>grep</code>, <code>sed</code>, <code>awk</code>, <code>find</code>, <code>vim</code> und Programmiersprachen wie Python, JavaScript und Rust.</p>
+<h3 id="11----literale-zeichen"><a class="header" href="#11----literale-zeichen">1.1    Literale Zeichen</a></h3>
+<p>Die einfachste Form: Zeichen matchen sich selbst.</p>
+<pre><code class="language-zsh">echo "Hallo Welt" | grep "Welt"   # Findet "Welt"
+echo "Hallo Welt" | grep "xyz"    # Keine Ausgabe
+</code></pre>
+<h3 id="12----metazeichen"><a class="header" href="#12----metazeichen">1.2    Metazeichen</a></h3>
+<p>Metazeichen haben eine besondere Bedeutung:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Zeichen</th><th>Bedeutung</th><th>Beispiel</th><th>Matcht</th></tr>
+</thead>
+<tbody>
+<tr><td><code>.</code></td><td>Beliebiges einzelnes Zeichen</td><td><code>H.llo</code></td><td>Hallo, Hello, H2llo</td></tr>
+<tr><td><code>^</code></td><td>Zeilenanfang</td><td><code>^Hallo</code></td><td>“Hallo” am Anfang</td></tr>
+<tr><td><code>$</code></td><td>Zeilenende</td><td><code>Welt$</code></td><td>“Welt” am Ende</td></tr>
+<tr><td><code>*</code></td><td>0 oder mehr des vorherigen</td><td><code>ab*c</code></td><td>ac, abc, abbc, abbbc</td></tr>
+<tr><td><code>+</code></td><td>1 oder mehr des vorherigen</td><td><code>ab+c</code></td><td>abc, abbc (nicht ac)</td></tr>
+<tr><td><code>?</code></td><td>0 oder 1 des vorherigen</td><td><code>colou?r</code></td><td>color, colour</td></tr>
+<tr><td><code>\</code></td><td>Escapen von Metazeichen</td><td><code>\.</code></td><td>Literaler Punkt</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Zeilen die mit "Error" beginnen
+grep "^Error" logfile.txt
+
+# Zeilen die mit ".txt" enden
+grep "\.txt$" dateiliste.txt
+
+# Beliebiges Zeichen zwischen H und llo
+echo -e "Hallo\nHello\nHullo" | grep "H.llo"
+</code></pre>
+<h3 id="13----zeichenklassen"><a class="header" href="#13----zeichenklassen">1.3    Zeichenklassen</a></h3>
+<p>Zeichenklassen matchen eines von mehreren Zeichen:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Syntax</th><th>Bedeutung</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td><code>[abc]</code></td><td>a, b oder c</td><td><code>[Hh]allo</code> matcht “Hallo” und  “hallo”</td></tr>
+<tr><td><code>[^abc]</code></td><td>Nicht a, b oder c</td><td><code>[^0-9]</code> matcht Nicht-Ziffern</td></tr>
+<tr><td><code>[a-z]</code></td><td>Kleinbuchstaben a–z</td><td><code>[a-zA-Z]</code> alle Buchstaben</td></tr>
+<tr><td><code>[0-9]</code></td><td>Ziffern 0–9</td><td><code>[0-9]+</code> eine oder mehr Ziffern</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Vordefinierte Zeichenklassen (POSIX):</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Klasse</th><th>Bedeutung</th><th>Äquivalent</th></tr>
+</thead>
+<tbody>
+<tr><td><code>[:alpha:](:alpha:.md)</code></td><td>Buchstaben</td><td><code>[a-zA-Z]</code></td></tr>
+<tr><td><code>[:digit:](:digit:.md)</code></td><td>Ziffern</td><td><code>[0-9]</code></td></tr>
+<tr><td><code>[:alnum:](:alnum:.md)</code></td><td>Buchstaben und Ziffern</td><td><code>[a-zA-Z0-9]</code></td></tr>
+<tr><td><code>[:space:](:space:.md)</code></td><td>Whitespace</td><td><code>[ \t\n\r]</code></td></tr>
+<tr><td><code>[:upper:](:upper:.md)</code></td><td>Großbuchstaben</td><td><code>[A-Z]</code></td></tr>
+<tr><td><code>[:lower:](:lower:.md)</code></td><td>Kleinbuchstaben</td><td><code>[a-z]</code></td></tr>
+<tr><td><code>[:punct:](:punct:.md)</code></td><td>Satzzeichen</td><td><code>[.,!?;:]</code> etc.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Nur Zeilen mit Ziffern
+grep "[0-9]" datei.txt
+
+# Zeilen die mit Großbuchstaben beginnen
+grep "^[A-Z]" datei.txt
+
+# Wörter mit Bindestrich
+grep "[a-z]-[a-z]" datei.txt
+</code></pre>
+<h3 id="14----quantifizierer"><a class="header" href="#14----quantifizierer">1.4    Quantifizierer</a></h3>
+<p>Quantifizierer bestimmen, wie oft ein Element vorkommen darf:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Syntax</th><th>Bedeutung</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td><code>*</code></td><td>0 oder mehr</td><td><code>a*</code> matcht “”, a, aa, aaa</td></tr>
+<tr><td><code>+</code></td><td>1 oder mehr</td><td><code>a+</code> matcht a, aa, aaa (nicht “”)</td></tr>
+<tr><td><code>?</code></td><td>0 oder 1</td><td><code>a?</code> matcht “”, a</td></tr>
+<tr><td><code>{n}</code></td><td>Genau n-mal</td><td><code>a{3}</code> matcht aaa</td></tr>
+<tr><td><code>{n,}</code></td><td>Mindestens n-mal</td><td><code>a{2,}</code> matcht aa, aaa, aaaa</td></tr>
+<tr><td><code>{n,m}</code></td><td>n bis m-mal</td><td><code>a{2,4}</code> matcht aa, aaa, aaaa</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Telefonnummern (vereinfacht)
+grep -E "[0-9]{3,5}" kontakte.txt
+
+# Postleitzahlen (5 Ziffern)
+grep -E "^[0-9]{5}$" plz.txt
+
+# Optionaler Bindestrich
+grep -E "[0-9]{4}-?[0-9]{4}" nummern.txt
+</code></pre>
+<h3 id="15----gruppen-und-alternativen"><a class="header" href="#15----gruppen-und-alternativen">1.5    Gruppen und Alternativen</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Syntax</th><th>Bedeutung</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td><code>(...)</code></td><td>Gruppierung</td><td><code>(ab)+</code> matcht ab, abab, ababab</td></tr>
+<tr><td><code>|</code></td><td>Alternative (ODER)</td><td><code>cat|dog</code> matcht cat oder dog</td></tr>
+<tr><td><code>\1</code>, <code>\2</code></td><td>Rückreferenz</td><td><code>(.)\1</code> matcht aa, bb, cc (Dopplungen)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># "error" oder "warning" (case-insensitive)
+grep -iE "(error|warning)" logfile.txt
+
+# Wiederholte Wörter finden
+grep -E "\b(\w+)\s+\1\b" text.txt
+
+# Entweder http oder https
+grep -E "https?://" urls.txt
+</code></pre>
+<h3 id="16----anker-und-wortgrenzen"><a class="header" href="#16----anker-und-wortgrenzen">1.6    Anker und Wortgrenzen</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Syntax</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>^</code></td><td>Zeilenanfang</td></tr>
+<tr><td><code>$</code></td><td>Zeilenende</td></tr>
+<tr><td><code>\b</code></td><td>Wortgrenze</td></tr>
+<tr><td><code>\B</code></td><td>Keine Wortgrenze</td></tr>
+<tr><td><code>\&lt;</code></td><td>Wortanfang</td></tr>
+<tr><td><code>\&gt;</code></td><td>Wortende</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Nur das Wort "the" (nicht "there", "other")
+grep -E "\bthe\b" text.txt
+
+# Zeilen die nur aus Ziffern bestehen
+grep -E "^[0-9]+$" datei.txt
+
+# Leere Zeilen
+grep -E "^$" datei.txt
+</code></pre>
+<h3 id="17----bre-vs-ere"><a class="header" href="#17----bre-vs-ere">1.7    BRE vs. ERE</a></h3>
+<p>Es gibt zwei Regex-Varianten:</p>
+<p><strong>BRE (Basic Regular Expressions):</strong></p>
+<ul>
+<li>Standard bei <code>grep</code> und <code>sed</code></li>
+<li><code>+</code>, <code>?</code>, <code>|</code>, <code>()</code> müssen escaped werden: <code>\+</code>, <code>\?</code>, <code>\|</code>, <code>\(\)</code></li>
+</ul>
+<p><strong>ERE (Extended Regular Expressions):</strong></p>
+<ul>
+<li>Bei <code>grep -E</code> (oder <code>egrep</code>) und <code>sed -E</code></li>
+<li><code>+</code>, <code>?</code>, <code>|</code>, <code>()</code> funktionieren direkt</li>
+</ul>
+<pre><code class="language-zsh"># BRE: Escaping nötig
+grep "https\?" urls.txt
+sed 's/\(error\|warning\)/PROBLEM/g' log.txt
+
+# ERE: Kein Escaping
+grep -E "https?" urls.txt
+sed -E 's/(error|warning)/PROBLEM/g' log.txt
+</code></pre>
+<p><strong>Empfehlung:</strong> ERE verwenden (<code>grep -E</code>, <code>sed -E</code>) für bessere Lesbarkeit.</p>
+<h3 id="18----regex-schnellreferenz"><a class="header" href="#18----regex-schnellreferenz">1.8    Regex-Schnellreferenz</a></h3>
+<pre><code>Zeichen:
+  .         Beliebiges Zeichen
+  \d        Ziffer (manche Tools)
+  \w        Wortzeichen [a-zA-Z0-9_]
+  \s        Whitespace
+
+Anker:
+  ^         Zeilenanfang
+  $         Zeilenende
+  \b        Wortgrenze
+
+Quantifizierer:
+  *         0 oder mehr
+  +         1 oder mehr
+  ?         0 oder 1
+  {n}       Genau n
+  {n,m}     n bis m
+
+Klassen:
+  [abc]     a, b oder c
+  [^abc]    Nicht a, b, c
+  [a-z]     Bereich a bis z
+
+Gruppen:
+  (...)     Gruppe
+  |         Alternative
+  \1        Rückreferenz
+</code></pre>
+<h2 id="2----sed--stream-editor"><a class="header" href="#2----sed--stream-editor">2    <code>sed</code> – Stream Editor</a></h2>
+<p><code>sed</code> (Stream Editor) verarbeitet Text zeilenweise und führt Transformationen durch. Es ist ideal für automatisierte Ersetzungen und Textmanipulationen.</p>
+<h3 id="21----grundsyntax"><a class="header" href="#21----grundsyntax">2.1    Grundsyntax</a></h3>
+<pre><code class="language-zsh">sed [OPTIONEN] 'BEFEHL' [DATEI]
+</code></pre>
+<p><strong>Häufige Optionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-i</code></td><td>In-place: Datei direkt ändern</td></tr>
+<tr><td><code>-i ''</code></td><td>In-place ohne Backup (macOS)</td></tr>
+<tr><td><code>-i.bak</code></td><td>In-place mit Backup</td></tr>
+<tr><td><code>-E</code></td><td>Extended Regex (ERE)</td></tr>
+<tr><td><code>-n</code></td><td>Keine automatische Ausgabe</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22----suchen-und-ersetzen-s"><a class="header" href="#22----suchen-und-ersetzen-s">2.2    Suchen und Ersetzen (<code>s</code>)</a></h3>
+<p>Das häufigste sed-Kommando:</p>
+<pre><code class="language-zsh">sed 's/SUCHE/ERSETZUNG/FLAGS'
+</code></pre>
+<p><strong>Flags:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Flag</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>g</code></td><td>Global: Alle Vorkommen ersetzen</td></tr>
+<tr><td><code>i</code></td><td>Case-insensitive</td></tr>
+<tr><td><code>p</code></td><td>Zeile ausgeben (mit <code>-n</code>)</td></tr>
+<tr><td><code>1</code>, <code>2</code>, …</td><td>Nur n-tes Vorkommen ersetzen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Erstes Vorkommen pro Zeile
+echo "hallo hallo" | sed 's/hallo/hi/'
+# Ausgabe: hi hallo
+
+# Alle Vorkommen
+echo "hallo hallo" | sed 's/hallo/hi/g'
+# Ausgabe: hi hi
+
+# Case-insensitive
+echo "Hallo HALLO" | sed 's/hallo/hi/gi'
+# Ausgabe: hi hi
+
+# Nur zweites Vorkommen
+echo "a a a a" | sed 's/a/X/2'
+# Ausgabe: a X a a
+</code></pre>
+<h3 id="23----trennzeichen"><a class="header" href="#23----trennzeichen">2.3    Trennzeichen</a></h3>
+<p>Das Trennzeichen muss nicht <code>/</code> sein – nützlich bei Pfaden:</p>
+<pre><code class="language-zsh"># Mit /
+sed 's/\/usr\/local/\/opt/g'
+
+# Besser: Anderes Trennzeichen
+sed 's|/usr/local|/opt|g'
+sed 's#/usr/local#/opt#g'
+sed 's@/usr/local@/opt@g'
+</code></pre>
+<h3 id="24----gruppen-und-rückreferenzen"><a class="header" href="#24----gruppen-und-rückreferenzen">2.4    Gruppen und Rückreferenzen</a></h3>
+<p>Mit <code>\(...\)</code> (BRE) oder <code>(...)</code> (ERE) können Teile erfasst und mit <code>\1</code>, <code>\2</code> wiederverwendet werden:</p>
+<pre><code class="language-zsh"># Reihenfolge tauschen
+echo "Max Mustermann" | sed -E 's/([^ ]+) ([^ ]+)/\2, \1/'
+# Ausgabe: Mustermann, Max
+
+# Datum umformatieren
+echo "2024-01-15" | sed -E 's/([0-9]{4})-([0-9]{2})-([0-9]{2})/\3.\2.\1/'
+# Ausgabe: 15.01.2024
+
+# Wörter verdoppeln
+echo "test" | sed -E 's/(.+)/\1 \1/'
+# Ausgabe: test test
+
+# HTML-Tags entfernen
+echo "&lt;b&gt;Text&lt;/b&gt;" | sed -E 's/&lt;[^&gt;]+&gt;//g'
+# Ausgabe: Text
+</code></pre>
+<h3 id="25----adressierung--zeilen-auswählen"><a class="header" href="#25----adressierung--zeilen-auswählen">2.5    Adressierung – Zeilen auswählen</a></h3>
+<p>Befehle können auf bestimmte Zeilen beschränkt werden:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Adresse</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>5</code></td><td>Nur Zeile 5</td></tr>
+<tr><td><code>5,10</code></td><td>Zeilen 5 bis 10</td></tr>
+<tr><td><code>$</code></td><td>Letzte Zeile</td></tr>
+<tr><td><code>/muster/</code></td><td>Zeilen die Muster enthalten</td></tr>
+<tr><td><code>1,/muster/</code></td><td>Von Zeile 1 bis erste Zeile mit Muster</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Nur Zeile 3 bearbeiten
+sed '3s/alt/neu/' datei.txt
+
+# Zeilen 2-5 bearbeiten
+sed '2,5s/alt/neu/' datei.txt
+
+# Letzte Zeile bearbeiten
+sed '$s/alt/neu/' datei.txt
+
+# Nur Zeilen mit "error"
+sed '/error/s/status/STATUS/' log.txt
+
+# Ab "START" bis "END"
+sed '/START/,/END/s/foo/bar/g' datei.txt
+</code></pre>
+<h3 id="26----weitere-sed-befehle"><a class="header" href="#26----weitere-sed-befehle">2.6    Weitere sed-Befehle</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Befehl</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>d</code></td><td>Zeile löschen</td></tr>
+<tr><td><code>p</code></td><td>Zeile ausgeben</td></tr>
+<tr><td><code>a\TEXT</code></td><td>Text nach Zeile einfügen</td></tr>
+<tr><td><code>i\TEXT</code></td><td>Text vor Zeile einfügen</td></tr>
+<tr><td><code>c\TEXT</code></td><td>Zeile ersetzen</td></tr>
+<tr><td><code>y/abc/xyz/</code></td><td>Zeichen transliterieren</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Zeilen löschen
+sed '3d' datei.txt              # Zeile 3 löschen
+sed '/^#/d' config.txt          # Kommentare löschen
+sed '/^$/d' datei.txt           # Leere Zeilen löschen
+
+# Zeilen ausgeben (mit -n)
+sed -n '5p' datei.txt           # Nur Zeile 5 ausgeben
+sed -n '10,20p' datei.txt       # Zeilen 10-20
+sed -n '/error/p' log.txt       # Nur Zeilen mit "error"
+
+# Text einfügen
+sed '3a\Neue Zeile' datei.txt   # Nach Zeile 3
+sed '1i\Kopfzeile' datei.txt    # Vor Zeile 1
+
+# Zeichen ersetzen (wie tr)
+echo "hello" | sed 'y/aeiou/AEIOU/'
+# Ausgabe: hEllO
+</code></pre>
+<h3 id="27----mehrere-befehle"><a class="header" href="#27----mehrere-befehle">2.7    Mehrere Befehle</a></h3>
+<pre><code class="language-zsh"># Mit -e
+sed -e 's/foo/bar/' -e 's/baz/qux/' datei.txt
+
+# Mit Semikolon
+sed 's/foo/bar/; s/baz/qux/' datei.txt
+
+# Mehrzeilig
+sed '
+  s/foo/bar/g
+  s/baz/qux/g
+  /^#/d
+' datei.txt
+</code></pre>
+<h3 id="28----in-place-bearbeitung"><a class="header" href="#28----in-place-bearbeitung">2.8    In-place-Bearbeitung</a></h3>
+<pre><code class="language-zsh"># macOS: Leeres Backup-Suffix erforderlich
+sed -i '' 's/alt/neu/g' datei.txt
+
+# Mit Backup
+sed -i '.bak' 's/alt/neu/g' datei.txt
+
+# Linux: Kein Suffix nötig
+sed -i 's/alt/neu/g' datei.txt
+</code></pre>
+<h3 id="29----praktische-sed-beispiele"><a class="header" href="#29----praktische-sed-beispiele">2.9    Praktische sed-Beispiele</a></h3>
+<pre><code class="language-zsh"># Leerzeichen am Zeilenende entfernen
+sed 's/[:space:](:space:.md)*$//' datei.txt
+
+# Mehrere Leerzeichen zu einem
+sed -E 's/ +/ /g' datei.txt
+
+# Erste Zeile jeder Datei (wie head -1)
+sed -n '1p' *.txt
+
+# Zeilen 5-10 löschen
+sed '5,10d' datei.txt
+
+# Jede Zeile nummerieren
+sed = datei.txt | sed 'N; s/\n/\t/'
+
+# Zwischen zwei Markern ersetzen
+sed '/BEGIN/,/END/s/old/new/g' datei.txt
+
+# Konfigurationswert ändern
+sed -E 's/^(port=).*/\18080/' config.txt
+
+# CSV: Spaltenreihenfolge ändern
+sed -E 's/([^,]+),([^,]+),([^,]+)/\3,\1,\2/' data.csv
+</code></pre>
+<h2 id="3----awk--textanalyse-und-berichte"><a class="header" href="#3----awk--textanalyse-und-berichte">3    <code>awk</code> – Textanalyse und Berichte</a></h2>
+<p><code>awk</code> ist eine vollständige Programmiersprache für Textverarbeitung. Es eignet sich besonders für spaltenbasierte Daten wie CSV, Logs und tabellarische Ausgaben.</p>
+<h3 id="31----grundsyntax"><a class="header" href="#31----grundsyntax">3.1    Grundsyntax</a></h3>
+<pre><code class="language-zsh">awk [OPTIONEN] 'PROGRAMM' [DATEI]
+</code></pre>
+<p>Ein awk-Programm besteht aus Regeln:</p>
+<pre><code>MUSTER { AKTION }
+</code></pre>
+<ul>
+<li>Zeilen die dem MUSTER entsprechen, führen die AKTION aus</li>
+<li>Ohne MUSTER: Aktion auf alle Zeilen</li>
+<li>Ohne AKTION: Zeile ausgeben</li>
+</ul>
+<h3 id="32----felder-und-variablen"><a class="header" href="#32----felder-und-variablen">3.2    Felder und Variablen</a></h3>
+<p><code>awk</code> teilt jede Zeile automatisch in Felder:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Variable</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>$0</code></td><td>Gesamte Zeile</td></tr>
+<tr><td><code>$1</code></td><td>Erstes Feld</td></tr>
+<tr><td><code>$2</code></td><td>Zweites Feld</td></tr>
+<tr><td><code>$NF</code></td><td>Letztes Feld</td></tr>
+<tr><td><code>$(NF-1)</code></td><td>Vorletztes Feld</td></tr>
+<tr><td><code>NF</code></td><td>Anzahl der Felder</td></tr>
+<tr><td><code>NR</code></td><td>Aktuelle Zeilennummer</td></tr>
+<tr><td><code>FNR</code></td><td>Zeilennummer in aktueller Datei</td></tr>
+<tr><td><code>FS</code></td><td>Feldtrenner (Standard: Whitespace)</td></tr>
+<tr><td><code>OFS</code></td><td>Ausgabe-Feldtrenner</td></tr>
+<tr><td><code>RS</code></td><td>Zeilentrenner</td></tr>
+<tr><td><code>ORS</code></td><td>Ausgabe-Zeilentrenner</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Erste Spalte ausgeben
+echo "Max 30 Berlin" | awk '{print $1}'
+# Ausgabe: Max
+
+# Mehrere Spalten
+echo "Max 30 Berlin" | awk '{print $1, $3}'
+# Ausgabe: Max Berlin
+
+# Spalten in anderer Reihenfolge
+echo "Max 30 Berlin" | awk '{print $3, $1, $2}'
+# Ausgabe: Berlin Max 30
+
+# Letzte Spalte
+echo "a b c d e" | awk '{print $NF}'
+# Ausgabe: e
+
+# Anzahl Felder
+echo "a b c d e" | awk '{print NF}'
+# Ausgabe: 5
+</code></pre>
+<h3 id="33----feldtrenner-ändern"><a class="header" href="#33----feldtrenner-ändern">3.3    Feldtrenner ändern</a></h3>
+<pre><code class="language-zsh"># Mit -F
+awk -F',' '{print $1}' datei.csv
+awk -F':' '{print $1, $3}' /etc/passwd
+
+# Im Programm
+awk 'BEGIN{FS=","} {print $1}' datei.csv
+
+# Mehrere Trennzeichen
+awk -F'[,;:]' '{print $1}' datei.txt
+
+# Tab als Trenner
+awk -F'\t' '{print $2}' datei.tsv
+</code></pre>
+<h3 id="34----muster-pattern"><a class="header" href="#34----muster-pattern">3.4    Muster (Pattern)</a></h3>
+<pre><code class="language-zsh"># Zeilen mit "error"
+awk '/error/' log.txt
+
+# Zeilen die NICHT "comment" enthalten
+awk '!/comment/' datei.txt
+
+# Zeilen wo Feld 3 größer als 100
+awk '$3 &gt; 100' daten.txt
+
+# Zeilen wo Feld 1 einem Muster entspricht
+awk '$1 ~ /^A/' namen.txt
+
+# Kombination
+awk '/error/ &amp;&amp; $3 &gt; 5' log.txt
+
+# Bereichsmuster
+awk '/START/,/END/' datei.txt
+</code></pre>
+<h3 id="35----begin-und-end"><a class="header" href="#35----begin-und-end">3.5    BEGIN und END</a></h3>
+<p><code>BEGIN</code> wird vor der ersten Zeile ausgeführt, <code>END</code> nach der letzten:</p>
+<pre><code class="language-zsh"># Kopfzeile ausgeben
+awk 'BEGIN{print "Name\tAlter"} {print $1, $2}' daten.txt
+
+# Summe berechnen
+awk '{sum += $1} END{print "Summe:", sum}' zahlen.txt
+
+# Zeilen zählen
+awk 'END{print NR, "Zeilen"}' datei.txt
+
+# Durchschnitt berechnen
+awk '{sum += $1; count++} END{print "Durchschnitt:", sum/count}' zahlen.txt
+</code></pre>
+<h3 id="36----formatierte-ausgabe-mit-printf"><a class="header" href="#36----formatierte-ausgabe-mit-printf">3.6    Formatierte Ausgabe mit <code>printf</code></a></h3>
+<pre><code class="language-zsh"># Grundsyntax
+awk '{printf "%-10s %5d\n", $1, $2}' daten.txt
+</code></pre>
+<p><strong>Format-Spezifizierer:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Format</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>%s</code></td><td>String</td></tr>
+<tr><td><code>%d</code></td><td>Integer</td></tr>
+<tr><td><code>%f</code></td><td>Fließkommazahl</td></tr>
+<tr><td><code>%.2f</code></td><td>2 Dezimalstellen</td></tr>
+<tr><td><code>%10s</code></td><td>10 Zeichen breit, rechtsbündig</td></tr>
+<tr><td><code>%-10s</code></td><td>10 Zeichen breit, linksbündig</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Tabelle formatieren
+awk '{printf "%-15s %8.2f\n", $1, $2}' preise.txt
+
+# Mit Kopfzeile
+awk 'BEGIN{printf "%-15s %8s\n", "Produkt", "Preis"; print "------------------------"}
+     {printf "%-15s %8.2f\n", $1, $2}' preise.txt
+</code></pre>
+<h3 id="37----variablen-und-berechnungen"><a class="header" href="#37----variablen-und-berechnungen">3.7    Variablen und Berechnungen</a></h3>
+<pre><code class="language-zsh"># Eigene Variablen
+awk '{total = $2 * $3; print $1, total}' bestellung.txt
+
+# Externe Variablen übergeben
+threshold=100
+awk -v limit="$threshold" '$2 &gt; limit {print}' daten.txt
+
+# Mehrere Variablen
+awk -v min=10 -v max=50 '$1 &gt;= min &amp;&amp; $1 &lt;= max' zahlen.txt
+</code></pre>
+<h3 id="38----kontrollstrukturen"><a class="header" href="#38----kontrollstrukturen">3.8    Kontrollstrukturen</a></h3>
+<p><strong>if-else:</strong></p>
+<pre><code class="language-zsh">awk '{
+    if ($3 &gt; 100)
+        print $1, "hoch"
+    else if ($3 &gt; 50)
+        print $1, "mittel"
+    else
+        print $1, "niedrig"
+}' daten.txt
+</code></pre>
+<p><strong>for-Schleife:</strong></p>
+<pre><code class="language-zsh"># Alle Felder ausgeben
+awk '{for(i=1; i&lt;=NF; i++) print i, $i}' datei.txt
+
+# Felder rückwärts
+awk '{for(i=NF; i&gt;=1; i--) printf "%s ", $i; print ""}' datei.txt
+</code></pre>
+<p><strong>while-Schleife:</strong></p>
+<pre><code class="language-zsh">awk '{
+    i = 1
+    while(i &lt;= NF) {
+        print $i
+        i++
+    }
+}' datei.txt
+</code></pre>
+<h3 id="39----arrays"><a class="header" href="#39----arrays">3.9    Arrays</a></h3>
+<pre><code class="language-zsh"># Werte zählen
+awk '{count[$1]++} END{for(key in count) print key, count[key]}' log.txt
+
+# Summen nach Kategorie
+awk '{sum[$1] += $2} END{for(cat in sum) print cat, sum[cat]}' verkauf.txt
+
+# Duplikate finden
+awk 'seen[$0]++' datei.txt
+
+# Einzigartige Zeilen (wie uniq)
+awk '!seen[$0]++' datei.txt
+</code></pre>
+<h3 id="310----eingebaute-funktionen"><a class="header" href="#310----eingebaute-funktionen">3.10    Eingebaute Funktionen</a></h3>
+<p><strong>String-Funktionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Funktion</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>length(s)</code></td><td>Länge des Strings</td></tr>
+<tr><td><code>substr(s,i,n)</code></td><td>Substring ab Position i, n Zeichen</td></tr>
+<tr><td><code>index(s,t)</code></td><td>Position von t in s</td></tr>
+<tr><td><code>split(s,a,fs)</code></td><td>String in Array aufteilen</td></tr>
+<tr><td><code>sub(r,s)</code></td><td>Erstes Vorkommen ersetzen</td></tr>
+<tr><td><code>gsub(r,s)</code></td><td>Alle Vorkommen ersetzen</td></tr>
+<tr><td><code>tolower(s)</code></td><td>In Kleinbuchstaben</td></tr>
+<tr><td><code>toupper(s)</code></td><td>In Großbuchstaben</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Beispiele:</strong></p>
+<pre><code class="language-zsh"># Stringlänge
+echo "Hallo Welt" | awk '{print length($0)}'
+# Ausgabe: 10
+
+# Substring
+echo "Hallo Welt" | awk '{print substr($0, 1, 5)}'
+# Ausgabe: Hallo
+
+# Ersetzen
+echo "foo bar foo" | awk '{gsub(/foo/, "baz"); print}'
+# Ausgabe: baz bar baz
+
+# Großbuchstaben
+echo "hallo" | awk '{print toupper($0)}'
+# Ausgabe: HALLO
+</code></pre>
+<p><strong>Mathematische Funktionen:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Funktion</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>int(x)</code></td><td>Ganzzahliger Anteil</td></tr>
+<tr><td><code>sqrt(x)</code></td><td>Quadratwurzel</td></tr>
+<tr><td><code>sin(x)</code>, <code>cos(x)</code></td><td>Trigonometrische Funktionen</td></tr>
+<tr><td><code>log(x)</code></td><td>Natürlicher Logarithmus</td></tr>
+<tr><td><code>exp(x)</code></td><td>e^x</td></tr>
+<tr><td><code>rand()</code></td><td>Zufallszahl 0–1</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="311----praktische-awk-beispiele"><a class="header" href="#311----praktische-awk-beispiele">3.11    Praktische awk-Beispiele</a></h3>
+<pre><code class="language-zsh"># CSV: Bestimmte Spalten extrahieren
+awk -F',' '{print $1, $3}' data.csv
+
+# Summe einer Spalte
+awk '{sum += $2} END{print sum}' zahlen.txt
+
+# Durchschnitt
+awk '{sum += $1; n++} END{print sum/n}' zahlen.txt
+
+# Maximum finden
+awk 'BEGIN{max=0} $1&gt;max{max=$1} END{print max}' zahlen.txt
+
+# Zeilen mit mehr als 3 Feldern
+awk 'NF &gt; 3' datei.txt
+
+# Jede zweite Zeile
+awk 'NR % 2 == 0' datei.txt
+
+# Zeilen zwischen zwei Markern (ohne Marker)
+awk '/START/{flag=1; next} /END/{flag=0} flag' datei.txt
+
+# IP-Adressen extrahieren aus Log
+awk '{print $1}' access.log | sort | uniq -c | sort -rn | head
+
+# Dateigröße pro Verzeichnis
+ls -l | awk '/^-/{sum += $5} END{print "Total:", sum, "Bytes"}'
+
+# Spalten vertauschen
+awk '{print $2, $1, $3}' datei.txt
+
+# Bestimmte Zeilen und Spalten
+awk 'NR &gt;= 5 &amp;&amp; NR &lt;= 10 {print $1, $3}' datei.txt
+
+# Feldtrenner für Ausgabe setzen
+awk 'BEGIN{OFS=","} {print $1, $2, $3}' datei.txt
+
+# Top 10 häufigste Werte
+awk '{print $1}' datei.txt | sort | uniq -c | sort -rn | head -10
+</code></pre>
+<h2 id="4----kombinationsbeispiele-pipe-workflows"><a class="header" href="#4----kombinationsbeispiele-pipe-workflows">4    Kombinationsbeispiele (Pipe-Workflows)</a></h2>
+<p>Die wahre Stärke von <code>sed</code>, <code>awk</code> und Regex zeigt sich in Kombination mit anderen Unix-Tools.</p>
+<h3 id="41----log-analyse"><a class="header" href="#41----log-analyse">4.1    Log-Analyse</a></h3>
+<p><strong>Fehler aus Log extrahieren und zählen:</strong></p>
+<pre><code class="language-zsh">grep -i "error" application.log | \
+    awk '{print $4}' | \
+    sort | uniq -c | sort -rn | head -10
+</code></pre>
+<p><strong>Zugriffe pro Stunde aus Access-Log:</strong></p>
+<pre><code class="language-zsh">awk '{print $4}' access.log | \
+    cut -d: -f2 | \
+    sort | uniq -c | \
+    awk '{print $2":00", $1}'
+</code></pre>
+<p><strong>IP-Adressen mit den meisten Fehlern:</strong></p>
+<pre><code class="language-zsh">grep " 404 \| 500 " access.log | \
+    awk '{print $1}' | \
+    sort | uniq -c | sort -rn | head -10
+</code></pre>
+<p><strong>Langsame Requests finden (&gt; 5 Sekunden):</strong></p>
+<pre><code class="language-zsh">awk '$NF &gt; 5000 {print $7, $NF"ms"}' access.log | \
+    sort -t' ' -k2 -rn | head -20
+</code></pre>
+<h3 id="42----dateitransformationen"><a class="header" href="#42----dateitransformationen">4.2    Dateitransformationen</a></h3>
+<p><strong>CSV zu TSV konvertieren:</strong></p>
+<pre><code class="language-zsh">sed 's/,/\t/g' data.csv &gt; data.tsv
+</code></pre>
+<p><strong>JSON-Lines zu CSV (einfach):</strong></p>
+<pre><code class="language-zsh">cat data.jsonl | \
+    sed 's/[{}":]//g' | \
+    sed 's/,/\t/g'
+</code></pre>
+<p><strong>Konfigurationsdatei bereinigen:</strong></p>
+<pre><code class="language-zsh"># Kommentare und leere Zeilen entfernen, sortieren
+grep -v '^#' config.txt | \
+    grep -v '^$' | \
+    sed 's/[:space:](:space:.md)*$//' | \
+    sort
+</code></pre>
+<p><strong>Markdown-Überschriften extrahieren:</strong></p>
+<pre><code class="language-zsh">grep -E "^#{1,3} " document.md | \
+    sed 's/^#* //' | \
+    awk '{printf "%d. %s\n", NR, $0}'
+</code></pre>
+<h3 id="43----system-administration"><a class="header" href="#43----system-administration">4.3    System-Administration</a></h3>
+<p><strong>Disk-Usage sortiert nach Größe:</strong></p>
+<pre><code class="language-zsh">du -sh * 2&gt;/dev/null | \
+    sort -rh | head -20
+</code></pre>
+<p><strong>Größte Dateien finden:</strong></p>
+<pre><code class="language-zsh">find . -type f -exec ls -la {} \; 2&gt;/dev/null | \
+    awk '{print $5, $9}' | \
+    sort -rn | head -20
+</code></pre>
+<p><strong>Prozesse nach Memory-Verbrauch:</strong></p>
+<pre><code class="language-zsh">ps aux | \
+    awk 'NR&gt;1 {print $4, $11}' | \
+    sort -rn | head -10
+</code></pre>
+<p><strong>Offene Ports auflisten:</strong></p>
+<pre><code class="language-zsh">netstat -an | \
+    grep LISTEN | \
+    awk '{print $4}' | \
+    sed 's/.*\.//' | \
+    sort -n | uniq
+</code></pre>
+<h3 id="44----textbereinigung"><a class="header" href="#44----textbereinigung">4.4    Textbereinigung</a></h3>
+<p><strong>Mehrfache Leerzeichen und -zeilen bereinigen:</strong></p>
+<pre><code class="language-zsh">cat messy.txt | \
+    sed 's/[:space:](:space:.md)\+/ /g' | \
+    sed 's/^[:space:](:space:.md)//' | \
+    sed 's/[:space:](:space:.md)$//' | \
+    cat -s
+</code></pre>
+<p><strong>HTML-Tags entfernen:</strong></p>
+<pre><code class="language-zsh">sed -E 's/&lt;[^&gt;]+&gt;//g' page.html | \
+    sed '/^$/d' | \
+    sed 's/&amp;nbsp;/ /g; s/&amp;amp;/\&amp;/g; s/&amp;lt;/&lt;/g; s/&amp;gt;/&gt;/g'
+</code></pre>
+<p><strong>E-Mail-Adressen extrahieren:</strong></p>
+<pre><code class="language-zsh">grep -oE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' dokument.txt | \
+    sort -u
+</code></pre>
+<p><strong>URLs extrahieren:</strong></p>
+<pre><code class="language-zsh">grep -oE 'https?://[^[:space:]"&lt;&gt;]+' webpage.html | \
+    sort -u
+</code></pre>
+<h3 id="45----datenanalyse"><a class="header" href="#45----datenanalyse">4.5    Datenanalyse</a></h3>
+<p><strong>CSV-Statistiken:</strong></p>
+<pre><code class="language-zsh"># Spalte 3: Min, Max, Durchschnitt
+awk -F',' 'NR&gt;1 {
+    sum += $3; count++;
+    if(min == "" || $3 &lt; min) min = $3;
+    if(max == "" || $3 &gt; max) max = $3
+} END {
+    print "Min:", min
+    print "Max:", max
+    print "Avg:", sum/count
+}' data.csv
+</code></pre>
+<p><strong>Häufigkeit von Werten in Spalte:</strong></p>
+<pre><code class="language-zsh">awk -F',' 'NR&gt;1 {count[$2]++} END {
+    for(val in count) print count[val], val
+}' data.csv | sort -rn
+</code></pre>
+<p><strong>Gruppierte Summen:</strong></p>
+<pre><code class="language-zsh">awk -F',' 'NR&gt;1 {sum[$1] += $3} END {
+    for(group in sum) print group, sum[group]
+}' sales.csv | sort -t' ' -k2 -rn
+</code></pre>
+<h3 id="46----batch-umbenennung"><a class="header" href="#46----batch-umbenennung">4.6    Batch-Umbenennung</a></h3>
+<p><strong>Dateinamen bereinigen (Leerzeichen durch Unterstriche):</strong></p>
+<pre><code class="language-zsh">for f in *\ *; do
+    mv "$f" "$(echo $f | sed 's/ /_/g')"
+done
+</code></pre>
+<p><strong>Dateien mit Datum versehen:</strong></p>
+<pre><code class="language-zsh">for f in *.txt; do
+    mv "$f" "$(date +%Y%m%d)_$f"
+done
+</code></pre>
+<p><strong>Erweiterung ändern:</strong></p>
+<pre><code class="language-zsh">for f in *.jpeg; do
+    mv "$f" "${f%.jpeg}.jpg"
+done
+
+# Oder mit sed
+ls *.jpeg | sed 's/\(.*\)\.jpeg/mv "\1.jpeg" "\1.jpg"/' | sh
+</code></pre>
+<h3 id="47----komplexe-pipeline-beispiele"><a class="header" href="#47----komplexe-pipeline-beispiele">4.7    Komplexe Pipeline-Beispiele</a></h3>
+<p><strong>Git: Änderungen pro Autor (letzte 30 Tage):</strong></p>
+<pre><code class="language-zsh">git log --since="30 days ago" --format='%an' | \
+    sort | uniq -c | sort -rn
+</code></pre>
+<p><strong>Apache-Log: Requests pro Minute visualisieren:</strong></p>
+<pre><code class="language-zsh">awk '{print $4}' access.log | \
+    cut -d: -f1-3 | \
+    uniq -c | \
+    awk '{printf "%s %s\n", $2, substr("====================", 1, $1/10)}'
+</code></pre>
+<p><strong>Wort-Frequenz-Analyse:</strong></p>
+<pre><code class="language-zsh">cat text.txt | \
+    tr '[:upper:]' '[:lower:]' | \
+    tr -cs '[:alpha:]' '\n' | \
+    sort | uniq -c | sort -rn | head -20
+</code></pre>
+<p><strong>JSON-Werte aggregieren (mit jq und awk):</strong></p>
+<pre><code class="language-zsh">cat data.json | \
+    jq -r '.[] | "\(.category) \(.amount)"' | \
+    awk '{sum[$1] += $2} END {for(c in sum) print c, sum[c]}' | \
+    sort -k2 -rn
+</code></pre>
+<h3 id="48----debugging-von-pipelines"><a class="header" href="#48----debugging-von-pipelines">4.8    Debugging von Pipelines</a></h3>
+<p><strong>Schritt-für-Schritt testen:</strong></p>
+<pre><code class="language-zsh"># Erst einzeln testen
+cat log.txt | head
+cat log.txt | grep "error" | head
+cat log.txt | grep "error" | awk '{print $1}' | head
+# ... dann erweitern
+</code></pre>
+<p><strong>Zwischenergebnisse mit tee:</strong></p>
+<pre><code class="language-zsh">cat data.txt | \
+    tee /dev/stderr | \     # Zeigt Zwischenergebnis
+    grep "pattern" | \
+    tee step1.txt | \       # Speichert Zwischenergebnis
+    awk '{print $2}'
+</code></pre>
+<p><strong>Pipeline mit Zeilennummern debuggen:</strong></p>
+<pre><code class="language-zsh">cat -n datei.txt | grep "muster"
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-fortgeschrittene-themen/shell-scripting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-fortgeschrittene-themen/cronjobs-launchd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-fortgeschrittene-themen/shell-scripting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-fortgeschrittene-themen/cronjobs-launchd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
