@@ -1259,4 +1259,3 @@ zcat/zless/zgrep                    # .gz
 bzcat/bzless/bzgrep                 # .bz2
 xzcat/xzless/xzgrep                 # .xz
 ```
-

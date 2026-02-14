@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 # Beispiele für alltägliche Aufgaben im Terminal
 
 ## 1    Dateien suchen
@@ -129,4 +121,3 @@ Opening the following files in preview:
 > ```zsh
 > unalias <aliasname>
 > ```
-

@@ -1,5 +1,3 @@
-
-
 # Gemeinsamkeiten mit Linux-Terminals
 
 Vieles von dem, was für macOS-Terminals gelten, ist direkt auf Linux übertragbar, es gibt jedoch einige wichtige Unterschiede. In diesem Kapitel erfolgt eine genauere Betrachtung.
@@ -75,6 +73,3 @@ Die meisten Terminal-Befehle sind identisch, nur Systemdetails und Paketverwaltu
 | **Netzwerk**                | IP-Adresse anzeigen            | `ifconfig`              | `ip addr`                | Linux nutzt moderne ip-Befehle häufiger                         |     |
 |                             | Netzwerk testen                | `ping host`             | `ping host`              | identisch                                                       |     |
 |                             |                                |                         |                          |                                                                 |     |
-
-
-

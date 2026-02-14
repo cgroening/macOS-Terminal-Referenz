@@ -269,4 +269,3 @@ befehl &> /dev/null
 mkdir ordner123 && cd ordner123  # Ordner erstellen und hineinwechseln
 cd ordner123 || mkdir ordner123  # In Ordner wechseln oder erstellen, wenn er nicht existiert
 ```
-
