@@ -23,7 +23,7 @@ echo $SHELL
 
 ## 3    Dateisystem von macOS
 
-## 4    Aktuelles Dateisystem: APFS (Apple File System)
+### 3.1    Aktuelles Dateisystem: APFS (Apple File System)
 
 Seit macOS 10.13 (High Sierra, 2017) ist **APFS** das Standard-Dateisystem für SSDs; seit macOS 10.15 (Catalina, 2019) auch für alle Laufwerke.
 
@@ -41,7 +41,7 @@ Seit macOS 10.13 (High Sierra, 2017) ist **APFS** das Standard-Dateisystem für 
 
 - **Case Sensitivity:** Standardmäßig _nicht_ case-sensitive (d. h. `Datei.txt = datei.txt`), kann aber beim Formatieren geändert werden.
 
-## 5    Wichtige Volumes und Partitionen
+### 3.2    Wichtige Volumes und Partitionen
 
 Seit macOS Catalina ist das System in mehrere logische Volumes aufgeteilt:
 
@@ -56,7 +56,7 @@ Seit macOS Catalina ist das System in mehrere logische Volumes aufgeteilt:
 
 Mit dem Befehl `diskutil` wird die komplette Volume-Struktur angezeigt.
 
-## 6    Systemschutz und Berechtigungen
+### 3.3    Systemschutz und Berechtigungen
 
 macOS schützt kritische Systembereiche durch verschiedene Mechanismen, damit Systemdateien nicht versehentlich verändert werden können.
 
@@ -69,17 +69,17 @@ macOS schützt kritische Systembereiche durch verschiedene Mechanismen, damit Sy
 - **ACLs & POSIX Permissions:**
   macOS verwendet klassische Unix-Rechte (`rwx`, siehe [[../SUMMARY#6.1 `chmod`]]) und erweiterte Access Control Lists (siehe [[../SUMMARY#6.3 ACL]]). → Anzeigen mit `ls -le`.
 
-## 7    Mountpoints und Pfade
+### 3.4    Mountpoints und Pfade
 
 - Alle Volumes werden unter `/Volumes/` eingehängt.
 - Netzlaufwerke oder externe Festplatten erscheinen dort automatisch.
 - Systempfade wie `/System`, `/Library` oder `/usr` sind meist Symlinks auf interne Strukturen des schreibgeschützten Systemvolumes.
 
-## 8    Ordnerstruktur und wichtige Verzeichnisse
+## 4    Ordnerstruktur und wichtige Verzeichnisse
 
 macOS basiert auf UNIX (BSD), daher folgt es grob der klassischen Unix-Hierarchie – erweitert um Apple-spezifische Pfade.
 
-### 8.1    Systemebene (Root `/`)
+### 4.1    Systemebene (Root `/`)
 
 | Ordner          | Beschreibung                                                                                                                                                                                                                                 |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -97,7 +97,7 @@ macOS basiert auf UNIX (BSD), daher folgt es grob der klassischen Unix-Hierarchi
 > [!NOTE]
 > Viele dieser Pfade sind symbolisch mit `/System/Volumes/Data/usr/...` verknüpft, da das eigentliche Systemvolume seit macOS Catalina schreibgeschützt ist.
 
-### 8.2    Benutzerverzeichnisse (`/Users`)
+### 4.2    Benutzerverzeichnisse (`/Users`)
 
 Jeder Benutzer hat ein eigenes Homeverzeichnis, z. B. `/Users/john`.
 
@@ -124,7 +124,7 @@ Jeder Benutzer hat ein eigenes Homeverzeichnis, z. B. `/Users/john`.
 > Das Zeichen `~` steht im Terminal als Abkürzung für das aktuelle Benutzerverzeichnis, z. B. `/Users/john`. Es wird getippt mit **⌥ N**.
 >
 > Mit `cd ~` kann man in das Homeverzeichnis zu wechseln oder mit `cd ~/Documents`, direkt in den Dokumente-Ordner.
-### 8.3    Weitere wichtige Orte
+### 4.3    Weitere wichtige Orte
 
 | **Pfad**                                                    | **Zweck**                                     |
 | ----------------------------------------------------------- | --------------------------------------------- |
@@ -134,11 +134,11 @@ Jeder Benutzer hat ein eigenes Homeverzeichnis, z. B. `/Users/john`.
 | `/Library/LaunchAgents` <br>und<br>`/Library/LaunchDaemons` | Automatische Dienste und Hintergrundprozesse. |
 | `/usr/share/`                                               | Gemeinsame Systemdateien (z. B. Manpages).    |
 
-## 9    macOS unter der Haube
+## 5    macOS unter der Haube
 
 macOS basiert auf UNIX/BSD und Darwin. Unter der Haube steuern Launchd, Logging und Sicherheitsmechanismen, wie Gatekeeper oder TCC, den Systembetrieb.
 
-### 9.1    Launchd und Dienste
+### 5.1    Launchd und Dienste
 
 `launchd` ist das zentrale Init-System von macOS und ersetzt klassische Systeme wie `systemd` oder `init`. Es startet Prozesse beim Booten, nach Bedarf oder im Benutzerkontext. Dienste werden über Property-List-Dateien (`.plist`) definiert.
 
@@ -162,7 +162,7 @@ launchctl load/unload
 
 Damit verwaltet macOS sowohl System- als auch Benutzerprozesse konsistent.
 
-### 9.2    Systemprotokolle und Logging
+### 5.2    Systemprotokolle und Logging
 
 macOS verwendet seit Sierra ein *Unified Logging System*, das alle Logmeldungen zentral verfügbar macht.
 
@@ -188,7 +188,7 @@ log show --predicate 'eventMessage contains "error"'
 
 gezielt Fehlermeldungen finden.
 
-### 9.3    Netzwerk & Namensauflösung
+### 5.3    Netzwerk & Namensauflösung
 
 macOS bietet zahlreiche Kommandozeilenwerkzeuge zur Verwaltung und Diagnose von Netzwerken. Neben klassischen UNIX-Befehlen wie `ping` und `traceroute` sind vor allem networksetup und scutil für Systemkonfigurationen relevant.
 
@@ -203,7 +203,7 @@ macOS bietet zahlreiche Kommandozeilenwerkzeuge zur Verwaltung und Diagnose von 
 | `scutil --dns`   | Listet DNS-Server, Suchdomänen und aktuelle Resolver-Einstellungen auf           | `scutil --dns`                       |
 | `cat /etc/hosts` | Zeigt lokale Hostnamen-Zuordnungen an oder ermöglicht deren Bearbeitung          | `sudo nano /etc/hosts`               |
 
-### 9.4    Sicherheitsmechanismen
+### 5.4    Sicherheitsmechanismen
 
 Die folgenden Mechanismen/Schutzebenen wirken zusammen, um das System vor Malware und unautorisierten Änderungen zu schützen:
 
@@ -212,7 +212,7 @@ Die folgenden Mechanismen/Schutzebenen wirken zusammen, um das System vor Malwar
 - **Notarization** stellt sicher, dass Apps von Apple geprüft wurden.
 - **Sandboxing** und **TCC (Transparency, Consent & Control)** begrenzen App-Zugriffe auf Dateien, Kamera, Mikrofon usw.
 
-### 9.5    Prozess- & Systemüberwachung
+### 5.5    Prozess- & Systemüberwachung
 
 Es gibt mehrere Tools, um Prozesse, Ressourcen und Systemzustände zu überwachen. Während `ps` und `top` Standardbefehle aus der UNIX-Welt sind, liefert `htop` eine moderne, farbige Ansicht. Befehle wie `lsof`, `vm_stat` und `powermetrics` helfen bei tiefergehender Analyse von Performance, Speicher oder Energieverbrauch.
 

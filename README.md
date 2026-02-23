@@ -72,4 +72,4 @@ Verbesserungsvorschläge, Korrekturen und Ergänzungen sind willkommen!
 
 ## 📝 Lizenz
 
-Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).
+Dieses Projekt steht unter der [MIT-Lizenz](LICENSE.md).
