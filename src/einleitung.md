@@ -6,12 +6,11 @@ Das Terminal ist weit mehr als ein schwarzes Fenster mit grünem Text – es ist
 
 ## Warum das Terminal beherrschen?
 
-Das macOS-Terminal bzw. die Shell (standardmäßig *zsh* seit macOS Catalina) ist die direkte Schnittstelle zum Betriebssystem. Es ermöglicht:
+Das macOS-Terminal bzw. die Shell (standardmäßig *zsh* seit macOS Catalina) ist die direkte und mächtigste Schnittstelle zum Betriebssystem. Es ermöglicht:
 
 * **Geschwindigkeit**: Navigation mit der Tastatur – keine Mausklicks, keine Verzögerungen
 * **Automatisierung**: Komplexe Aufgaben mit einem einzigen Befehl wiederholen
-* **Präzision**: 1000 Dateien in Sekunden nach exakten Mustern um umbenennen
-* **Kontrolle**: Auf Systemeinstellungen und Systemdateien
+* **Kontrolle**: Zugriff auf (versteckte) Systemeinstellungen und Systemdateien
 * **Entwicklung**: Konfiguration von Entwicklungsumgebungen, Verwaltung von Git-Repositories, Deployment von Code
 * **Fehleranalyse**: Durchsuchen von Logs, Analysieren von Prozesse, Verstehen von Systeminformationen
 * **Server-Verwaltung**: Effiziente Verwaltung von Cloud-Systemen und Remote-Servern
