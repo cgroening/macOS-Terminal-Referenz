@@ -17,7 +17,7 @@ echo $SHELL
 | **Shell**              | Programm, das Befehle interpretiert (`zsh`, `bash`, `fish` etc.) |
 | **Prompt**             | Die Eingabeaufforderung, z. B. `username@Mac ~ %`                |
 | **Pfad (Path)**        | Gibt an, wo im Dateisystem man sich befindest                    |
-| **Home-Verzeichnis**   | Pfad des persönlichen Bereichs: `~ oder /Users/<username>`       |
+| **Home-Verzeichnis**   | Pfad des persönlichen Bereichs: `~` oder `/Users/<username>`     |
 | **Root**               | Das oberste Verzeichnis des Systems: `/`                         |
 | **Umgebungsvariablen** | Werte, die Systemverhalten beeinflussen, z. B. `PATH`, `HOME`    |
 
