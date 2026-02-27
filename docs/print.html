@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "ayu";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "searchindex-6dabb882.js";
+            window.path_to_searchindex_js = "searchindex-9b839c79.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-76266586.js"></script>
+        <script src="toc-f1aee6e3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -421,12 +421,11 @@
 <h2 id="willkommen-zur-macos-terminal-referenz"><a class="header" href="#willkommen-zur-macos-terminal-referenz">Willkommen zur macOS Terminal Referenz</a></h2>
 <p>Das Terminal ist weit mehr als ein schwarzes Fenster mit grünem Text – es ist das mächtigste Werkzeug auf deinem Mac. Während die grafische Oberfläche ihre Berechtigung hat, ermöglicht das Terminal eine Kontrolle und Effizienz, die mit Mausklicks unerreichbar bleibt.</p>
 <h2 id="warum-das-terminal-beherrschen"><a class="header" href="#warum-das-terminal-beherrschen">Warum das Terminal beherrschen?</a></h2>
-<p>Das macOS-Terminal bzw. die Shell (standardmäßig <em>zsh</em> seit macOS Catalina) ist die direkte Schnittstelle zum Betriebssystem. Es ermöglicht:</p>
+<p>Das macOS-Terminal bzw. die Shell (standardmäßig <em>zsh</em> seit macOS Catalina) ist die direkte und mächtigste Schnittstelle zum Betriebssystem. Es ermöglicht:</p>
 <ul>
 <li><strong>Geschwindigkeit</strong>: Navigation mit der Tastatur – keine Mausklicks, keine Verzögerungen</li>
 <li><strong>Automatisierung</strong>: Komplexe Aufgaben mit einem einzigen Befehl wiederholen</li>
-<li><strong>Präzision</strong>: 1000 Dateien in Sekunden nach exakten Mustern um umbenennen</li>
-<li><strong>Kontrolle</strong>: Auf Systemeinstellungen und Systemdateien</li>
+<li><strong>Kontrolle</strong>: Zugriff auf (versteckte) Systemeinstellungen und Systemdateien</li>
 <li><strong>Entwicklung</strong>: Konfiguration von Entwicklungsumgebungen, Verwaltung von Git-Repositories, Deployment von Code</li>
 <li><strong>Fehleranalyse</strong>: Durchsuchen von Logs, Analysieren von Prozesse, Verstehen von Systeminformationen</li>
 <li><strong>Server-Verwaltung</strong>: Effiziente Verwaltung von Cloud-Systemen und Remote-Servern</li>
@@ -695,264 +694,6 @@
   --color-pink: #d53984;
 }
 </style>
-<h1 id="einleitung-1"><a class="header" href="#einleitung-1">Einleitung</a></h1>
-<h2 id="1----warum-das-terminal-beherrschen"><a class="header" href="#1----warum-das-terminal-beherrschen">1    Warum das Terminal beherrschen?</a></h2>
-<p>Das macOS-Terminal bzw. die Shell (meistens <em>zsh</em> oder <em>bash</em>) ist die mächtigste Schnittstelle des Systems. Es ermöglicht unter anderem</p>
-<ul>
-<li>schnelle Navigation mit der Tastatur – keine Mausklicks,</li>
-<li>Stapel-Umbenennung von Dateien in Sekunden,</li>
-<li>Fehleranalyse (Logs, Prozesse, Systeminformationen),</li>
-<li>Konfiguration von Entwicklungsumgebungen (z. B. Git, Python)</li>
-<li>Automatisierung (z. B. Durchführung wiederkehrender Aufgaben mit Skripten),</li>
-<li>Konfiguration von versteckten Systemeinstellungen,</li>
-<li>und die Verwaltung von Server- und Cloud-Systemen.</li>
-</ul>
-<div class="mdbook-callouts mdbook-callouts-note">
-<p class="mdbook-callouts-title">
-  <span class="mdbook-callouts-icon"></span>
-  note
-</p>
-
-<p>Mit dem Terminal hat man die volle Kontrolle über das System. Es ist kein Relikt, sondern das präziseste und schnellste Werkzeug des Betriebssystems.</p>
-</div>
-
-<div style="break-before: page; page-break-before: always;"></div><style>
-.mdbook-callouts {
-  padding: 8px 16px;
-  margin-bottom: 16px;
-  border-radius: 4px;
-  /* border-left: 0.25em solid var(--mdbook-callouts-color); */
-  background: var(--mdbook-callouts-background);
-}
-
-.mdbook-callouts > *:first-child {
-  margin-top: 0;
-}
-
-.mdbook-callouts > *:last-child {
-  margin-bottom: 0;
-}
-
-.mdbook-callouts-title {
-  display: flex;
-  font-weight: 600;
-  align-items: center;
-  line-height: 1;
-  color: var(--mdbook-callouts-color);
-  text-transform: capitalize;
-}
-
-.mdbook-callouts-icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-right: 0.2em;
-  background-color: currentColor;
-  -webkit-mask: no-repeat center / 100%;
-  mask: no-repeat center / 100%;
-  -webkit-mask-image: var(--mdbook-callouts-icon);
-  mask-image: var(--mdbook-callouts-icon);
-}
-
-/* icons at: https://lucide.dev/icons/ */
-
-.mdbook-callouts-info {
-  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
-  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
-  /* https://lucide.dev/icons/info */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDE2di00Ii8+PHBhdGggZD0iTTEyIDhoLjAxIi8+PC9zdmc+');
-}
-
-.mdbook-callouts-note {
-  --mdbook-callouts-color: rgb(var(--color-blue-rgb));
-  --mdbook-callouts-background: rgba(var(--color-blue-rgb), 0.1);
-  /* https://lucide.dev/icons/pencil */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBlbmNpbCI+PHBhdGggZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVaIi8+PHBhdGggZD0ibTE1IDUgNCA0Ii8+PC9zdmc+');
-}
-
-.mdbook-callouts-tip,
-.mdbook-callouts-hint {
-  --mdbook-callouts-color: rgb(var(--color-cyan-rgb));
-  --mdbook-callouts-background: rgba(var(--color-cyan-rgb), 0.1);
-  /* https://lucide.dev/icons/flame */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZsYW1lIj48cGF0aCBkPSJNOC41IDE0LjVBMi41IDIuNSAwIDAgMCAxMSAxMmMwLTEuMzgtLjUtMi0xLTMtMS4wNzItMi4xNDMtLjIyNC00LjA1NCAyLTYgLjUgMi41IDIgNC45IDQgNi41IDIgMS42IDMgMy41IDMgNS41YTcgNyAwIDEgMS0xNCAwYzAtMS4xNTMuNDMzLTIuMjk0IDEtM2EyLjUgMi41IDAgMCAwIDIuNSAyLjV6Ii8+PC9zdmc+');
-}
-
-.mdbook-callouts-important {
-  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
-  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
-  /* https://lucide.dev/icons/alert-circle */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LWNpcmNsZSI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjgiIHkyPSIxMiIvPjxsaW5lIHgxPSIxMiIgeDI9IjEyLjAxIiB5MT0iMTYiIHkyPSIxNiIvPjwvc3ZnPg==');
-}
-
-.mdbook-callouts-success,
-.mdbook-callouts-check,
-.mdbook-callouts-done {
-  --mdbook-callouts-color: rgb(var(--color-green-rgb));
-  --mdbook-callouts-background: rgba(var(--color-green-rgb), 0.1);
-  /* https://lucide.dev/icons/check */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=');
-}
-
-.mdbook-callouts-question,
-.mdbook-callouts-help,
-.mdbook-callouts-faq {
-  --mdbook-callouts-color: rgb(var(--color-pink-rgb));
-  --mdbook-callouts-background: rgba(var(--color-pink-rgb), 0.1);
-  /* https://lucide.dev/icons/help-circle */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlbHAtY2lyY2xlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
-}
-
-.mdbook-callouts-warning,
-.mdbook-callouts-warn {
-  --mdbook-callouts-color: rgb(var(--color-orange-rgb));
-  --mdbook-callouts-background: rgba(var(--color-orange-rgb), 0.1);
-  /* https://lucide.dev/icons/alert-triangle */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFsZXJ0LXRyaWFuZ2xlIj48cGF0aCBkPSJtMjEuNzMgMTgtOC0xNGEyIDIgMCAwIDAtMy40OCAwbC04IDE0QTIgMiAwIDAgMCA0IDIxaDE2YTIgMiAwIDAgMCAxLjczLTNaIi8+PHBhdGggZD0iTTEyIDl2NCIvPjxwYXRoIGQ9Ik0xMiAxN2guMDEiLz48L3N2Zz4=');
-}
-
-.mdbook-callouts-caution {
-  --mdbook-callouts-color: rgb(var(--color-red-rgb));
-  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
-  /* https://lucide.dev/icons/shield-alert */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoaWVsZC1hbGVydCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEwIi8+PHBhdGggZD0iTTEyIDh2NCIvPjxwYXRoIGQ9Ik0xMiAxNmguMDEiLz48L3N2Zz4=');
-}
-
-.mdbook-callouts-failure,
-.mdbook-callouts-fail,
-.mdbook-callouts-missing {
-  --mdbook-callouts-color: rgb(var(--color-red-rgb));
-  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
-  /* https://lucide.dev/icons/x */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+');
-}
-
-.mdbook-callouts-error,
-.mdbook-callouts-danger {
-  --mdbook-callouts-color: rgb(var(--color-red-rgb));
-  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
-  /* https://lucide.dev/icons/zap */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBvbHlnb24gcG9pbnRzPSIxMyAyIDMgMTQgMTIgMTQgMTEgMjIgMjEgMTAgMTIgMTAgMTMgMiIvPjwvc3ZnPg==');
-}
-
-.mdbook-callouts-bug {
-  --mdbook-callouts-color: rgb(var(--color-red-rgb));
-  --mdbook-callouts-background: rgba(var(--color-red-rgb), 0.1);
-  /* https://lucide.dev/icons/bug */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJ1ZyI+PHBhdGggZD0ibTggMiAxLjg4IDEuODgiLz48cGF0aCBkPSJNMTQuMTIgMy44OCAxNiAyIi8+PHBhdGggZD0iTTkgNy4xM3YtMWEzLjAwMyAzLjAwMyAwIDEgMSA2IDB2MSIvPjxwYXRoIGQ9Ik0xMiAyMGMtMy4zIDAtNi0yLjctNi02di0zYTQgNCAwIDAgMSA0LTRoNGE0IDQgMCAwIDEgNCA0djNjMCAzLjMtMi43IDYtNiA2Ii8+PHBhdGggZD0iTTEyIDIwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNSIvPjxwYXRoIGQ9Ik02IDEzSDIiLz48cGF0aCBkPSJNMyAyMWMwLTIuMSAxLjctMy45IDMuOC00Ii8+PHBhdGggZD0iTTIwLjk3IDVjMCAyLjEtMS42IDMuOC0zLjUgNCIvPjxwYXRoIGQ9Ik0yMiAxM2gtNCIvPjxwYXRoIGQ9Ik0xNy4yIDE3YzIuMS4xIDMuOCAxLjkgMy44IDQiLz48L3N2Zz4=');
-}
-
-.mdbook-callouts-examples,
-.mdbook-callouts-example {
-  --mdbook-callouts-color: rgb(var(--color-purple-rgb));
-  --mdbook-callouts-background: rgba(var(--color-purple-rgb), 0.1);
-  /* https://lucide.dev/icons/list */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QiPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSI4IiB4Mj0iMjEiIHkxPSIxMiIgeTI9IjEyIi8+PGxpbmUgeDE9IjgiIHgyPSIyMSIgeTE9IjE4IiB5Mj0iMTgiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSI2IiB5Mj0iNiIvPjxsaW5lIHgxPSIzIiB4Mj0iMy4wMSIgeTE9IjEyIiB5Mj0iMTIiLz48bGluZSB4MT0iMyIgeDI9IjMuMDEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+');
-}
-
-.mdbook-callouts-quote {
-  --mdbook-callouts-color: rgb(158, 158, 158);
-  --mdbook-callouts-background: rgba(158, 158, 158, 0.1);
-  /* https://lucide.dev/icons/quote */
-  --mdbook-callouts-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXF1b3RlIj48cGF0aCBkPSJNMyAyMWMzIDAgNy0xIDctOFY1YzAtMS4yNS0uNzU2LTIuMDE3LTItMkg0Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDIgMSAwIDEgMCAxIDF2MWMwIDEtMSAyLTIgMnMtMSAuMDA4LTEgMS4wMzFWMjBjMCAxIDAgMSAxIDF6Ii8+PHBhdGggZD0iTTE1IDIxYzMgMCA3LTEgNy04VjVjMC0xLjI1LS43NTctMi4wMTctMi0yaC00Yy0xLjI1IDAtMiAuNzUtMiAxLjk3MlYxMWMwIDEuMjUuNzUgMiAyIDJoLjc1YzAgMi4yNS4yNSA0LTIuNzUgNHYzYzAgMSAwIDEgMSAxeiIvPjwvc3ZnPg==');
-}
-
-
-.ayu {
-  --color-red-rgb: 251, 70, 76;
-  --color-red: #fb464c;
-  --color-orange-rgb: 233, 151, 63;
-  --color-orange: #e9973f;
-  --color-yellow-rgb: 224, 222, 113;
-  --color-yellow: #e0de71;
-  --color-green-rgb: 68, 207, 110;
-  --color-green: #44cf6e;
-  --color-cyan-rgb: 83, 223, 221;
-  --color-cyan: #53dfdd;
-  --color-blue-rgb: 2, 122, 255;
-  --color-blue: #027aff;
-  --color-purple-rgb: 168, 130, 255;
-  --color-purple: #a882ff;
-  --color-pink-rgb: 250, 153, 205;
-  --color-pink: #fa99cd;
-}
-
-.light {
-  --color-red-rgb: 233, 49, 71;
-  --color-red: #e93147;
-  --color-orange-rgb: 236, 117, 0;
-  --color-orange: #ec7500;
-  --color-yellow-rgb: 224, 172, 0;
-  --color-yellow: #e0ac00;
-  --color-green-rgb: 8, 185, 78;
-  --color-green: #08b94e;
-  --color-cyan-rgb: 0, 191, 188;
-  --color-cyan: #00bfbc;
-  --color-blue-rgb: 8, 109, 221;
-  --color-blue: #086ddd;
-  --color-purple-rgb: 120, 82, 238;
-  --color-purple: #7852ee;
-  --color-pink-rgb: 213, 57, 132;
-  --color-pink: #d53984;
-}
-
-.coal {
-  --color-red-rgb: 251, 70, 76;
-  --color-red: #fb464c;
-  --color-orange-rgb: 233, 151, 63;
-  --color-orange: #e9973f;
-  --color-yellow-rgb: 224, 222, 113;
-  --color-yellow: #e0de71;
-  --color-green-rgb: 68, 207, 110;
-  --color-green: #44cf6e;
-  --color-cyan-rgb: 83, 223, 221;
-  --color-cyan: #53dfdd;
-  --color-blue-rgb: 2, 122, 255;
-  --color-blue: #027aff;
-  --color-purple-rgb: 168, 130, 255;
-  --color-purple: #a882ff;
-  --color-pink-rgb: 250, 153, 205;
-  --color-pink: #fa99cd;
-}
-
-.navy {
-  --color-red-rgb: 251, 70, 76;
-  --color-red: #fb464c;
-  --color-orange-rgb: 233, 151, 63;
-  --color-orange: #e9973f;
-  --color-yellow-rgb: 224, 222, 113;
-  --color-yellow: #e0de71;
-  --color-green-rgb: 68, 207, 110;
-  --color-green: #44cf6e;
-  --color-cyan-rgb: 83, 223, 221;
-  --color-cyan: #53dfdd;
-  --color-blue-rgb: 2, 122, 255;
-  --color-blue: #027aff;
-  --color-purple-rgb: 168, 130, 255;
-  --color-purple: #a882ff;
-  --color-pink-rgb: 250, 153, 205;
-  --color-pink: #fa99cd;
-}
-
-.rust {
-  --color-red-rgb: 233, 49, 71;
-  --color-red: #e93147;
-  --color-orange-rgb: 236, 117, 0;
-  --color-orange: #ec7500;
-  --color-yellow-rgb: 224, 172, 0;
-  --color-yellow: #e0ac00;
-  --color-green-rgb: 8, 185, 78;
-  --color-green: #08b94e;
-  --color-cyan-rgb: 0, 191, 188;
-  --color-cyan: #00bfbc;
-  --color-blue-rgb: 8, 109, 221;
-  --color-blue: #086ddd;
-  --color-purple-rgb: 120, 82, 238;
-  --color-purple: #7852ee;
-  --color-pink-rgb: 213, 57, 132;
-  --color-pink: #d53984;
-}
-</style>
 <h1 id="grundlagen"><a class="header" href="#grundlagen">Grundlagen</a></h1>
 <h2 id="1----was-ist-das-terminal"><a class="header" href="#1----was-ist-das-terminal">1    Was ist das Terminal</a></h2>
 <p>Das Terminal ist ein Programm, dass eine Shell, d. h. einen Kommandozeileninterpreter, ausführt. macOS nutzt standardmäßig <code>zsh</code> (Z Shell). Es wird im folgenden davon ausgegangen, dass <code>zsh</code> verwendet wird.</p>
@@ -976,7 +717,7 @@
 </table>
 </div>
 <h2 id="3----dateisystem-von-macos"><a class="header" href="#3----dateisystem-von-macos">3    Dateisystem von macOS</a></h2>
-<h2 id="4----aktuelles-dateisystem-apfs-apple-file-system"><a class="header" href="#4----aktuelles-dateisystem-apfs-apple-file-system">4    Aktuelles Dateisystem: APFS (Apple File System)</a></h2>
+<h3 id="31----aktuelles-dateisystem-apfs-apple-file-system"><a class="header" href="#31----aktuelles-dateisystem-apfs-apple-file-system">3.1    Aktuelles Dateisystem: APFS (Apple File System)</a></h3>
 <p>Seit macOS 10.13 (High Sierra, 2017) ist <strong>APFS</strong> das Standard-Dateisystem für SSDs; seit macOS 10.15 (Catalina, 2019) auch für alle Laufwerke.</p>
 <p><strong>Merkmale:</strong></p>
 <ul>
@@ -997,7 +738,7 @@
 <p><strong>Case Sensitivity:</strong> Standardmäßig <em>nicht</em> case-sensitive (d. h. <code>Datei.txt = datei.txt</code>), kann aber beim Formatieren geändert werden.</p>
 </li>
 </ul>
-<h2 id="5----wichtige-volumes-und-partitionen"><a class="header" href="#5----wichtige-volumes-und-partitionen">5    Wichtige Volumes und Partitionen</a></h2>
+<h3 id="32----wichtige-volumes-und-partitionen"><a class="header" href="#32----wichtige-volumes-und-partitionen">3.2    Wichtige Volumes und Partitionen</a></h3>
 <p>Seit macOS Catalina ist das System in mehrere logische Volumes aufgeteilt:</p>
 <ul>
 <li>
@@ -1014,7 +755,7 @@ Preboot hilft beim Starten des Systems, Recovery ermöglicht Wiederherstellung u
 </li>
 </ul>
 <p>Mit dem Befehl <code>diskutil</code> wird die komplette Volume-Struktur angezeigt.</p>
-<h2 id="6----systemschutz-und-berechtigungen"><a class="header" href="#6----systemschutz-und-berechtigungen">6    Systemschutz und Berechtigungen</a></h2>
+<h3 id="33----systemschutz-und-berechtigungen"><a class="header" href="#33----systemschutz-und-berechtigungen">3.3    Systemschutz und Berechtigungen</a></h3>
 <p>macOS schützt kritische Systembereiche durch verschiedene Mechanismen, damit Systemdateien nicht versehentlich verändert werden können.</p>
 <ul>
 <li>
@@ -1030,15 +771,15 @@ Viele Apps laufen in isolierten Containern, sodass sie nur auf erlaubte Dateien 
 macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY.html#6.1-`chmod`">../SUMMARY</a>) und erweiterte Access Control Lists (siehe <a href="SUMMARY.html#6.3-acl">../SUMMARY</a>). → Anzeigen mit <code>ls -le</code>.</p>
 </li>
 </ul>
-<h2 id="7----mountpoints-und-pfade"><a class="header" href="#7----mountpoints-und-pfade">7    Mountpoints und Pfade</a></h2>
+<h3 id="34----mountpoints-und-pfade"><a class="header" href="#34----mountpoints-und-pfade">3.4    Mountpoints und Pfade</a></h3>
 <ul>
 <li>Alle Volumes werden unter <code>/Volumes/</code> eingehängt.</li>
 <li>Netzlaufwerke oder externe Festplatten erscheinen dort automatisch.</li>
 <li>Systempfade wie <code>/System</code>, <code>/Library</code> oder <code>/usr</code> sind meist Symlinks auf interne Strukturen des schreibgeschützten Systemvolumes.</li>
 </ul>
-<h2 id="8----ordnerstruktur-und-wichtige-verzeichnisse"><a class="header" href="#8----ordnerstruktur-und-wichtige-verzeichnisse">8    Ordnerstruktur und wichtige Verzeichnisse</a></h2>
+<h2 id="4----ordnerstruktur-und-wichtige-verzeichnisse"><a class="header" href="#4----ordnerstruktur-und-wichtige-verzeichnisse">4    Ordnerstruktur und wichtige Verzeichnisse</a></h2>
 <p>macOS basiert auf UNIX (BSD), daher folgt es grob der klassischen Unix-Hierarchie – erweitert um Apple-spezifische Pfade.</p>
-<h3 id="81----systemebene-root-"><a class="header" href="#81----systemebene-root-">8.1    Systemebene (Root <code>/</code>)</a></h3>
+<h3 id="41----systemebene-root-"><a class="header" href="#41----systemebene-root-">4.1    Systemebene (Root <code>/</code>)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -1067,7 +808,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY
 <p>Viele dieser Pfade sind symbolisch mit <code>/System/Volumes/Data/usr/...</code> verknüpft, da das eigentliche Systemvolume seit macOS Catalina schreibgeschützt ist.</p>
 </div>
 
-<h3 id="82----benutzerverzeichnisse-users"><a class="header" href="#82----benutzerverzeichnisse-users">8.2    Benutzerverzeichnisse (<code>/Users</code>)</a></h3>
+<h3 id="42----benutzerverzeichnisse-users"><a class="header" href="#42----benutzerverzeichnisse-users">4.2    Benutzerverzeichnisse (<code>/Users</code>)</a></h3>
 <p>Jeder Benutzer hat ein eigenes Homeverzeichnis, z. B. <code>/Users/john</code>.</p>
 <p><strong>Wichtige Unterordner:</strong></p>
 <div class="table-wrapper">
@@ -1106,7 +847,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY
 <p>Mit <code>cd ~</code> kann man in das Homeverzeichnis zu wechseln oder mit <code>cd ~/Documents</code>, direkt in den Dokumente-Ordner.</p>
 </div>
 
-<h3 id="83----weitere-wichtige-orte"><a class="header" href="#83----weitere-wichtige-orte">8.3    Weitere wichtige Orte</a></h3>
+<h3 id="43----weitere-wichtige-orte"><a class="header" href="#43----weitere-wichtige-orte">4.3    Weitere wichtige Orte</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -1121,9 +862,9 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY
 </tbody>
 </table>
 </div>
-<h2 id="9----macos-unter-der-haube"><a class="header" href="#9----macos-unter-der-haube">9    macOS unter der Haube</a></h2>
+<h2 id="5----macos-unter-der-haube"><a class="header" href="#5----macos-unter-der-haube">5    macOS unter der Haube</a></h2>
 <p>macOS basiert auf UNIX/BSD und Darwin. Unter der Haube steuern Launchd, Logging und Sicherheitsmechanismen, wie Gatekeeper oder TCC, den Systembetrieb.</p>
-<h3 id="91----launchd-und-dienste"><a class="header" href="#91----launchd-und-dienste">9.1    Launchd und Dienste</a></h3>
+<h3 id="51----launchd-und-dienste"><a class="header" href="#51----launchd-und-dienste">5.1    Launchd und Dienste</a></h3>
 <p><code>launchd</code> ist das zentrale Init-System von macOS und ersetzt klassische Systeme wie <code>systemd</code> oder <code>init</code>. Es startet Prozesse beim Booten, nach Bedarf oder im Benutzerkontext. Dienste werden über Property-List-Dateien (<code>.plist</code>) definiert.</p>
 <p><strong>Speicherort der <code>.plist</code>-Dateien:</strong></p>
 <ul>
@@ -1138,7 +879,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY
 <pre><code class="language-zsh">launchctl load/unload
 </code></pre>
 <p>Damit verwaltet macOS sowohl System- als auch Benutzerprozesse konsistent.</p>
-<h3 id="92----systemprotokolle-und-logging"><a class="header" href="#92----systemprotokolle-und-logging">9.2    Systemprotokolle und Logging</a></h3>
+<h3 id="52----systemprotokolle-und-logging"><a class="header" href="#52----systemprotokolle-und-logging">5.2    Systemprotokolle und Logging</a></h3>
 <p>macOS verwendet seit Sierra ein <em>Unified Logging System</em>, das alle Logmeldungen zentral verfügbar macht.</p>
 <p><strong>Vergangene Ereignisse anzeigen:</strong></p>
 <pre><code class="language-zsh">log show
@@ -1151,7 +892,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY
 <pre><code class="language-zsh">log show --predicate 'eventMessage contains "error"'
 </code></pre>
 <p>gezielt Fehlermeldungen finden.</p>
-<h3 id="93----netzwerk--namensauflösung"><a class="header" href="#93----netzwerk--namensauflösung">9.3    Netzwerk &amp; Namensauflösung</a></h3>
+<h3 id="53----netzwerk--namensauflösung"><a class="header" href="#53----netzwerk--namensauflösung">5.3    Netzwerk &amp; Namensauflösung</a></h3>
 <p>macOS bietet zahlreiche Kommandozeilenwerkzeuge zur Verwaltung und Diagnose von Netzwerken. Neben klassischen UNIX-Befehlen wie <code>ping</code> und <code>traceroute</code> sind vor allem networksetup und scutil für Systemkonfigurationen relevant.</p>
 <p>Über den Dienst <strong>mDNSResponder</strong> (Bonjour) werden Geräte im lokalen Netz automatisch erkannt. Die Datei <code>/etc/hosts</code> erlaubt lokale DNS-Zuordnungen.</p>
 <div class="table-wrapper">
@@ -1169,7 +910,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY
 </tbody>
 </table>
 </div>
-<h3 id="94----sicherheitsmechanismen"><a class="header" href="#94----sicherheitsmechanismen">9.4    Sicherheitsmechanismen</a></h3>
+<h3 id="54----sicherheitsmechanismen"><a class="header" href="#54----sicherheitsmechanismen">5.4    Sicherheitsmechanismen</a></h3>
 <p>Die folgenden Mechanismen/Schutzebenen wirken zusammen, um das System vor Malware und unautorisierten Änderungen zu schützen:</p>
 <ul>
 <li><strong>Gatekeeper</strong> blockiert unsignierte oder nicht-notarisierte Apps.</li>
@@ -1177,7 +918,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="SUMMARY
 <li><strong>Notarization</strong> stellt sicher, dass Apps von Apple geprüft wurden.</li>
 <li><strong>Sandboxing</strong> und <strong>TCC (Transparency, Consent &amp; Control)</strong> begrenzen App-Zugriffe auf Dateien, Kamera, Mikrofon usw.</li>
 </ul>
-<h3 id="95----prozess---systemüberwachung"><a class="header" href="#95----prozess---systemüberwachung">9.5    Prozess- &amp; Systemüberwachung</a></h3>
+<h3 id="55----prozess---systemüberwachung"><a class="header" href="#55----prozess---systemüberwachung">5.5    Prozess- &amp; Systemüberwachung</a></h3>
 <p>Es gibt mehrere Tools, um Prozesse, Ressourcen und Systemzustände zu überwachen. Während <code>ps</code> und <code>top</code> Standardbefehle aus der UNIX-Welt sind, liefert <code>htop</code> eine moderne, farbige Ansicht. Befehle wie <code>lsof</code>, <code>vm_stat</code> und <code>powermetrics</code> helfen bei tiefergehender Analyse von Performance, Speicher oder Energieverbrauch.</p>
 <div class="table-wrapper">
 <table>
@@ -18783,9 +18524,7 @@ system_profiler SPAudioDataType
 </tbody>
 </table>
 </div>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="make"><a href="#make" class="header">make</a></h1>
-<style>
+<div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-callouts {
   padding: 8px 16px;
   margin-bottom: 16px;
@@ -19022,6 +18761,7 @@ system_profiler SPAudioDataType
   --color-pink: #d53984;
 }
 </style>
+<h1 id="make"><a class="header" href="#make">make</a></h1>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -19041,9 +18781,7 @@ system_profiler SPAudioDataType
 </tbody>
 </table>
 </div>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="just"><a href="#just" class="header">just</a></h1>
-<style>
+<div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-callouts {
   padding: 8px 16px;
   margin-bottom: 16px;
@@ -19280,6 +19018,7 @@ system_profiler SPAudioDataType
   --color-pink: #d53984;
 }
 </style>
+<h1 id="just"><a class="header" href="#just">just</a></h1>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -19322,9 +19061,7 @@ check:
 clean:
     cargo clean
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="tree"><a href="#tree" class="header">tree</a></h1>
-<style>
+<div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-callouts {
   padding: 8px 16px;
   margin-bottom: 16px;
@@ -19561,6 +19298,7 @@ clean:
   --color-pink: #d53984;
 }
 </style>
+<h1 id="tree"><a class="header" href="#tree">tree</a></h1>
 <div class="table-wrapper">
 <table>
 <thead>

@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "ayu";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6dabb882.js";
+            window.path_to_searchindex_js = "../searchindex-9b839c79.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-76266586.js"></script>
+        <script src="../toc-f1aee6e3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -439,7 +439,7 @@
 </table>
 </div>
 <h2 id="3----dateisystem-von-macos"><a class="header" href="#3----dateisystem-von-macos">3    Dateisystem von macOS</a></h2>
-<h2 id="4----aktuelles-dateisystem-apfs-apple-file-system"><a class="header" href="#4----aktuelles-dateisystem-apfs-apple-file-system">4    Aktuelles Dateisystem: APFS (Apple File System)</a></h2>
+<h3 id="31----aktuelles-dateisystem-apfs-apple-file-system"><a class="header" href="#31----aktuelles-dateisystem-apfs-apple-file-system">3.1    Aktuelles Dateisystem: APFS (Apple File System)</a></h3>
 <p>Seit macOS 10.13 (High Sierra, 2017) ist <strong>APFS</strong> das Standard-Dateisystem für SSDs; seit macOS 10.15 (Catalina, 2019) auch für alle Laufwerke.</p>
 <p><strong>Merkmale:</strong></p>
 <ul>
@@ -460,7 +460,7 @@
 <p><strong>Case Sensitivity:</strong> Standardmäßig <em>nicht</em> case-sensitive (d. h. <code>Datei.txt = datei.txt</code>), kann aber beim Formatieren geändert werden.</p>
 </li>
 </ul>
-<h2 id="5----wichtige-volumes-und-partitionen"><a class="header" href="#5----wichtige-volumes-und-partitionen">5    Wichtige Volumes und Partitionen</a></h2>
+<h3 id="32----wichtige-volumes-und-partitionen"><a class="header" href="#32----wichtige-volumes-und-partitionen">3.2    Wichtige Volumes und Partitionen</a></h3>
 <p>Seit macOS Catalina ist das System in mehrere logische Volumes aufgeteilt:</p>
 <ul>
 <li>
@@ -477,7 +477,7 @@ Preboot hilft beim Starten des Systems, Recovery ermöglicht Wiederherstellung u
 </li>
 </ul>
 <p>Mit dem Befehl <code>diskutil</code> wird die komplette Volume-Struktur angezeigt.</p>
-<h2 id="6----systemschutz-und-berechtigungen"><a class="header" href="#6----systemschutz-und-berechtigungen">6    Systemschutz und Berechtigungen</a></h2>
+<h3 id="33----systemschutz-und-berechtigungen"><a class="header" href="#33----systemschutz-und-berechtigungen">3.3    Systemschutz und Berechtigungen</a></h3>
 <p>macOS schützt kritische Systembereiche durch verschiedene Mechanismen, damit Systemdateien nicht versehentlich verändert werden können.</p>
 <ul>
 <li>
@@ -493,15 +493,15 @@ Viele Apps laufen in isolierten Containern, sodass sie nur auf erlaubte Dateien 
 macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMMARY.html#6.1-`chmod`">../SUMMARY</a>) und erweiterte Access Control Lists (siehe <a href="../SUMMARY.html#6.3-acl">../SUMMARY</a>). → Anzeigen mit <code>ls -le</code>.</p>
 </li>
 </ul>
-<h2 id="7----mountpoints-und-pfade"><a class="header" href="#7----mountpoints-und-pfade">7    Mountpoints und Pfade</a></h2>
+<h3 id="34----mountpoints-und-pfade"><a class="header" href="#34----mountpoints-und-pfade">3.4    Mountpoints und Pfade</a></h3>
 <ul>
 <li>Alle Volumes werden unter <code>/Volumes/</code> eingehängt.</li>
 <li>Netzlaufwerke oder externe Festplatten erscheinen dort automatisch.</li>
 <li>Systempfade wie <code>/System</code>, <code>/Library</code> oder <code>/usr</code> sind meist Symlinks auf interne Strukturen des schreibgeschützten Systemvolumes.</li>
 </ul>
-<h2 id="8----ordnerstruktur-und-wichtige-verzeichnisse"><a class="header" href="#8----ordnerstruktur-und-wichtige-verzeichnisse">8    Ordnerstruktur und wichtige Verzeichnisse</a></h2>
+<h2 id="4----ordnerstruktur-und-wichtige-verzeichnisse"><a class="header" href="#4----ordnerstruktur-und-wichtige-verzeichnisse">4    Ordnerstruktur und wichtige Verzeichnisse</a></h2>
 <p>macOS basiert auf UNIX (BSD), daher folgt es grob der klassischen Unix-Hierarchie – erweitert um Apple-spezifische Pfade.</p>
-<h3 id="81----systemebene-root-"><a class="header" href="#81----systemebene-root-">8.1    Systemebene (Root <code>/</code>)</a></h3>
+<h3 id="41----systemebene-root-"><a class="header" href="#41----systemebene-root-">4.1    Systemebene (Root <code>/</code>)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -530,7 +530,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 <p>Viele dieser Pfade sind symbolisch mit <code>/System/Volumes/Data/usr/...</code> verknüpft, da das eigentliche Systemvolume seit macOS Catalina schreibgeschützt ist.</p>
 </div>
 
-<h3 id="82----benutzerverzeichnisse-users"><a class="header" href="#82----benutzerverzeichnisse-users">8.2    Benutzerverzeichnisse (<code>/Users</code>)</a></h3>
+<h3 id="42----benutzerverzeichnisse-users"><a class="header" href="#42----benutzerverzeichnisse-users">4.2    Benutzerverzeichnisse (<code>/Users</code>)</a></h3>
 <p>Jeder Benutzer hat ein eigenes Homeverzeichnis, z. B. <code>/Users/john</code>.</p>
 <p><strong>Wichtige Unterordner:</strong></p>
 <div class="table-wrapper">
@@ -569,7 +569,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 <p>Mit <code>cd ~</code> kann man in das Homeverzeichnis zu wechseln oder mit <code>cd ~/Documents</code>, direkt in den Dokumente-Ordner.</p>
 </div>
 
-<h3 id="83----weitere-wichtige-orte"><a class="header" href="#83----weitere-wichtige-orte">8.3    Weitere wichtige Orte</a></h3>
+<h3 id="43----weitere-wichtige-orte"><a class="header" href="#43----weitere-wichtige-orte">4.3    Weitere wichtige Orte</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -584,9 +584,9 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 </tbody>
 </table>
 </div>
-<h2 id="9----macos-unter-der-haube"><a class="header" href="#9----macos-unter-der-haube">9    macOS unter der Haube</a></h2>
+<h2 id="5----macos-unter-der-haube"><a class="header" href="#5----macos-unter-der-haube">5    macOS unter der Haube</a></h2>
 <p>macOS basiert auf UNIX/BSD und Darwin. Unter der Haube steuern Launchd, Logging und Sicherheitsmechanismen, wie Gatekeeper oder TCC, den Systembetrieb.</p>
-<h3 id="91----launchd-und-dienste"><a class="header" href="#91----launchd-und-dienste">9.1    Launchd und Dienste</a></h3>
+<h3 id="51----launchd-und-dienste"><a class="header" href="#51----launchd-und-dienste">5.1    Launchd und Dienste</a></h3>
 <p><code>launchd</code> ist das zentrale Init-System von macOS und ersetzt klassische Systeme wie <code>systemd</code> oder <code>init</code>. Es startet Prozesse beim Booten, nach Bedarf oder im Benutzerkontext. Dienste werden über Property-List-Dateien (<code>.plist</code>) definiert.</p>
 <p><strong>Speicherort der <code>.plist</code>-Dateien:</strong></p>
 <ul>
@@ -601,7 +601,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 <pre><code class="language-zsh">launchctl load/unload
 </code></pre>
 <p>Damit verwaltet macOS sowohl System- als auch Benutzerprozesse konsistent.</p>
-<h3 id="92----systemprotokolle-und-logging"><a class="header" href="#92----systemprotokolle-und-logging">9.2    Systemprotokolle und Logging</a></h3>
+<h3 id="52----systemprotokolle-und-logging"><a class="header" href="#52----systemprotokolle-und-logging">5.2    Systemprotokolle und Logging</a></h3>
 <p>macOS verwendet seit Sierra ein <em>Unified Logging System</em>, das alle Logmeldungen zentral verfügbar macht.</p>
 <p><strong>Vergangene Ereignisse anzeigen:</strong></p>
 <pre><code class="language-zsh">log show
@@ -614,7 +614,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 <pre><code class="language-zsh">log show --predicate 'eventMessage contains "error"'
 </code></pre>
 <p>gezielt Fehlermeldungen finden.</p>
-<h3 id="93----netzwerk--namensauflösung"><a class="header" href="#93----netzwerk--namensauflösung">9.3    Netzwerk &amp; Namensauflösung</a></h3>
+<h3 id="53----netzwerk--namensauflösung"><a class="header" href="#53----netzwerk--namensauflösung">5.3    Netzwerk &amp; Namensauflösung</a></h3>
 <p>macOS bietet zahlreiche Kommandozeilenwerkzeuge zur Verwaltung und Diagnose von Netzwerken. Neben klassischen UNIX-Befehlen wie <code>ping</code> und <code>traceroute</code> sind vor allem networksetup und scutil für Systemkonfigurationen relevant.</p>
 <p>Über den Dienst <strong>mDNSResponder</strong> (Bonjour) werden Geräte im lokalen Netz automatisch erkannt. Die Datei <code>/etc/hosts</code> erlaubt lokale DNS-Zuordnungen.</p>
 <div class="table-wrapper">
@@ -632,7 +632,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 </tbody>
 </table>
 </div>
-<h3 id="94----sicherheitsmechanismen"><a class="header" href="#94----sicherheitsmechanismen">9.4    Sicherheitsmechanismen</a></h3>
+<h3 id="54----sicherheitsmechanismen"><a class="header" href="#54----sicherheitsmechanismen">5.4    Sicherheitsmechanismen</a></h3>
 <p>Die folgenden Mechanismen/Schutzebenen wirken zusammen, um das System vor Malware und unautorisierten Änderungen zu schützen:</p>
 <ul>
 <li><strong>Gatekeeper</strong> blockiert unsignierte oder nicht-notarisierte Apps.</li>
@@ -640,7 +640,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 <li><strong>Notarization</strong> stellt sicher, dass Apps von Apple geprüft wurden.</li>
 <li><strong>Sandboxing</strong> und <strong>TCC (Transparency, Consent &amp; Control)</strong> begrenzen App-Zugriffe auf Dateien, Kamera, Mikrofon usw.</li>
 </ul>
-<h3 id="95----prozess---systemüberwachung"><a class="header" href="#95----prozess---systemüberwachung">9.5    Prozess- &amp; Systemüberwachung</a></h3>
+<h3 id="55----prozess---systemüberwachung"><a class="header" href="#55----prozess---systemüberwachung">5.5    Prozess- &amp; Systemüberwachung</a></h3>
 <p>Es gibt mehrere Tools, um Prozesse, Ressourcen und Systemzustände zu überwachen. Während <code>ps</code> und <code>top</code> Standardbefehle aus der UNIX-Welt sind, liefert <code>htop</code> eine moderne, farbige Ansicht. Befehle wie <code>lsof</code>, <code>vm_stat</code> und <code>powermetrics</code> helfen bei tiefergehender Analyse von Performance, Speicher oder Energieverbrauch.</p>
 <div class="table-wrapper">
 <table>
@@ -662,7 +662,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../a-grundlagen/einleitung.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../einleitung.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -676,7 +676,7 @@ macOS verwendet klassische Unix-Rechte (<code>rwx</code>, siehe <a href="../SUMM
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../a-grundlagen/einleitung.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../einleitung.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
