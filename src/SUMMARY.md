@@ -4,7 +4,7 @@
 
 # Teil I: Grundlagen
 
-1. [Grundlagen](a-grundlagen/grundlagen.md)
+1. [Terminal und Dateisystem](a-grundlagen/dateisystem.md)
 2. [Die wichtigsten Befehle](a-grundlagen/die-wichtigsten-befehle.md)
 3. [Arbeitsumgebung und Konfiguration](a-grundlagen/arbeitsumgebung-und-konfiguration.md)
 4. [Adminrechte (sudo)](a-grundlagen/adminrechte-sudo.md)

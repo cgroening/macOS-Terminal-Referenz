@@ -1,4 +1,4 @@
-# Grundlagen
+# Terminal und Dateisystem
 
 ## 1    Was ist das Terminal
 
