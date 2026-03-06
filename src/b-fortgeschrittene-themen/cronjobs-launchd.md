@@ -154,7 +154,7 @@ macOS verwendet Vixie cron (BSD-basiert). Die Unterstützung der speziellen Stri
 <true/>
 ```
 
-Siehe [[Terminal-Referenz für macOS - Teil 2 - Fortgeschrittene Themen#3.4 Erstellen von .plist-Jobs|Erstellung von .plist-Jobs]] für Details.
+Siehe [[#4 Erstellung von .plist-Jobs|Erstellung von .plist-Jobs]] für Details.
 
 ### 2.5    Umgebungsvariablen
 

@@ -822,7 +822,7 @@ scp user@server:/pfad/*.log ./logs/
 
 ### 3.3    `rsync` – Erweiterte Synchronisation
 
-Die Grundlagen von `rsync` werden in [[Terminal-Referenz für macOS - Teil 2 - Fortgeschrittene Themen#7.5.3 rsync – Effiziente Synchronisation und Spiegelung|rsync – Effiziente Synchronisation und Spiegelung]] behandelt. Der Fokus dieses Abschnitts liegt auf der Netzwerkübertragung.
+Die Grundlagen von `rsync` werden in [[dateisystem-und-laufwerke#5.3 rsync – Effiziente Synchronisation und Spiegelung|rsync – Effiziente Synchronisation und Spiegelung]] behandelt. Der Fokus dieses Abschnitts liegt auf der Netzwerkübertragung.
 
 **rsync über SSH (Standard):**
 
