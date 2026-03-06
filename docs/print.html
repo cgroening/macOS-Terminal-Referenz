@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "ayu";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "searchindex-f710930a.js";
+            window.path_to_searchindex_js = "searchindex-e94db6c8.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-b8653409.js"></script>
@@ -710,7 +710,7 @@
 <tr><td><strong>Shell</strong></td><td>Programm, das Befehle interpretiert (<code>zsh</code>, <code>bash</code>, <code>fish</code> etc.)</td></tr>
 <tr><td><strong>Prompt</strong></td><td>Die Eingabeaufforderung, z. B. <code>username@Mac ~ %</code></td></tr>
 <tr><td><strong>Pfad (Path)</strong></td><td>Gibt an, wo im Dateisystem man sich befindest</td></tr>
-<tr><td><strong>Home-Verzeichnis</strong></td><td>Pfad des persönlichen Bereichs: <code>~ oder /Users/&lt;username&gt;</code></td></tr>
+<tr><td><strong>Home-Verzeichnis</strong></td><td>Pfad des persönlichen Bereichs: <code>~</code> oder <code>/Users/&lt;username&gt;</code></td></tr>
 <tr><td><strong>Root</strong></td><td>Das oberste Verzeichnis des Systems: <code>/</code></td></tr>
 <tr><td><strong>Umgebungsvariablen</strong></td><td>Werte, die Systemverhalten beeinflussen, z. B. <code>PATH</code>, <code>HOME</code></td></tr>
 </tbody>
@@ -6940,7 +6940,7 @@ crontab -e
 <pre><code class="language-xml">&lt;key&gt;RunAtLoad&lt;/key&gt;
 &lt;true/&gt;
 </code></pre>
-<p>Siehe <a href="b-fortgeschrittene-themen/Terminal-Referenz%20für%20macOS%20-%20Teil%202%20-%20Fortgeschrittene%20Themen.html#3.4-erstellen-von-.plist-jobs">Erstellung von .plist-Jobs</a> für Details.</p>
+<p>Siehe [[#4 Erstellung von .plist-Jobs|Erstellung von .plist-Jobs]] für Details.</p>
 <h3 id="25----umgebungsvariablen"><a class="header" href="#25----umgebungsvariablen">2.5    Umgebungsvariablen</a></h3>
 <p>Cron führt Befehle mit einer minimalen Umgebung aus. Wichtige Variablen sollten definiert werden:</p>
 <pre><code class="language-cron"># Umgebungsvariablen setzen
@@ -13033,7 +13033,7 @@ scp *.txt user@server:/pfad/
 scp user@server:/pfad/*.log ./logs/
 </code></pre>
 <h3 id="33----rsync--erweiterte-synchronisation"><a class="header" href="#33----rsync--erweiterte-synchronisation">3.3    <code>rsync</code> – Erweiterte Synchronisation</a></h3>
-<p>Die Grundlagen von <code>rsync</code> werden in <a href="b-fortgeschrittene-themen/Terminal-Referenz%20für%20macOS%20-%20Teil%202%20-%20Fortgeschrittene%20Themen.html#7.5.3-rsync-–-effiziente-synchronisation-und-spiegelung">rsync – Effiziente Synchronisation und Spiegelung</a> behandelt. Der Fokus dieses Abschnitts liegt auf der Netzwerkübertragung.</p>
+<p>Die Grundlagen von <code>rsync</code> werden in <a href="#5.3-rsync-–-effiziente-synchronisation-und-spiegelung">rsync – Effiziente Synchronisation und Spiegelung</a> behandelt. Der Fokus dieses Abschnitts liegt auf der Netzwerkübertragung.</p>
 <p><strong>rsync über SSH (Standard):</strong></p>
 <pre><code class="language-zsh"># Auf Server kopieren
 rsync -avz ~/projekt/ user@server:/backup/projekt/
